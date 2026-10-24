@@ -65,7 +65,9 @@ function policyFor(html) {
     `script-src 'self' ${scripts.join(' ')}`.trim(),
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data:",
-    "font-src 'self'",
+    // `data:` because Vite inlines small font subsets as data URIs; without it
+    // the typeface silently falls back to the system stack.
+    "font-src 'self' data:",
     // No XHR targets at all. If a form or an API ever appears, widen this
     // deliberately rather than leaving it open now.
     "connect-src 'self'",
