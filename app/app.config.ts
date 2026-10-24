@@ -19,11 +19,11 @@ export default defineAppConfig({
     // and the download page links to the installers.
     available: false,
     // GitHub Releases is where signed installers are published (Phase 7).
-    releases: 'https://github.com/crawlstat/crawlstat/releases/latest',
+    releases: 'https://github.com/clotairedamy/CrawlStat/releases/latest',
     version: '1.0',
     platforms: [
       { id: 'macos', name: 'macOS', detail: 'Apple Silicon & Intel · macOS 11+', file: '.dmg' },
-      { id: 'windows', name: 'Windows', detail: 'Windows 10 & 11 · 64-bit', file: '.msi' },
+      { id: 'windows', name: 'Windows', detail: 'Windows 10 & 11 · 64-bit', file: '.exe' },
       { id: 'linux', name: 'Linux', detail: 'x86-64 · AppImage & .deb', file: '.AppImage' },
     ],
   },
