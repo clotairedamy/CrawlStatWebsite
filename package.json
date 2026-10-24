@@ -1,0 +1,19 @@
+{
+  "name": "crawlstat-website",
+  "private": true,
+  "type": "module",
+  "description": "crawlstat.com — marketing site, blog and help centre. Statically generated for GitHub Pages.",
+  "scripts": {
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "npx serve .output/public",
+    "sync:audits": "node scripts/sync-audits.mjs",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource-variable/outfit": "^5.3.0",
+    "@nuxt/content": "^3.16.2",
+    "nuxt": "^4.6.2"
+  }
+}

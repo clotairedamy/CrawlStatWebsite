@@ -1,0 +1,584 @@
+/*
+  CrawlStat — site design system.
+
+  Charcoal, soft-extruded surfaces and a single copper accent. Depth comes from
+  paired light/dark shadows on a surface the same colour as the page, so
+  elements look pressed out of (or into) the background rather than placed on
+  top of it. Copper is reserved for the one thing on screen we want clicked.
+*/
+
+:root {
+  --bg: #26282d;
+  --bg-deep: #202226;
+  --surface: #2a2c31;
+  --line: rgba(255, 255, 255, 0.06);
+  --line-strong: rgba(255, 255, 255, 0.11);
+
+  --shade-dark: #1a1b1f;
+  --shade-light: #33363c;
+
+  --text: #ece8e2;
+  --text-soft: #c2bfba;
+  --muted: #8d8b88;
+
+  --copper: #e3ad7b;
+  --copper-hi: #f3c99c;
+  --copper-lo: #b9804f;
+  --copper-grad: linear-gradient(135deg, #f5cfa3 0%, #e2a873 48%, #bd8353 100%);
+  --copper-glow: 0 0 24px rgba(227, 173, 123, 0.35);
+
+  --error: #ef7d73;
+  --warning: #f0c35f;
+  --notice: #8fa3c2;
+  --ok: #7fcf9a;
+
+  --raised: 9px 9px 22px var(--shade-dark), -9px -9px 22px var(--shade-light);
+  --raised-sm: 5px 5px 12px var(--shade-dark), -5px -5px 12px var(--shade-light);
+  --raised-lg: 20px 20px 50px var(--shade-dark), -16px -16px 44px var(--shade-light);
+  --inset: inset 5px 5px 11px var(--shade-dark), inset -5px -5px 11px var(--shade-light);
+  --inset-sm: inset 3px 3px 6px var(--shade-dark), inset -3px -3px 6px var(--shade-light);
+
+  --radius: 22px;
+  --radius-sm: 14px;
+  --font: 'Outfit Variable', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono Variable', ui-monospace, 'SF Mono', Menlo, monospace;
+  --max: 1180px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(227, 173, 123, 0.35);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+code,
+kbd,
+pre {
+  font-family: var(--mono);
+}
+
+/* ─── Layout ──────────────────────────────────────────────────────────── */
+
+.container {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.section {
+  padding: 120px 0;
+}
+
+.section-tight {
+  padding: 72px 0;
+}
+
+/* ─── Type ────────────────────────────────────────────────────────────── */
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.copper-text {
+  background: var(--copper-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.display {
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
+  font-weight: 450;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+}
+
+.h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: -0.03em;
+}
+
+.h3 {
+  font-size: 1.35rem;
+}
+
+.lead {
+  font-size: clamp(1.08rem, 1.6vw, 1.25rem);
+  color: var(--text-soft);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.mono {
+  font-family: var(--mono);
+}
+
+.center {
+  text-align: center;
+}
+
+.section-head {
+  max-width: 680px;
+  margin: 0 auto 64px;
+  text-align: center;
+  display: grid;
+  gap: 18px;
+  justify-items: center;
+}
+
+/* ─── Surfaces ────────────────────────────────────────────────────────── */
+
+.neu {
+  background: var(--bg);
+  border-radius: var(--radius);
+  box-shadow: var(--raised);
+}
+
+.neu-sm {
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--raised-sm);
+}
+
+.neu-inset {
+  background: var(--bg);
+  border-radius: var(--radius);
+  box-shadow: var(--inset);
+}
+
+.card {
+  background: linear-gradient(145deg, #2b2d33, #24262a);
+  border-radius: var(--radius);
+  box-shadow: var(--raised);
+  padding: 34px;
+}
+
+/* ─── Buttons ─────────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 30px;
+  border-radius: 999px;
+  border: 0;
+  font: inherit;
+  font-size: 0.98rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease),
+    filter 0.25s var(--ease);
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.985);
+}
+
+.btn-copper {
+  color: #2a1c10;
+  background: var(--copper-grad);
+  box-shadow:
+    6px 6px 16px var(--shade-dark),
+    -4px -4px 12px var(--shade-light),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.btn-copper:hover {
+  filter: brightness(1.06);
+  box-shadow:
+    6px 6px 16px var(--shade-dark),
+    -4px -4px 12px var(--shade-light),
+    var(--copper-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.btn-ghost {
+  color: var(--text);
+  background: var(--bg);
+  box-shadow: var(--raised-sm);
+}
+
+.btn-ghost:hover {
+  color: var(--copper-hi);
+}
+
+.btn-ghost:active {
+  box-shadow: var(--inset-sm);
+}
+
+.btn-sm {
+  height: 40px;
+  padding: 0 20px;
+  font-size: 0.88rem;
+}
+
+.btn svg {
+  width: 18px;
+  height: 18px;
+  flex: none;
+}
+
+/* ─── Small parts ─────────────────────────────────────────────────────── */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: var(--bg);
+  box-shadow: var(--inset-sm);
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  letter-spacing: 0.01em;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--copper-grad);
+  box-shadow: 0 0 10px rgba(227, 173, 123, 0.7);
+  flex: none;
+}
+
+.dot-pulse {
+  animation: pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(227, 173, 123, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgba(227, 173, 123, 0);
+  }
+}
+
+kbd,
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 26px;
+  padding: 0 7px;
+  border-radius: 7px;
+  background: var(--bg);
+  box-shadow:
+    2px 2px 5px var(--shade-dark),
+    -2px -2px 5px var(--shade-light);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--text);
+  vertical-align: 0.1em;
+}
+
+.sev {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sev::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.sev-error {
+  color: var(--error);
+}
+
+.sev-warning {
+  color: var(--warning);
+}
+
+.sev-notice {
+  color: var(--notice);
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
+  border: 0;
+  margin: 0;
+}
+
+.check-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.check-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  color: var(--text-soft);
+}
+
+.check-list li::before {
+  content: '';
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 4px;
+  border-radius: 50%;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232a1c10' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")
+      center / 11px no-repeat,
+    var(--copper-grad);
+}
+
+.check-list li.off {
+  color: var(--muted);
+}
+
+.check-list li.off::before {
+  background: var(--bg);
+  box-shadow: var(--inset-sm);
+}
+
+/* ─── Reveal on scroll (see plugins/reveal.ts) ────────────────────────── */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ─── Prose (blog posts and help pages) ───────────────────────────────── */
+
+.prose {
+  color: var(--text-soft);
+  font-size: 1.04rem;
+  line-height: 1.78;
+  font-weight: 350;
+}
+
+.prose > * + * {
+  margin-top: 1.25em;
+}
+
+.prose h2 {
+  color: var(--text);
+  font-size: 1.65rem;
+  margin-top: 2.4em;
+  letter-spacing: -0.02em;
+}
+
+.prose h3 {
+  color: var(--text);
+  font-size: 1.22rem;
+  margin-top: 2em;
+}
+
+.prose h2 a,
+.prose h3 a {
+  color: inherit;
+}
+
+.prose h2 + *,
+.prose h3 + * {
+  margin-top: 0.8em;
+}
+
+.prose strong {
+  color: var(--text);
+  font-weight: 550;
+}
+
+.prose a {
+  color: var(--copper-hi);
+  text-decoration: underline;
+  text-decoration-color: rgba(227, 173, 123, 0.35);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s;
+}
+
+.prose a:hover {
+  text-decoration-color: var(--copper);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.3em;
+}
+
+.prose li + li {
+  margin-top: 0.45em;
+}
+
+.prose li::marker {
+  color: var(--copper);
+}
+
+.prose blockquote {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 18px 24px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--inset-sm);
+  color: var(--text);
+  font-style: italic;
+}
+
+.prose :not(pre) > code {
+  font-size: 0.86em;
+  padding: 0.15em 0.45em;
+  border-radius: 6px;
+  background: var(--bg-deep);
+  color: var(--copper-hi);
+  border: 1px solid var(--line);
+}
+
+.prose pre {
+  padding: 22px 24px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-deep) !important;
+  box-shadow: var(--inset-sm);
+  overflow-x: auto;
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+  display: block;
+  overflow-x: auto;
+}
+
+.prose th,
+.prose td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.prose th {
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.prose hr {
+  border: 0;
+  height: 1px;
+  background: var(--line-strong);
+  margin: 3em 0;
+}
+
+.prose img {
+  border-radius: var(--radius-sm);
+}
