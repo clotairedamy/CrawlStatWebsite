@@ -39,7 +39,7 @@ const columns = [
       <div class="grid">
         <div class="about">
           <NuxtLink to="/" class="brand">
-            <img src="/brand/app-icon-64.png" alt="" width="40" height="40">
+            <BrandOwl variant="mark" :height="36" />
             <span>CrawlStat</span>
           </NuxtLink>
           <p class="muted">

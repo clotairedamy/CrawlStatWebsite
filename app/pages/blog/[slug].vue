@@ -26,7 +26,7 @@ useSeoMeta({
         <h1 class="display copper-text">{{ post.title }}</h1>
         <p class="lead">{{ post.description }}</p>
         <span class="author muted">
-          <img src="/brand/app-icon-64.png" alt="" width="28" height="28"> {{ post.author }}
+          <BrandOwl variant="mark" :height="24" /> {{ post.author }}
         </span>
       </header>
       <ContentRenderer :value="post" class="prose" />

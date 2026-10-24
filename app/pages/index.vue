@@ -2,7 +2,8 @@
 useSeoMeta({
   title: '',
   ogTitle: 'CrawlStat — the SEO crawler that runs on your machine',
-  ogDescription: 'Fast, local-first desktop SEO crawler. 45 audits with fix-it guidance, flat memory at any size, and no server — ever.',
+  ogDescription: 'Fast, local-first desktop SEO crawler. It ranks what to fix first by impact, not severity — 45 audits, flat memory at any size, and no server, ever.',
+  description: 'CrawlStat is a desktop SEO crawler for macOS, Windows and Linux. It crawls at 11,700 URLs a second in 128 MiB, runs 45 audits, and ranks what to fix first by how much of your site each problem actually touches. Nothing leaves your machine.',
 })
 
 const dl = useDownloadCta()
@@ -129,6 +130,58 @@ const pillars = [
       </div>
     </section>
 
+    <!-- The ranked plan: the one thing a list of issues cannot do -->
+    <section class="section">
+      <div class="container">
+        <div v-reveal class="section-head">
+          <span class="eyebrow">The plan</span>
+          <h2 class="h2">Ten thousand rows is not a to-do list.</h2>
+          <p class="lead">
+            Every crawler ends the same way: a table sorted by severity and no answer to the only question you
+            actually have. CrawlStat ranks the findings instead — by how much of your site's link value they touch,
+            and by how many pages a single change fixes.
+          </p>
+        </div>
+
+        <div v-reveal class="plan-demo neu">
+          <div class="plan-row">
+            <span class="plan-score">100</span>
+            <div class="plan-body">
+              <strong>Form field with no label</strong>
+              <span class="plan-note">823 pages · <b>2 changes</b> · 86% of link value</span>
+            </div>
+            <span class="plan-tag">One template</span>
+          </div>
+          <div class="plan-row">
+            <span class="plan-score">56</span>
+            <div class="plan-body">
+              <strong>Duplicate element id</strong>
+              <span class="plan-note">968 pages · <b>3 changes</b></span>
+            </div>
+            <span class="plan-tag">One template</span>
+          </div>
+          <div class="plan-row dim">
+            <span class="plan-score">8</span>
+            <div class="plan-body">
+              <strong>Near-duplicate content</strong>
+              <span class="plan-note">371 pages · <b>278 changes</b></span>
+            </div>
+            <span class="plan-tag quiet">Page by page</span>
+          </div>
+          <p class="plan-caption">
+            A real 1,929-page crawl. The top job is two template edits that fix 823 pages. The duplicate-content
+            problem touches more of the site and still ranks ninth, because it is 278 separate pieces of work.
+          </p>
+        </div>
+
+        <div v-reveal class="center">
+          <NuxtLink to="/features" class="btn btn-ghost audits-link">
+            How the ranking works <Icon name="arrow" :size="18" />
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
     <!-- Privacy band -->
     <section class="section-tight">
       <div class="container">
@@ -180,24 +233,48 @@ const pillars = [
   justify-items: start;
 }
 
+/* The hero's entrance, kept short on purpose.
+ *
+ * This used to be a one-second fade per element with a stagger that reached
+ * 1.4s, and `both` fill — so the headline held at opacity 0 from first paint
+ * and the last line did not finish arriving until about 2.4s. On a phone the
+ * page simply looked empty, and the headline is the largest element on the
+ * screen, so Largest Contentful Paint was being pushed out by the animation
+ * rather than by anything the browser actually had to fetch.
+ *
+ * Half the duration, a third of the stagger: the effect still reads, and the
+ * hero is fully legible well inside half a second. */
 .hero-copy > * {
-  animation: up 1s var(--ease) both;
+  animation: up 0.5s var(--ease) both;
+}
+
+/* The headline is gradient text, so it must not end up with a transform on
+   it — see the note on `.copper-text` in main.css. Opacity only. */
+.hero-copy > .copper-text {
+  animation-name: fade-in;
 }
 
 .hero-copy > :nth-child(2) {
-  animation-delay: 0.08s;
+  animation-delay: 0.05s;
 }
 
 .hero-copy > :nth-child(3) {
-  animation-delay: 0.16s;
+  animation-delay: 0.1s;
 }
 
 .hero-copy > :nth-child(4) {
-  animation-delay: 0.24s;
+  animation-delay: 0.15s;
 }
 
 .hero-copy > :nth-child(5) {
-  animation-delay: 0.32s;
+  animation-delay: 0.2s;
+}
+
+/* Nothing here is information, so it all goes when motion is unwelcome. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy > * {
+    animation: none;
+  }
 }
 
 @keyframes up {
@@ -343,6 +420,93 @@ const pillars = [
 
   .section {
     padding: 88px 0;
+  }
+}
+.plan-demo {
+  display: grid;
+  gap: 2px;
+  padding: 14px;
+  border-radius: 20px;
+  margin-bottom: 36px;
+}
+
+.plan-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 20px;
+  border-radius: 14px;
+}
+
+.plan-row.dim {
+  opacity: 0.6;
+}
+
+.plan-score {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  box-shadow: var(--raised-sm);
+  font-variant-numeric: tabular-nums;
+  font-size: 1.05rem;
+  background: var(--copper-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.plan-body {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.plan-body strong {
+  font-weight: 450;
+}
+
+.plan-note {
+  font-size: 0.86rem;
+  color: var(--text-soft);
+}
+
+.plan-note b {
+  color: var(--text);
+  font-weight: 450;
+}
+
+.plan-tag {
+  flex: none;
+  margin-left: auto;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--copper);
+  white-space: nowrap;
+}
+
+.plan-tag.quiet {
+  color: var(--text-soft);
+}
+
+.plan-caption {
+  padding: 16px 20px 6px;
+  font-size: 0.88rem;
+  color: var(--text-soft);
+  max-width: 62ch;
+}
+
+@media (max-width: 640px) {
+  .plan-row {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .plan-tag {
+    margin-left: 66px;
   }
 }
 </style>

@@ -139,11 +139,46 @@ pre {
   color: var(--muted);
 }
 
+/* Gradient text.
+ *
+ * ## Do not put a transform on one of these
+ *
+ * `background-clip: text` is not painted by Chromium once the element is
+ * promoted to its own compositing layer, and the text comes out completely
+ * invisible — not faint, not mis-coloured, gone. A transform promotes an
+ * element, and so does a *finished* animation whose keyframes touched
+ * `transform` while `animation-fill-mode` is `both` or `forwards`, because
+ * the final frame is held forever.
+ *
+ * That is exactly how the home page shipped with an invisible headline: the
+ * hero's entrance animation left `matrix(1, 0, 0, 1, 0, 0)` on the h1, which
+ * is an identity transform and still enough to promote it. It was invisible
+ * on desktop too.
+ *
+ * `color` is set as well as `-webkit-text-fill-color` so that a browser
+ * without `background-clip: text` shows readable copper rather than nothing.
+ * Elements that need to animate in use `fade-in` below, which never touches
+ * `transform`. */
 .copper-text {
+  color: #e8bd8e;
   background: var(--copper-grad);
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .copper-text {
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+}
+
+/* The entrance for anything that also carries gradient text: opacity only, so
+   the element is never promoted to a layer of its own. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
 }
 
 .display {

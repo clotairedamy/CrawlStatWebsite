@@ -64,7 +64,7 @@ const row = computed(() => ticker[tick.value]!)
         <div class="disc-ring">
           <div class="sweep" />
           <span class="pulse" />
-          <span class="pulse" style="animation-delay: 1.4s" />
+          <span class="pulse" style="animation-delay: 0.7s" />
           <span class="core" />
         </div>
       </div>
@@ -112,7 +112,7 @@ const row = computed(() => ticker[tick.value]!)
     1.6cqw 1.6cqw 4cqw var(--shade-dark),
     -1.4cqw -1.4cqw 3.6cqw var(--shade-light);
   animation: rise 1.4s var(--ease) both;
-  animation-delay: calc(var(--i) * 110ms);
+  animation-delay: calc(var(--i) * 55ms);
 }
 
 @keyframes rise {

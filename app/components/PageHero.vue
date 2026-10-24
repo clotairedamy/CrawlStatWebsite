@@ -26,13 +26,22 @@ defineProps<{ eyebrow?: string; title: string; lead?: string }>()
   max-width: 860px;
 }
 
+/* Opacity only: this h1 is gradient text, and a lingering transform stops
+   `background-clip: text` painting at all. See main.css. */
 h1 {
-  animation: up 1s var(--ease) both;
+  animation: fade-in 0.5s var(--ease) both;
 }
 
 .lead {
   max-width: 640px;
-  animation: up 1s var(--ease) 0.1s both;
+  animation: up 0.5s var(--ease) 0.08s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  h1,
+  .lead {
+    animation: none;
+  }
 }
 
 @keyframes up {

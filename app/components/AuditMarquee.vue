@@ -30,6 +30,10 @@ const rows = [audits.slice(0, half), audits.slice(half)]
 .marquee {
   display: grid;
   gap: 22px;
+  /* The lanes are `width: max-content` — about 5,000px each — so without this
+     the whole document scrolled sideways. The mask below fades the edges but
+     clips nothing: it is paint, not layout. This was the mobile bug. */
+  overflow: hidden;
   mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
   -webkit-mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
   padding: 20px 0;
@@ -48,6 +52,14 @@ const rows = [audits.slice(0, half), audits.slice(half)]
 
 .marquee:hover .track {
   animation-play-state: paused;
+}
+
+/* A permanently moving band is exactly what this setting is for, and a
+   vestibular trigger is not worth a decorative flourish. */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
 }
 
 .lane {

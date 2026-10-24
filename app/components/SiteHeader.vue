@@ -4,12 +4,18 @@ const dl = useDownloadCta()
 const open = ref(false)
 const scrolled = ref(false)
 
-const links = [
+// Split either side of the owl. The mark is the brand here — there is no
+// wordmark beside it — so it sits in the middle and the navigation balances
+// around it.
+const leftLinks = [
   { to: '/features', label: 'Features' },
   { to: '/pricing', label: 'Pricing' },
+]
+const rightLinks = [
   { to: '/docs', label: 'Help' },
   { to: '/blog', label: 'Blog' },
 ]
+const links = [...leftLinks, ...rightLinks]
 
 watch(() => route.path, () => (open.value = false))
 
@@ -24,23 +30,24 @@ onMounted(() => {
 <template>
   <header class="header" :class="{ scrolled, open }">
     <div class="container bar">
-      <NuxtLink to="/" class="brand" aria-label="CrawlStat home">
-        <img src="/brand/app-icon-64.png" alt="" width="34" height="34">
-        <span>Crawl<b>Stat</b></span>
-      </NuxtLink>
-
-      <nav class="nav" aria-label="Main">
-        <NuxtLink v-for="l in links" :key="l.to" :to="l.to" class="nav-link">{{ l.label }}</NuxtLink>
+      <nav class="nav nav-left" aria-label="Main">
+        <NuxtLink v-for="l in leftLinks" :key="l.to" :to="l.to" class="nav-link">{{ l.label }}</NuxtLink>
       </nav>
 
-      <div class="actions">
+      <NuxtLink to="/" class="brand" aria-label="CrawlStat home">
+        <BrandOwl variant="wordmark" :height="40" />
+      </NuxtLink>
+
+      <nav class="nav nav-right" aria-label="More">
+        <NuxtLink v-for="l in rightLinks" :key="l.to" :to="l.to" class="nav-link">{{ l.label }}</NuxtLink>
         <NuxtLink to="/download" class="btn btn-copper btn-sm">
           <Icon :name="dl.icon" :size="16" /> {{ dl.label('Download') }}
         </NuxtLink>
-        <button class="burger" :aria-expanded="open" aria-label="Menu" @click="open = !open">
-          <Icon :name="open ? 'close' : 'menu'" />
-        </button>
-      </div>
+      </nav>
+
+      <button class="burger" :aria-expanded="open" aria-label="Menu" @click="open = !open">
+        <Icon :name="open ? 'close' : 'menu'" />
+      </button>
     </div>
 
     <Transition name="drop">
@@ -72,34 +79,33 @@ onMounted(() => {
 
 .bar {
   height: 84px;
-  display: flex;
+  /* Three tracks with equal outer columns, so the owl is centred on the page
+     rather than on whatever the links happen to measure. */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  gap: 40px;
+  gap: 28px;
 }
 
 .brand {
   display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 1.12rem;
-  font-weight: 450;
-  letter-spacing: -0.01em;
+  justify-content: center;
+  color: var(--text);
+  transition: opacity 0.25s var(--ease);
 }
 
-.brand img {
-  border-radius: 9px;
-  box-shadow: var(--raised-sm);
-}
-
-.brand b {
-  font-weight: 450;
-  color: var(--muted);
+.brand:hover {
+  opacity: 0.78;
 }
 
 .nav {
   display: flex;
-  gap: 44px;
-  margin-left: 28px;
+  align-items: center;
+  gap: 38px;
+}
+
+.nav-right {
+  justify-content: flex-end;
 }
 
 .nav-link {
@@ -110,6 +116,7 @@ onMounted(() => {
   text-transform: uppercase;
   color: var(--text-soft);
   padding: 8px 0;
+  white-space: nowrap;
   transition: color 0.25s;
 }
 
@@ -135,11 +142,8 @@ onMounted(() => {
   transform: translateX(calc(-50% - 0.15em)) scale(1);
 }
 
-.actions {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 14px;
+.nav-right .btn {
+  margin-left: 10px;
 }
 
 .burger {
@@ -154,6 +158,7 @@ onMounted(() => {
   cursor: pointer;
   align-items: center;
   justify-content: center;
+  justify-self: end;
 }
 
 .mobile {
@@ -187,18 +192,39 @@ onMounted(() => {
   transform: translateY(-8px);
 }
 
-@media (max-width: 860px) {
-  .nav,
-  .actions > .btn {
+@media (max-width: 980px) {
+  .nav {
     display: none;
+  }
+
+  /* Two tracks now: the owl takes the first and centres itself in it, the
+     burger takes the second. Centring the mark against a 44px button on one
+     side only would sit it visibly off-axis. */
+  .bar {
+    grid-template-columns: 1fr 44px;
+    height: 72px;
+  }
+
+  .brand {
+    justify-content: start;
+    margin-left: 44px;
   }
 
   .burger {
     display: inline-flex;
   }
+}
 
-  .bar {
-    height: 72px;
+@media (max-width: 420px) {
+  /* The wingspan is 2:1, so on a small phone it would crowd the burger.
+     Shrink it rather than swapping artwork: the whole owl is the mark. */
+  .brand {
+    margin-left: 0;
+  }
+
+  .brand :deep(.owl) {
+    height: 30px !important;
   }
 }
 </style>
+
