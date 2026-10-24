@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useSeoMeta({
+usePageSeo({
   title: 'Pricing',
   description: 'CrawlStat is free up to 500 URLs per crawl with every audit included. Pro is $99/year for unlimited URLs and team tools.',
 })
@@ -43,9 +43,23 @@ const faq = [
   },
   {
     q: 'Is my crawl data sent anywhere?',
-    a: 'No. Crawls are stored in a SQLite file on your own machine. The only thing CrawlStat ever sends is your licence key, when you activate or refresh it. See <a href="/docs/privacy-and-data">Privacy and your data</a>.',
+    a: 'No. Crawls are stored in a file on your own machine. The only thing CrawlStat ever sends is your licence key, when you activate or refresh it. See <a href="/docs/privacy-and-data">Privacy and your data</a>.',
   },
 ]
+
+const sd = useStructuredData()
+useJsonLd(
+  sd.software,
+  {
+    '@type': 'FAQPage',
+    mainEntity: faq.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a.replace(/href="\//g, `href="${sd.url('/')}`) },
+    })),
+  },
+  sd.breadcrumbs([['Home', '/'], ['Pricing', '/pricing']]),
+)
 </script>
 
 <template>

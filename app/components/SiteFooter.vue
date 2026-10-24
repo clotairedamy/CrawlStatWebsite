@@ -43,7 +43,7 @@ const columns = [
             <span>CrawlStat</span>
           </NuxtLink>
           <p class="muted">
-            The SEO crawler that runs on your machine. Built in Rust and Flutter, for macOS, Windows and Linux.
+            The SEO crawler that runs on your machine, for macOS, Windows and Linux.
           </p>
           <div class="social">
             <a :href="`mailto:${site.email}`" aria-label="Email"><Icon name="mail" :size="18" /></a>

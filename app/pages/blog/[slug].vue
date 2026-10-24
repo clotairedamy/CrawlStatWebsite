@@ -10,11 +10,27 @@ const { data: more } = await useAsyncData(`blog-more-${route.path}`, () =>
 )
 const others = computed(() => (more.value ?? []).filter((p) => p.path !== route.path).slice(0, 2))
 
-useSeoMeta({
-  title: post.value.title,
-  description: post.value.description,
-  ogType: 'article',
-})
+usePageSeo({ title: post.value.title, description: post.value.description, type: 'article' })
+useSeoMeta({ articlePublishedTime: post.value.date, articleSection: post.value.tag })
+
+const sd = useStructuredData()
+useJsonLd(
+  {
+    '@type': 'BlogPosting',
+    headline: post.value.title,
+    description: post.value.description,
+    datePublished: post.value.date,
+    dateModified: post.value.date,
+    articleSection: post.value.tag,
+    inLanguage: 'en',
+    url: sd.url(route.path),
+    mainEntityOfPage: sd.url(route.path),
+    image: sd.url('/screenshots/results-dark.png'),
+    author: { '@type': 'Organization', name: post.value.author, url: sd.url('/') },
+    publisher: sd.organization,
+  },
+  sd.breadcrumbs([['Home', '/'], ['Blog', '/blog'], [post.value.title, route.path]]),
+)
 </script>
 
 <template>

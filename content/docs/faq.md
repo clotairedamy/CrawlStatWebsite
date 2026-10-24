@@ -99,7 +99,7 @@ Not from within the app at the moment. Settings shows both locations so you can 
 
 ### Can I share a crawl with a colleague?
 
-You can copy the crawl's `.db` file and send it, for example to archive it or open it with any SQLite tool. CrawlStat itself lists the crawls it has run, and doesn't currently have a way to open a crawl file from elsewhere.
+You can copy the crawl's `.db` file and send it, for example to archive it. CrawlStat itself lists the crawls it has run, and doesn't currently have a way to open a crawl file from elsewhere.
 
 ## Pro and licensing
 

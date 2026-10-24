@@ -1,5 +1,6 @@
 <script setup lang="ts">
-useSeoMeta({
+useJsonLd(useStructuredData().breadcrumbs([['Home', '/'], ['Blog', '/blog']]))
+usePageSeo({
   title: 'Blog',
   description: 'Engineering notes, SEO guides and product news from the team building CrawlStat.',
 })

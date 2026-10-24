@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import audits from '~/data/audits.json'
 
-useSeoMeta({
+useJsonLd(useStructuredData().breadcrumbs([['Home', '/'], ['Help centre', '/docs'], ['Audit reference', '/docs/audits']]))
+usePageSeo({
   title: 'Audit reference',
   description: `All ${audits.length} SEO and accessibility checks CrawlStat runs, with what each means and how to fix it.`,
 })

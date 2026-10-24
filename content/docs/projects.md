@@ -11,7 +11,7 @@ Every crawl you run is saved as a single file on your computer, in CrawlStat's `
 
 Files are named after the site and the time the crawl started, for example `example-com-20260224-1432.db`. Each crawl gets a new file, so crawling the same site again never overwrites an earlier crawl.
 
-The files are SQLite databases. While a crawl is open you may see two companion files next to it, ending in `-wal` and `-shm`. They're a normal part of how SQLite works, and CrawlStat cleans them up along with the crawl if you delete it.
+While a crawl is open you may see two small companion files next to it, with the same name plus a short suffix. They're a normal part of how crawl files are saved, and CrawlStat cleans them up along with the crawl if you delete it.
 
 ::callout{type="note"}
 Disk use is roughly 2 KB per URL, so a 50,000-URL crawl takes about 100 MB. Turning on **Keep raw HTML** in [Settings](/docs/settings) makes crawl files much bigger.
@@ -77,6 +77,6 @@ You'll also find the path in the Projects header, at the bottom of the New crawl
 
 ### Backing up and sharing crawls
 
-Because a crawl is one file, you can back it up, archive it, or send it to a colleague by copying the `.db` file. Copy it when CrawlStat isn't using it, so the `-wal` file has been folded back into the main file.
+Because a crawl is one file, you can back it up, archive it, or send it to a colleague by copying the `.db` file. Copy it when CrawlStat isn't using it, so everything has been saved into the main file.
 
 CrawlStat lists the crawls it has run on this machine. There isn't currently a way to open a crawl file from elsewhere from inside the app.

@@ -12,7 +12,23 @@ const index = computed(() => siblings.value?.findIndex((p) => p.path === route.p
 const prev = computed(() => siblings.value?.[index.value - 1])
 const next = computed(() => siblings.value?.[index.value + 1])
 
-useSeoMeta({ title: page.value.title, description: page.value.description })
+usePageSeo({ title: page.value.title, description: page.value.description, type: 'article' })
+
+const sd = useStructuredData()
+useJsonLd(
+  {
+    '@type': 'TechArticle',
+    headline: page.value.title,
+    description: page.value.description,
+    articleSection: page.value.section,
+    inLanguage: 'en',
+    url: sd.url(route.path),
+    mainEntityOfPage: sd.url(route.path),
+    about: { '@id': sd.software['@id'] },
+    publisher: sd.organization,
+  },
+  sd.breadcrumbs([['Home', '/'], ['Help centre', '/docs'], [page.value.title, route.path]]),
+)
 </script>
 
 <template>

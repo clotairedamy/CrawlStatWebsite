@@ -3,7 +3,8 @@ const { downloads, pricing, site } = useAppConfig()
 const route = useRoute()
 const wantsPro = computed(() => route.query.plan === 'pro')
 
-useSeoMeta({
+useJsonLd(useStructuredData().breadcrumbs([['Home', '/'], ['Download', '/download']]))
+usePageSeo({
   title: 'Download',
   description: 'Download CrawlStat for macOS, Windows or Linux. Free up to 500 URLs per crawl, no account needed.',
 })

@@ -1,8 +1,11 @@
 <script setup lang="ts">
-useSeoMeta({
+usePageSeo({
   title: 'Features',
-  description: 'A live crawl view, a results table that keeps up at 500,000 rows, 45 audits with fixes, and an engine that keeps memory flat. Built in Rust.',
+  description: 'A live crawl view, a results table that keeps up at 500,000 rows, 45 audits with fixes, and an engine that keeps memory flat at any crawl size.',
 })
+
+const sd = useStructuredData()
+useJsonLd(sd.software, sd.breadcrumbs([['Home', '/'], ['Features', '/features']]))
 
 const rows = [
   {
@@ -17,7 +20,7 @@ const rows = [
     eyebrow: 'Results',
     title: 'A table built for the long haul.',
     body: 'Eleven tabs — Internal, External, Response codes, Titles, Meta description, H1, Canonicals, Hreflang, Structured data, Images, Documents — over one fast table. Filter, sort, choose columns and export, all from the keyboard.',
-    points: ['Pages of 200 rows from SQLite as you scroll', 'Status filters: 2xx, 3xx, 4xx, 5xx', 'URL detail: issues, inlinks, outlinks, images, headers'],
+    points: ['Loads 200 rows at a time as you scroll', 'Status filters: 2xx, 3xx, 4xx, 5xx', 'URL detail: issues, inlinks, outlinks, images, headers'],
   },
   {
     shot: 'issues',
@@ -30,15 +33,15 @@ const rows = [
     shot: 'projects',
     eyebrow: 'Projects',
     title: 'Every crawl, a file you own.',
-    body: 'Each crawl is a single SQLite file on your disk. See status mix, errors, warnings and size at a glance — then open, resume or delete. Upgrading CrawlStat improves what an old crawl reports, because the audits live in the app.',
+    body: 'Each crawl is a single file on your disk. See status mix, errors, warnings and size at a glance — then open, resume or delete. Upgrading CrawlStat improves what an old crawl reports, because the audits live in the app.',
     points: ['One file per crawl, ~2 KB per URL', 'Resume exactly where you stopped', 'Nothing uploaded, ever'],
   },
 ]
 
 const grid = [
-  { icon: 'graph', title: 'Link score', body: 'PageRank over your internal links, computed in SQL and scaled 0–100. Find the pages your site actually promotes.' },
+  { icon: 'graph', title: 'Link score', body: 'PageRank over your internal links, scaled 0–100. Find the pages your site actually promotes.' },
   { icon: 'compare', title: 'Redirect chains, hop by hop', body: 'Redirects are followed by hand, so every hop and every loop is recorded — the chain is the finding.' },
-  { icon: 'layers', title: 'Near-duplicate detection', body: 'Simhash banding finds pages that say the same thing in slightly different words, without comparing every pair.' },
+  { icon: 'layers', title: 'Near-duplicate detection', body: 'Finds pages that say the same thing in slightly different words, even across a very large site.' },
   { icon: 'globe', title: 'Hreflang validation', body: 'Missing return links, missing self-references and invalid language codes across every alternate.' },
   { icon: 'accessibility', title: 'Accessibility checks', body: 'Links and buttons without names, unlabeled fields, broken ARIA, missing lang, skipped headings and more.' },
   { icon: 'keyboard', title: 'Keyboard first', body: 'Arrows, Page Up/Down, Home/End, ⌘F to filter, ⌘E to export, ⌘N to crawl, ⌘Space to pause.' },
@@ -68,7 +71,7 @@ const pro = [
     <PageHero
       eyebrow="Features"
       title="Everything an SEO crawler should be."
-      lead="A Rust engine that keeps memory flat, a Flutter app that stays smooth at half a million rows, and 45 audits that tell you what to do next."
+      lead="A crawler that keeps memory flat, an app that stays smooth at half a million rows, and 45 audits that tell you what to do next."
     >
       <div class="hero-cta">
         <NuxtLink to="/download" class="btn btn-copper"><Icon name="download" /> Download free</NuxtLink>
@@ -116,7 +119,7 @@ const pro = [
           <span class="eyebrow">Performance</span>
           <h2 class="h2">Memory that plateaus.</h2>
           <p class="muted">
-            The crawl frontier lives in SQLite, not in RAM. Doubling a crawl from 30,000 to 60,000 URLs costs 1.19× the
+            The crawl queue lives on disk, not in RAM. Doubling a crawl from 30,000 to 60,000 URLs costs 1.19× the
             peak memory — about 717 bytes per extra URL. Crawl size becomes a question of time and disk.
           </p>
           <p class="fine muted">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-useSeoMeta({
+usePageSeo({
   title: 'CrawlStatBot',
   description: 'CrawlStatBot is the crawler inside the CrawlStat desktop app. How it behaves, and how to control it with robots.txt.',
 })

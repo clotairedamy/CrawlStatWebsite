@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import audits from '~/data/audits.json'
 
-useSeoMeta({
+useJsonLd(useStructuredData().breadcrumbs([['Home', '/'], ['Help centre', '/docs']]))
+usePageSeo({
   title: 'Help centre',
   description: 'Guides for installing CrawlStat, running your first crawl, reading results and fixing every issue it finds.',
 })

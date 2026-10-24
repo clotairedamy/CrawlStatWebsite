@@ -10,10 +10,28 @@ if (!audit) throw createError({ statusCode: 404, statusMessage: 'Audit not found
 const related = audits.filter((a) => a.severity === audit.severity && a.id !== audit.id).slice(0, 4)
 const label = { error: 'Error', warning: 'Warning', notice: 'Notice' }[audit.severity]
 
-useSeoMeta({
-  title: `${audit.title} — how to fix it`,
-  description: audit.description,
-})
+usePageSeo({ title: `${audit.title} — how to fix it`, description: audit.description, type: 'article' })
+
+const sd = useStructuredData()
+useJsonLd(
+  {
+    '@type': 'TechArticle',
+    headline: `${audit.title} — how to fix it`,
+    description: audit.description,
+    articleSection: `${audit.category} audit`,
+    inLanguage: 'en',
+    url: sd.url(route.path),
+    mainEntityOfPage: sd.url(route.path),
+    about: { '@id': sd.software['@id'] },
+    publisher: sd.organization,
+  },
+  sd.breadcrumbs([
+    ['Home', '/'],
+    ['Help centre', '/docs'],
+    ['Audit reference', '/docs/audits'],
+    [audit.title, route.path],
+  ]),
+)
 </script>
 
 <template>

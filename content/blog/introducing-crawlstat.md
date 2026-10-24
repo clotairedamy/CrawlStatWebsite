@@ -1,6 +1,6 @@
 ---
 title: Introducing CrawlStat
-description: A desktop SEO crawler that is fast, light on memory and pleasant to spend an afternoon in. Built in Rust, local-first, with a free tier that includes every audit.
+description: A desktop SEO crawler that is fast, light on memory and pleasant to spend an afternoon in. Local-first, with a free tier that includes every audit.
 date: 2026-10-21
 author: The CrawlStat team
 tag: Announcement
@@ -25,7 +25,7 @@ So we built the crawler we wanted to use ourselves.
 
 ## Fast, and light
 
-The engine is written in Rust, and it keeps crawl state in SQLite instead of RAM. The database *is* the queue. There's no in-memory list of URLs to visit and no in-memory set of URLs already seen. That one decision is why memory stays flat as a crawl grows.
+The engine keeps crawl state on disk instead of in RAM. The crawl file *is* the queue. There's no in-memory list of URLs to visit and no in-memory set of URLs already seen. That one decision is why memory stays flat as a crawl grows.
 
 We measured it on an Apple Silicon laptop against a local test site, so these numbers reflect the engine and not the network:
 
@@ -46,7 +46,7 @@ We wrote up how the flat-memory design works in [The database is the frontier](/
 ::screenshot{src="/screenshots/results-dark.png" alt="The CrawlStat results table showing crawled URLs with status codes, titles and response times" caption="The results table: eleven tabs over one table, with sortable columns, a filter bar and a column chooser."}
 ::
 
-The app is built with Flutter and runs natively on all three desktop platforms. A few deliberate choices:
+The app runs natively on all three desktop platforms. A few deliberate choices:
 
 - **Borders, not shadows.** A dense data grid needs crisp, flat separation.
 - **Monospaced numbers and URLs**, so you can scan a column top to bottom.
@@ -54,7 +54,7 @@ The app is built with Flutter and runs natively on all three desktop platforms. 
 
 You'll spend most of your time in the results table, so it's fully keyboard-driven. Arrow keys and Page Up/Down move the cursor, :kbd[Enter] opens the detail panel and :kbd[Esc] closes it. :kbd[⌘F] focuses the filter, :kbd[⌘E] exports, :kbd[⌘N] starts a crawl, and :kbd[⌘Space] pauses or resumes one.
 
-The table reads straight from the crawl database instead of holding its own copy. It fetches 200 rows at a time as you scroll, so a 500,000-row crawl scrolls in the same memory as a small one. Leaving the crawl screen doesn't cancel a crawl either, so you can dig through last week's results while this week's crawl runs.
+The table reads straight from the crawl file instead of holding its own copy. It fetches 200 rows at a time as you scroll, so a 500,000-row crawl scrolls in the same memory as a small one. Leaving the crawl screen doesn't cancel a crawl either, so you can dig through last week's results while this week's crawl runs.
 
 ## Audits that explain themselves
 
@@ -63,15 +63,15 @@ CrawlStat ships **45 audits**: 35 SEO checks and 10 accessibility checks. Each o
 A few details we're proud of:
 
 - **Indexability is computed once.** Half the audits only make sense for pages a search engine could actually index. CrawlStat won't nag you about the title of a `noindex` page.
-- **Link score is PageRank, computed in SQL.** It runs over the followed internal links between your HTML pages. The strongest page on the site scores 100.
-- **Near-duplicates use simhash.** Pages that are almost the same get grouped. Exact duplicates are reported as exact duplicates.
+- **Link score is PageRank.** It runs over the followed internal links between your HTML pages. The strongest page on the site scores 100.
+- **Near-duplicates are grouped.** Pages that are almost the same get grouped. Exact duplicates are reported as exact duplicates.
 - **Accessibility is in the default crawl.** It checks for links and buttons with no accessible name, form fields with no label, ARIA references that point at nothing, pages with no declared language, duplicate ids, invalid roles, positive `tabindex`, untitled frames and skipped heading levels.
 
 The audit logic ships in the app, not in the crawl file. So when you upgrade CrawlStat, re-running the audits on an old crawl uses the improved checks.
 
 ## Local-first, actually
 
-Your crawl data never leaves your machine, except through integrations you trigger yourself. Each crawl is a single SQLite file on your disk.
+Your crawl data never leaves your machine, except through integrations you trigger yourself. Each crawl is a single file on your disk.
 
 The licence check never stands between you and a crawl either. Pro licences are signed tokens that the app verifies offline, so CrawlStat works on a plane and keeps working if our servers are down. We explain how in [Licensing without a database](/blog/licensing-without-a-database).
 

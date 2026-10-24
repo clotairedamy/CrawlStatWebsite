@@ -1,10 +1,11 @@
 <script setup lang="ts">
-useSeoMeta({
+usePageSeo({
   title: '',
-  ogTitle: 'CrawlStat — the SEO crawler that runs on your machine',
-  ogDescription: 'Fast, local-first desktop SEO crawler. It ranks what to fix first by impact, not severity — 45 audits, flat memory at any size, and no server, ever.',
   description: 'CrawlStat is a desktop SEO crawler for macOS, Windows and Linux. It crawls at 11,700 URLs a second in 128 MiB, runs 45 audits, and ranks what to fix first by how much of your site each problem actually touches. Nothing leaves your machine.',
 })
+
+const sd = useStructuredData()
+useJsonLd(sd.organization, sd.website, sd.software)
 
 const dl = useDownloadCta()
 
@@ -24,7 +25,7 @@ const pillars = [
   {
     icon: 'layers',
     title: 'Flat memory',
-    body: 'The crawl frontier lives in SQLite, not RAM. Doubling a crawl from 30k to 60k URLs costs 1.19× the memory. Size is a question of time, not of RAM.',
+    body: 'The crawl queue lives on disk, not in RAM. Doubling a crawl from 30k to 60k URLs costs 1.19× the memory. Size is a question of time, not of RAM.',
   },
   {
     icon: 'sparkle',
@@ -43,7 +44,7 @@ const pillars = [
           <span class="pill intro"><span class="dot dot-pulse" /> {{ dl.available ? 'Now available for' : 'Coming soon to' }} macOS, Windows & Linux</span>
           <h1 class="display copper-text">Crawl it all.<br>Fix what matters.</h1>
           <p class="lead">
-            CrawlStat is a desktop SEO crawler built in Rust. It finds broken links, redirect chains, duplicate
+            CrawlStat is a fast desktop SEO crawler. It finds broken links, redirect chains, duplicate
             content and 40-odd other problems — and tells you how to fix each one.
           </p>
           <div class="hero-cta">
@@ -191,7 +192,7 @@ const pillars = [
             <h2 class="h2">Your crawl is yours.</h2>
           </div>
           <ul class="check-list">
-            <li>Crawl data never leaves your machine — one SQLite file per crawl.</li>
+            <li>Crawl data never leaves your machine — one file per crawl.</li>
             <li>Works on a plane: the licence is verified offline for 14 days at a time.</li>
             <li>Polite by default: honours robots.txt and identifies itself as CrawlStatBot.</li>
           </ul>
