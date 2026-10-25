@@ -56,7 +56,7 @@ export default defineNuxtConfig({
     preset: 'github_pages',
     prerender: {
       crawlLinks: true,
-      routes: ['/', '/sitemap.xml', '/blog/rss.xml'],
+      routes: ['/', '/sitemap.xml', '/blog/rss.xml', '/llms.txt'],
       failOnError: true,
       // Write /pricing as pricing.html rather than pricing/index.html, so GitHub
       // Pages answers /pricing with a 200 instead of redirecting to /pricing/.

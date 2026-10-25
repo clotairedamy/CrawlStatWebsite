@@ -12,8 +12,8 @@ const { data: pages } = await useAsyncData('docs-all', () =>
 )
 
 const q = ref('')
-const matches = computed(() => {
-  const term = q.value.trim().toLowerCase()
+function search(text: string) {
+  const term = text.trim().toLowerCase()
   if (!term) return []
   const docs = (pages.value ?? [])
     .filter((p) => `${p.title} ${p.description}`.toLowerCase().includes(term))
@@ -22,7 +22,26 @@ const matches = computed(() => {
     .filter((a) => `${a.title} ${a.description}`.toLowerCase().includes(term))
     .map((a) => ({ to: `/docs/audits/${a.slug}`, title: a.title, kind: 'Audit' }))
   return [...docs, ...refs].slice(0, 8)
-})
+}
+const matches = computed(() => search(q.value))
+
+// The search is also a WebMCP tool (see the attributes on the form): an agent
+// fills `q` and submits, and gets the matches back as data instead of a page
+// change. A person pressing Enter goes to the top match. The term is read
+// from the form rather than `q`, because an agent may set the field's value
+// without firing the input event v-model listens for.
+type AgentSubmitEvent = SubmitEvent & { agentInvoked?: boolean; respondWith?: (result: Promise<unknown>) => void }
+function onSubmit(e: Event) {
+  const event = e as AgentSubmitEvent
+  const found = search(String(new FormData(event.target as HTMLFormElement).get('q') ?? ''))
+  if (event.agentInvoked && event.respondWith) {
+    event.respondWith(
+      Promise.resolve(found.map((m) => ({ title: m.title, kind: m.kind, url: new URL(m.to, location.origin).href }))),
+    )
+    return
+  }
+  if (found[0]) navigateTo(found[0].to)
+}
 
 const icons: Record<string, string> = {
   'Start here': 'bolt',
@@ -44,9 +63,24 @@ const groups = computed(() => {
 <template>
   <div>
     <PageHero eyebrow="Help centre" title="How can we help?" lead="Everything from installing CrawlStat to fixing the last redirect chain.">
-      <div class="search">
+      <form
+        class="search"
+        role="search"
+        toolname="search_docs"
+        tooldescription="Search the CrawlStat docs: guides to using the desktop app, and the reference page for each SEO and accessibility audit. Returns up to 8 matching pages with their title, kind (Guide or Audit) and URL."
+        toolautosubmit
+        @submit.prevent="onSubmit"
+      >
         <Icon name="search" :size="20" />
-        <input v-model="q" type="search" placeholder="Search guides and audits…" aria-label="Search the help centre">
+        <input
+          v-model="q"
+          name="q"
+          type="search"
+          required
+          placeholder="Search guides and audits…"
+          aria-label="Search the help centre"
+          toolparamdescription="Words to find in guide and audit titles and descriptions, such as 'redirect chain', 'hreflang' or 'UX testing'."
+        >
         <Transition name="drop">
           <ul v-if="matches.length" class="results">
             <li v-for="m in matches" :key="m.to">
@@ -54,7 +88,7 @@ const groups = computed(() => {
             </li>
           </ul>
         </Transition>
-      </div>
+      </form>
     </PageHero>
 
     <section class="section-tight">
