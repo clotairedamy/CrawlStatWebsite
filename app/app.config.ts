@@ -12,7 +12,7 @@ export default defineAppConfig({
     // https://web3forms.com. Until it is set, the form says it is not
     // connected rather than pretending to send.
     endpoint: 'https://api.web3forms.com/submit',
-    accessKey: '',
+    accessKey: 'a8e448c1-dd12-4f4d-8889-d5a5a1d3e692',
   },
 
   pricing: {
