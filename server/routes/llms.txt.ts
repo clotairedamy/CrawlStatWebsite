@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
     '',
     `> ${site.name} is a desktop SEO crawler for macOS, Windows and Linux. It runs ${audits.length} SEO and accessibility audits, ranks what to fix first by how much of a site each problem touches, UX-tests any page against what it is for, and compares crawls to prove a fix worked. Crawls run and stay on the user's machine; there is no server and no account.`,
     '',
-    `Free up to ${pricing.freeUrlLimit} URLs per crawl with every audit included. Pro is $${pricing.proYearly}/year for unlimited URLs. Contact: ${site.email}.`,
+    `Free up to ${pricing.freeUrlLimit} URLs per crawl with every audit included. Pro is $${pricing.proYearly}/year for unlimited URLs. Contact: ${url('/contact')}.`,
     '',
     '## Product',
     '',

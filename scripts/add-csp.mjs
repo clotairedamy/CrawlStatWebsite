@@ -68,9 +68,9 @@ function policyFor(html) {
     // `data:` because Vite inlines small font subsets as data URIs; without it
     // the typeface silently falls back to the system stack.
     "font-src 'self' data:",
-    // No XHR targets at all. If a form or an API ever appears, widen this
-    // deliberately rather than leaving it open now.
-    "connect-src 'self'",
+    // One XHR target: the form service behind /contact (see `contact` in
+    // app.config.ts). Anything else stays closed until it is needed.
+    "connect-src 'self' https://api.web3forms.com",
     "object-src 'none'",
     "base-uri 'self'",
     "form-action 'self'",

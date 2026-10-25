@@ -31,7 +31,7 @@ Disallow: /
 User-agent: CrawlStatBot
 Crawl-delay: 2</code></pre>
         <p>
-          Questions or a problem? Email <a href="mailto:hello@crawlstat.com">hello@crawlstat.com</a>. For more, read
+          Questions or a problem? <NuxtLink to="/contact?topic=crawler">Get in touch</NuxtLink>. For more, read
           <NuxtLink to="/docs/crawler-and-robots">The crawler and robots.txt</NuxtLink>.
         </p>
       </div>

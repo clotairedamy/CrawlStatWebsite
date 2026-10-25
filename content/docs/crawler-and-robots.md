@@ -91,4 +91,4 @@ User-agent: CrawlStatBot
 Crawl-delay: 5
 ```
 
-CrawlStat obeys these rules by default. Because CrawlStat runs on each user's own computer, the user can change its settings, so for a hard guarantee use your server's normal access controls. If you're seeing behaviour that seems wrong, [let us know](mailto:hello@crawlstat.com).
+CrawlStat obeys these rules by default. Because CrawlStat runs on each user's own computer, the user can change its settings, so for a hard guarantee use your server's normal access controls. If you're seeing behaviour that seems wrong, [let us know](/contact).

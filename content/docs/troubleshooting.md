@@ -82,7 +82,7 @@ If CrawlStat quit or your computer restarted during a crawl, go to **Projects** 
 
 ## Still stuck?
 
-Email [hello@crawlstat.com](mailto:hello@crawlstat.com). It helps to include:
+[Send us a message](/contact) and choose *Something is not working*. It helps to include:
 
 - Your operating system and its version.
 - The engine version from **Settings → About**.

@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
   ])
 
   const urls: { loc: string; lastmod?: string }[] = [
-    ...['/', '/features', '/pricing', '/download', '/blog', '/docs', '/docs/audits', '/bot'].map((loc) => ({ loc })),
+    ...['/', '/features', '/pricing', '/download', '/contact', '/blog', '/docs', '/docs/audits', '/bot'].map((loc) => ({ loc })),
     ...posts.map((p) => ({ loc: p.path, lastmod: p.date })),
     ...docs.map((d) => ({ loc: d.path })),
     ...audits.map((a) => ({ loc: `/docs/audits/${a.slug}` })),

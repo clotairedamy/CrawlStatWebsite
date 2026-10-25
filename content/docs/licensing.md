@@ -81,11 +81,11 @@ A licence is activated per installation. To move it:
 
 Deactivating removes the licence from that computer and frees its seat for another one. Your crawls and their results are untouched, and that computer goes back to the free tier.
 
-If you can't reach the old computer any more, for example because it was lost or wiped, [contact us](mailto:hello@crawlstat.com) and we'll help.
+If you can't reach the old computer any more, for example because it was lost or wiped, [contact us](/contact) and we'll help.
 
 ## Cancelling and refunds
 
-Payments are handled by our payment provider, which acts as the merchant of record. Manage or cancel your subscription through the link in your purchase email, or [contact us](mailto:hello@crawlstat.com).
+Payments are handled by our payment provider, which acts as the merchant of record. Manage or cancel your subscription through the link in your purchase email, or [contact us](/contact).
 
 When a subscription ends or is refunded, the change reaches CrawlStat at its next licence check. That's usually within a day, or up to 14 days if the computer stays offline. The app then returns to the free tier. Your crawls stay on your computer and remain fully readable.
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { downloads, pricing, site } = useAppConfig()
+const { downloads, pricing } = useAppConfig()
 const route = useRoute()
 const wantsPro = computed(() => route.query.plan === 'pro')
 const dl = useDownloadCta()
@@ -27,13 +27,9 @@ onMounted(() => {
         ? `Version ${downloads.version} · Free up to ${pricing.freeUrlLimit} URLs per crawl · No account needed`
         : `CrawlStat is almost ready for macOS, Windows and Linux. Free up to ${pricing.freeUrlLimit} URLs per crawl, no account needed.`"
     >
-      <a
-        v-if="!dl.all"
-        :href="`mailto:${site.email}?subject=Tell%20me%20when%20CrawlStat%20launches`"
-        class="btn btn-ghost"
-      >
+      <NuxtLink v-if="!dl.all" to="/contact?topic=launch" class="btn btn-ghost">
         <Icon name="mail" :size="18" /> {{ dl.available ? 'Email me when macOS & Windows are ready' : 'Email me at launch' }}
-      </a>
+      </NuxtLink>
     </PageHero>
 
     <section class="section-tight">

@@ -3,7 +3,16 @@ export default defineAppConfig({
   site: {
     name: 'CrawlStat',
     url: 'https://crawlstat.com',
-    email: 'hello@crawlstat.com',
+  },
+
+  contact: {
+    // The /contact form posts to Web3Forms, which emails the message on. The
+    // key is public by design: it can only send to the inbox it was issued
+    // for, so the address itself never appears in the site. Get one free at
+    // https://web3forms.com. Until it is set, the form says it is not
+    // connected rather than pretending to send.
+    endpoint: 'https://api.web3forms.com/submit',
+    accessKey: '',
   },
 
   pricing: {

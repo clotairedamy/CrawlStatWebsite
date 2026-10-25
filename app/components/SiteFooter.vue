@@ -1,5 +1,4 @@
 <script setup lang="ts">
-const { site } = useAppConfig()
 const year = new Date().getFullYear()
 
 const columns = [
@@ -27,7 +26,7 @@ const columns = [
       { to: '/blog', label: 'Blog' },
       { to: '/bot', label: 'CrawlStatBot' },
       { to: '/docs/privacy-and-data', label: 'Privacy' },
-      { to: `mailto:${site.email}`, label: 'Contact' },
+      { to: '/contact', label: 'Contact' },
     ],
   },
 ]
@@ -46,7 +45,7 @@ const columns = [
             The SEO crawler that runs on your machine, for macOS, Windows and Linux.
           </p>
           <div class="social">
-            <a :href="`mailto:${site.email}`" aria-label="Email"><Icon name="mail" :size="18" /></a>
+            <NuxtLink to="/contact" aria-label="Contact"><Icon name="mail" :size="18" /></NuxtLink>
             <a href="/blog/rss.xml" aria-label="Blog RSS feed"><Icon name="rss" :size="18" /></a>
           </div>
         </div>

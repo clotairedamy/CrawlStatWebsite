@@ -117,7 +117,7 @@ const groups = computed(() => {
     <section class="section-tight">
       <div class="container center contact">
         <p class="lead">Can’t find what you need?</p>
-        <a href="mailto:hello@crawlstat.com" class="btn btn-ghost"><Icon name="mail" /> hello@crawlstat.com</a>
+        <NuxtLink to="/contact" class="btn btn-ghost"><Icon name="mail" /> Get in touch</NuxtLink>
       </div>
     </section>
   </div>

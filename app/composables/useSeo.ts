@@ -44,7 +44,6 @@ export const useStructuredData = () => {
     name: site.name,
     url: url('/'),
     logo: url('/brand/app-icon.png'),
-    email: site.email,
   }
 
   const website = {
