@@ -12,7 +12,7 @@ const leftLinks = [
   { to: '/pricing', label: 'Pricing' },
 ]
 const rightLinks = [
-  { to: '/docs', label: 'Help' },
+  { to: '/docs', label: 'Docs' },
   { to: '/blog', label: 'Blog' },
 ]
 const links = [...leftLinks, ...rightLinks]

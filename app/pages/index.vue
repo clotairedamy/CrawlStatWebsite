@@ -14,7 +14,7 @@ const dl = useDownloadCta()
 const heroPoints = [
   { icon: 'compass', text: 'UX audits built around each page’s goal' },
   { icon: 'search', text: 'Evidence on every finding — nothing guessed' },
-  { icon: 'compare', text: 'Retest with before / after proof' },
+  { icon: 'compare', text: 'Retest and see what now passes' },
   { icon: 'file', text: 'Client report and developer CSV' },
 ] as const
 
@@ -37,17 +37,17 @@ const uxTools = [
   {
     icon: 'list',
     title: 'A findings workflow',
-    body: 'Owner, due date and status from open to resolved. Override a severity with a reason, or flag a finding as wrong and keep it out of the client report.',
+    body: 'Owner, due date and status from open to resolved. Override a severity with a reason, flag a false positive, and keep an activity log of who changed what.',
   },
   {
     icon: 'compare',
     title: 'Retest and prove it',
-    body: 'Run the same setup again. Fixed findings resolve themselves, regressions reopen, and you get a retest pass rate to show the client.',
+    body: 'When the change ships, test the page again with the same setup. The new run is linked to the original, so you see what now passes — and a retest pass rate to show the client.',
   },
   {
     icon: 'file',
     title: 'Reports people use',
-    body: 'A plain-language client report with before / after and limitations, and a developer CSV with acceptance criteria for every finding.',
+    body: 'A plain-language client report with evidence, recommendations and the run’s limitations, plus a developer CSV of every finding. Emails and tokens are masked.',
   },
 ] as const
 
@@ -102,7 +102,7 @@ const pillars = [
               Take the tour <Icon name="arrow" :size="18" />
             </NuxtLink>
           </div>
-          <p class="hero-note muted">Free up to 500 URLs per crawl · No account · No card</p>
+          <p class="hero-note muted">Free up to 500 URLs per crawl · No account · No card · UX Testing with <NuxtLink to="/pricing">Pro</NuxtLink></p>
         </div>
         <HeroArt class="hero-art" />
       </div>
