@@ -15,6 +15,12 @@ const screens = [
     body: 'Eleven tabs over one table, a filter bar, sortable columns and a detail panel. Half a million rows scroll in the same memory as fifty.',
   },
   {
+    id: 'ux-testing',
+    label: 'UX Testing',
+    title: 'Does this page do its job?',
+    body: 'Give it one URL. It works out what the page is for, runs up to 62 UX checks against that goal and ranks what to fix first — with the evidence, and a plain note on what it could not test.',
+  },
+  {
     id: 'plan',
     label: 'Plan',
     title: 'What to fix on Monday',

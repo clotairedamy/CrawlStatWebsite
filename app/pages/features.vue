@@ -1,7 +1,7 @@
 <script setup lang="ts">
 usePageSeo({
   title: 'Features',
-  description: 'A live crawl view, a results table that keeps up at 500,000 rows, 45 audits with fixes, and an engine that keeps memory flat at any crawl size.',
+  description: 'A live crawl view, a results table that keeps up at 500,000 rows, 45 audits with fixes, UX testing for any page, and an engine that keeps memory flat at any crawl size.',
 })
 
 const sd = useStructuredData()
@@ -28,6 +28,13 @@ const rows = [
     title: 'Ten thousand rows is not a to-do list.',
     body: 'Every crawler ends with a table sorted by severity and no answer to the only question you have. CrawlStat ranks the findings by how much of your site’s internal link value they touch and by how many pages a single change fixes — then separates the two template edits from the three hundred individual ones.',
     points: ['Impact from link value, not just severity', 'Tells template fixes apart from page-by-page work', 'A local model can write it up — nothing is uploaded'],
+  },
+  {
+    shot: 'ux-testing',
+    eyebrow: 'UX testing',
+    title: 'Does this page do its job?',
+    body: 'Give CrawlStat one URL. It reads what the page is — a local business, a product, a SaaS signup, a lead form — and what it is asking visitors to do, then tests it against that goal: clarity, hierarchy, navigation, forms, trust, accessibility and the journey to the goal. Findings are ranked by impact, reach, confidence and effort, each with evidence and a fix. For the marketer asking why a landing page does not convert, and the designer who needs evidence rather than opinion.',
+    points: ['62 checks, tailored to nine page types', 'Every finding ranked, evidenced and given a fix', 'Retest after the change and see what now passes'],
   },
   {
     shot: 'accessibility',

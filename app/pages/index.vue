@@ -1,7 +1,7 @@
 <script setup lang="ts">
 usePageSeo({
   title: '',
-  description: 'CrawlStat is a desktop SEO crawler for macOS, Windows and Linux. It crawls at 11,700 URLs a second in 128 MiB, runs 45 audits, and ranks what to fix first by how much of your site each problem actually touches. Nothing leaves your machine.',
+  description: 'CrawlStat is a desktop SEO crawler for macOS, Windows and Linux. It crawls at 11,700 URLs a second in 128 MiB, runs 45 audits, ranks what to fix first by how much of your site each problem actually touches, and UX-tests any page against what it is for. Nothing leaves your machine.',
 })
 
 const sd = useStructuredData()
@@ -179,6 +179,64 @@ const pillars = [
         <div v-reveal class="center">
           <NuxtLink to="/features" class="btn btn-ghost audits-link">
             How the ranking works <Icon name="arrow" :size="18" />
+          </NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- UX testing: one page, judged by what it is for -->
+    <section class="section">
+      <div class="container">
+        <div v-reveal class="section-head">
+          <span class="eyebrow">UX testing</span>
+          <h2 class="h2">Does this page do its job?</h2>
+          <p class="lead">
+            Give CrawlStat one URL. It works out what kind of page it is and what it is asking visitors to do,
+            tests it against that goal, and ranks what to fix first — with the evidence. For the marketer asking
+            why a landing page does not convert, and the designer who needs evidence rather than opinion.
+          </p>
+        </div>
+
+        <div v-reveal class="plan-demo neu">
+          <dl class="ux-read">
+            <div><dt>Reads as</dt><dd>Local business or service · 85% sure</dd></div>
+            <div><dt>Goal</dt><dd>Booking (inferred)</dd></div>
+            <div><dt>Main action</dt><dd>Schedule an Appointment</dd></div>
+            <div><dt>Why</dt><dd>LocalBusiness structured data · click-to-call link · a street address</dd></div>
+          </dl>
+          <div class="plan-row">
+            <span class="plan-score">125</span>
+            <div class="plan-body">
+              <strong>Links with no accessible name</strong>
+              <span class="plan-note">Critical findings go <b>straight to the top</b></span>
+            </div>
+            <span class="plan-tag">Critical</span>
+          </div>
+          <div class="plan-row">
+            <span class="plan-score">60</span>
+            <div class="plan-body">
+              <strong>Broken links</strong>
+              <span class="plan-note">impact × reach × confidence <b>÷ effort</b></span>
+            </div>
+            <span class="plan-tag">High</span>
+          </div>
+          <div class="plan-row dim">
+            <span class="plan-score">40</span>
+            <div class="plan-body">
+              <strong>Page title is too long</strong>
+              <span class="plan-note">Real, cheap, and not what is costing you bookings</span>
+            </div>
+            <span class="plan-tag quiet">Low</span>
+          </div>
+          <p class="plan-caption">
+            A real law firm's home page. 18 of 41 checks passed. Four were not tested — three need a real browser
+            and one would have meant submitting a form — and the report says so instead of guessing.
+          </p>
+        </div>
+
+        <div v-reveal class="center">
+          <NuxtLink to="/docs/ux-testing" class="btn btn-ghost audits-link">
+            How UX testing works <Icon name="arrow" :size="18" />
           </NuxtLink>
         </div>
       </div>
@@ -553,6 +611,38 @@ const pillars = [
 
   .plan-tag {
     margin-left: 66px;
+  }
+}
+
+.ux-read {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 18px 20px 20px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 8px;
+}
+
+.ux-read div {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  font-size: 0.9rem;
+}
+
+.ux-read dt {
+  color: var(--muted);
+}
+
+.ux-read dd {
+  margin: 0;
+  color: var(--text-soft);
+}
+
+@media (max-width: 640px) {
+  .ux-read div {
+    grid-template-columns: 1fr;
+    gap: 2px;
   }
 }
 .loop {
