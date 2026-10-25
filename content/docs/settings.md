@@ -2,7 +2,7 @@
 title: Settings
 description: Every option on the Settings screen, covering appearance, politeness, user agent, scope, resources and storage, with the defaults and when to change them.
 section: Using CrawlStat
-order: 8
+order: 12
 ---
 
 ## How settings work

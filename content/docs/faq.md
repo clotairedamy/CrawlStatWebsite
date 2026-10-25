@@ -2,7 +2,7 @@
 title: FAQ
 description: Short answers to the questions people ask most about CrawlStat, including what it costs, what it crawls, where data goes, and what it doesn't do yet.
 section: Help
-order: 14
+order: 19
 ---
 
 ## The basics

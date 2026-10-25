@@ -2,7 +2,7 @@
 title: Keyboard shortcuts
 description: The keyboard shortcuts CrawlStat supports, where each one works, and a note for Windows and Linux users.
 section: Using CrawlStat
-order: 9
+order: 13
 ---
 
 ## Shortcuts

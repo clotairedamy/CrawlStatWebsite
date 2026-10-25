@@ -23,6 +23,27 @@ const rows = [
     points: ['Loads 200 rows at a time as you scroll', 'Status filters: 2xx, 3xx, 4xx, 5xx', 'URL detail: issues, inlinks, outlinks, images, headers'],
   },
   {
+    shot: 'plan',
+    eyebrow: 'Plan',
+    title: 'Ten thousand rows is not a to-do list.',
+    body: 'Every crawler ends with a table sorted by severity and no answer to the only question you have. CrawlStat ranks the findings by how much of your site’s internal link value they touch and by how many pages a single change fixes — then separates the two template edits from the three hundred individual ones.',
+    points: ['Impact from link value, not just severity', 'Tells template fixes apart from page-by-page work', 'A local model can write it up — nothing is uploaded'],
+  },
+  {
+    shot: 'accessibility',
+    eyebrow: 'Accessibility',
+    title: 'WCAG 2.2 AA, automated and manual.',
+    body: 'The rules a crawler can check — unnamed links and buttons, unlabelled fields, broken ARIA references, missing lang, skipped heading levels, positive tabindex — run over every page. The ones that need a human get a checklist you work through, saved in the crawl file. Test a staging URL before it ships.',
+    points: ['Automated checks on every crawled page', 'Manual WCAG 2.2 AA checklist, tracked per crawl', 'Check a single URL without a full crawl'],
+  },
+  {
+    shot: 'compare',
+    eyebrow: 'Compare',
+    title: 'Did the fix actually work?',
+    body: 'Crawl, fix, crawl again. CrawlStat matches pages across the two files and tells you what was fixed, what regressed and which pages started failing. A page that simply stopped being crawled is reported as gone, never as fixed — otherwise the way to a perfect score would be to delete your site.',
+    points: ['Pages matched across crawls, not by row id', 'Regressions and newly broken pages first', 'crawlstat-cli compare --fail-on-regression for CI'],
+  },
+  {
     shot: 'issues',
     eyebrow: 'Issues',
     title: 'A to-do list, not a wall of red.',
@@ -40,6 +61,9 @@ const rows = [
 
 const grid = [
   { icon: 'graph', title: 'Link score', body: 'PageRank over your internal links, scaled 0–100. Find the pages your site actually promotes.' },
+  { icon: 'compass', title: 'Journeys', body: 'Walks your site from the home page as a simulated visitor hunting for pricing, support or sign-up — and shows the path, or where it gave up.' },
+  { icon: 'graph', title: 'Link graph', body: 'Your whole site as a node-link diagram: rings are clicks from home, size is inlinks, red is broken.' },
+  { icon: 'sparkles', title: 'Local AI summaries', body: 'A model running on your machine turns the ranked plan into a client-ready write-up. The exact brief is shown before it is sent, and nothing leaves the machine.' },
   { icon: 'compare', title: 'Redirect chains, hop by hop', body: 'Redirects are followed by hand, so every hop and every loop is recorded — the chain is the finding.' },
   { icon: 'layers', title: 'Near-duplicate detection', body: 'Finds pages that say the same thing in slightly different words, even across a very large site.' },
   { icon: 'globe', title: 'Hreflang validation', body: 'Missing return links, missing self-references and invalid language codes across every alternate.' },
@@ -58,7 +82,7 @@ const perf = [
 ]
 
 const pro = [
-  { icon: 'compare', title: 'Crawl comparison', body: 'What changed between two crawls: new errors, fixed pages, moved titles.' },
+  { icon: 'code', title: 'Unlimited URLs', body: 'The free tier crawls 500 URLs per crawl. Pro removes the cap entirely.' },
   { icon: 'code', title: 'Custom extraction', body: 'Pull any value out of every page with CSS, XPath or regex.' },
   { icon: 'clock', title: 'Scheduled crawls', body: 'Crawl on a schedule and come back to fresh results.' },
   { icon: 'file', title: 'XLSX & HTML reports', body: 'Client-ready audit reports and spreadsheets in one click.' },

@@ -2,7 +2,7 @@
 title: Troubleshooting
 description: Fixes for the most common problems, from crawls that find too few pages or hit lots of errors to empty issue lists, failed exports and licence trouble.
 section: Help
-order: 13
+order: 18
 ---
 
 ## The crawl finds only one page, or very few

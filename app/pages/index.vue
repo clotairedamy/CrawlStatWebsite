@@ -29,8 +29,8 @@ const pillars = [
   },
   {
     icon: 'sparkle',
-    title: 'Fixes, not just flags',
-    body: 'Every one of the 45 audits explains what is wrong, why it matters and exactly how to fix it — in plain English, right next to the affected URLs.',
+    title: 'Ranked, not just listed',
+    body: 'Every finding is scored by the share of your site’s link value it touches and by how many pages one change fixes. The list reads top to bottom as the order to work in.',
   },
 ] as const
 </script>
@@ -44,8 +44,9 @@ const pillars = [
           <span class="pill intro"><span class="dot dot-pulse" /> {{ dl.available ? 'Now available for' : 'Coming soon to' }} macOS, Windows & Linux</span>
           <h1 class="display copper-text">Crawl it all.<br>Fix what matters.</h1>
           <p class="lead">
-            CrawlStat is a fast desktop SEO crawler. It finds broken links, redirect chains, duplicate
-            content and 40-odd other problems — and tells you how to fix each one.
+            A desktop SEO crawler that does the triage for you. It finds the problems, ranks them by
+            how much of your site each one actually touches, and tells you which are one template
+            edit and which are three hundred. Nothing leaves your machine.
           </p>
           <div class="hero-cta">
             <NuxtLink to="/download" class="btn btn-copper">
@@ -179,6 +180,50 @@ const pillars = [
           <NuxtLink to="/features" class="btn btn-ghost audits-link">
             How the ranking works <Icon name="arrow" :size="18" />
           </NuxtLink>
+        </div>
+      </div>
+    </section>
+
+    <!-- The loop: rank, fix, prove -->
+    <section class="section">
+      <div class="container">
+        <div v-reveal class="section-head">
+          <span class="eyebrow">The loop</span>
+          <h2 class="h2">Most crawlers stop at the diagnosis.</h2>
+          <p class="lead">
+            Finding problems is the easy half. CrawlStat is built around the other half — deciding
+            what to do, doing it, and proving it worked.
+          </p>
+        </div>
+
+        <div v-reveal class="loop">
+          <div class="loop-step neu">
+            <span class="loop-n">1</span>
+            <h3>Rank</h3>
+            <p>
+              Forty-five audits, scored by reach and leverage. The top job on a real 1,929-page site
+              was two template edits that fixed 823 pages.
+            </p>
+            <NuxtLink to="/docs/the-plan" class="loop-link">The plan <Icon name="arrow" :size="16" /></NuxtLink>
+          </div>
+          <div class="loop-step neu">
+            <span class="loop-n">2</span>
+            <h3>Check the path</h3>
+            <p>
+              Simulate a visitor hunting for your pricing or support page. Find out whether your
+              navigation actually gets them there, and in how many clicks.
+            </p>
+            <NuxtLink to="/docs/journeys" class="loop-link">Journeys <Icon name="arrow" :size="16" /></NuxtLink>
+          </div>
+          <div class="loop-step neu">
+            <span class="loop-n">3</span>
+            <h3>Prove it</h3>
+            <p>
+              Crawl again and compare. What was fixed, what regressed, which pages started failing.
+              Deleting a page never counts as fixing it.
+            </p>
+            <NuxtLink to="/docs/comparing-crawls" class="loop-link">Compare <Icon name="arrow" :size="16" /></NuxtLink>
+          </div>
         </div>
       </div>
     </section>
@@ -508,6 +553,52 @@ const pillars = [
 
   .plan-tag {
     margin-left: 66px;
+  }
+}
+.loop {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.loop-step {
+  position: relative;
+  padding: 30px 28px 26px;
+  border-radius: 20px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.loop-n {
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  color: var(--copper);
+}
+
+.loop-step h3 {
+  font-size: 1.22rem;
+  font-weight: 450;
+  letter-spacing: -0.02em;
+}
+
+.loop-step p {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+.loop-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  color: var(--copper);
+}
+
+@media (max-width: 860px) {
+  .loop {
+    grid-template-columns: 1fr;
   }
 }
 </style>

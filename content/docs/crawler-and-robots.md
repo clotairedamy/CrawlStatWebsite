@@ -2,7 +2,7 @@
 title: The crawler and robots.txt
 description: How CrawlStat identifies itself, how it reads and obeys robots.txt, how hard it works a server, and what site owners can do if they see CrawlStatBot in their logs.
 section: Account & data
-order: 12
+order: 16
 ---
 
 ## How CrawlStat identifies itself

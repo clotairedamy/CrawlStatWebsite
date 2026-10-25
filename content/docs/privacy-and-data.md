@@ -2,7 +2,7 @@
 title: Privacy and your data
 description: What CrawlStat stores on your computer, the little it ever sends over the network, and how to back up or delete your data.
 section: Account & data
-order: 11
+order: 15
 ---
 
 ## The short version

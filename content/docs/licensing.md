@@ -2,7 +2,7 @@
 title: Licensing
 description: What's free, what Pro adds, how activation works, why CrawlStat keeps working offline, and how to move your licence to another computer.
 section: Account & data
-order: 10
+order: 14
 ---
 
 ## Free and Pro

@@ -2,7 +2,7 @@
 title: Projects
 description: How CrawlStat stores your crawls, and how to open, resume, remove and delete them from the Projects screen.
 section: Using CrawlStat
-order: 7
+order: 11
 ---
 
 ## One crawl, one file

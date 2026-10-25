@@ -15,6 +15,24 @@ const screens = [
     body: 'Eleven tabs over one table, a filter bar, sortable columns and a detail panel. Half a million rows scroll in the same memory as fifty.',
   },
   {
+    id: 'plan',
+    label: 'Plan',
+    title: 'What to fix on Monday',
+    body: 'Findings ranked by how much of your site each one actually touches and how many pages a single change fixes. 823 pages with one problem is often two template edits — the list says which.',
+  },
+  {
+    id: 'accessibility',
+    label: 'Accessibility',
+    title: 'WCAG 2.2, tracked',
+    body: 'Automated checks across every page, plus a manual checklist you work through and keep in the crawl file. Test a staging URL before it ships.',
+  },
+  {
+    id: 'compare',
+    label: 'Compare',
+    title: 'Did the fix work?',
+    body: 'Two crawls side by side: what was fixed, what broke, and which pages started failing. Deleting a page never counts as fixing it.',
+  },
+  {
     id: 'issues',
     label: 'Issues',
     title: 'Fixes, not just flags',
@@ -26,15 +44,9 @@ const screens = [
     title: 'Every crawl, on this machine',
     body: 'Status mix, errors, warnings and size at a glance. Resume an interrupted crawl exactly where it stopped.',
   },
-  {
-    id: 'settings',
-    label: 'Settings',
-    title: 'Polite by default',
-    body: 'Respect robots.txt, pace requests per host and identify honestly. Tune concurrency, delays and timeouts for sites you own.',
-  },
 ] as const
 
-const active = ref(1)
+const active = ref(2)
 const current = computed(() => screens[active.value]!)
 </script>
 
