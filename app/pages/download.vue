@@ -2,6 +2,7 @@
 const { downloads, pricing, site } = useAppConfig()
 const route = useRoute()
 const wantsPro = computed(() => route.query.plan === 'pro')
+const dl = useDownloadCta()
 
 useJsonLd(useStructuredData().breadcrumbs([['Home', '/'], ['Download', '/download']]))
 usePageSeo({
@@ -21,49 +22,57 @@ onMounted(() => {
   <div>
     <PageHero
       eyebrow="Download"
-      :title="downloads.available ? 'Get CrawlStat.' : 'Coming soon.'"
-      :lead="downloads.available
+      :title="dl.available ? 'Get CrawlStat.' : 'Coming soon.'"
+      :lead="dl.available
         ? `Version ${downloads.version} · Free up to ${pricing.freeUrlLimit} URLs per crawl · No account needed`
         : `CrawlStat is almost ready for macOS, Windows and Linux. Free up to ${pricing.freeUrlLimit} URLs per crawl, no account needed.`"
     >
       <a
-        v-if="!downloads.available"
+        v-if="!dl.all"
         :href="`mailto:${site.email}?subject=Tell%20me%20when%20CrawlStat%20launches`"
-        class="btn btn-copper"
+        class="btn btn-ghost"
       >
-        <Icon name="mail" :size="18" /> Email me at launch
+        <Icon name="mail" :size="18" /> {{ dl.available ? 'Email me when macOS & Windows are ready' : 'Email me at launch' }}
       </a>
     </PageHero>
 
     <section class="section-tight">
       <div class="container">
-        <p v-if="wantsPro && downloads.available" v-reveal class="pro-note pill">
+        <p v-if="wantsPro && dl.available" v-reveal class="pro-note pill">
           <span class="dot" /> Download CrawlStat, then paste your Pro licence key in Settings → Licence.
         </p>
         <div class="platforms">
-          <component
-            :is="downloads.available ? 'a' : 'div'"
+          <div
             v-for="(p, i) in downloads.platforms"
             :key="p.id"
             v-reveal="i * 100"
-            :href="downloads.available ? downloads.releases : undefined"
             class="platform card"
-            :class="{ mine: detected === p.id, soon: !downloads.available }"
+            :class="{ mine: detected === p.id, soon: !p.available }"
           >
             <span class="p-icon"><Icon :name="p.id === 'macos' ? 'apple' : (p.id as any)" :size="34" /></span>
             <h2 class="h3">{{ p.name }}</h2>
             <p class="muted">{{ p.detail }}</p>
-            <span v-if="downloads.available" class="btn btn-sm" :class="detected === p.id ? 'btn-copper' : 'btn-ghost'">
-              <Icon name="download" :size="16" /> Download {{ p.file }}
-            </span>
+            <template v-if="p.available">
+              <a
+                v-for="(f, j) in p.files"
+                :key="f.name"
+                :href="dl.url(f.name)"
+                class="btn btn-sm"
+                :class="detected === p.id && j === 0 ? 'btn-copper' : 'btn-ghost'"
+                download
+              >
+                <Icon name="download" :size="16" /> Download {{ f.label }}
+              </a>
+              <code v-if="p.id === 'linux'" class="install">sudo apt install ./{{ p.files[0].name.replaceAll('{v}', downloads.version) }}</code>
+            </template>
             <span v-else class="pill soon-pill"><Icon name="clock" :size="14" /> Coming soon</span>
             <span v-if="detected === p.id" class="yours">Your platform</span>
-          </component>
+          </div>
         </div>
       </div>
     </section>
 
-    <section v-if="downloads.available" class="section-tight">
+    <section v-if="dl.available" class="section-tight">
       <div class="container next">
         <h2 v-reveal class="h3 center">Then, in under a minute</h2>
         <ol class="steps">
@@ -109,6 +118,16 @@ onMounted(() => {
 
 .platform.soon:hover {
   transform: none;
+}
+
+.install {
+  font-size: 0.72rem;
+  color: var(--text-soft);
+  padding: 8px 12px;
+  border-radius: 10px;
+  box-shadow: var(--inset);
+  user-select: all;
+  overflow-wrap: anywhere;
 }
 
 .soon-pill {

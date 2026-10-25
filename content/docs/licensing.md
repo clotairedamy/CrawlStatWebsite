@@ -15,6 +15,7 @@ CrawlStat is free to download and use. You don't need an account, and the free t
 | All 45 audits | Yes | Yes |
 | Results table, issues, URL details | Yes | Yes |
 | CSV export | Yes | Yes |
+| [UX Testing](/docs/ux-testing) | Preview only | Yes |
 | Crawl comparison | — | Rolling out to Pro |
 | Custom extraction (CSS, XPath, regex) | — | Rolling out to Pro |
 | Scheduled crawls | — | Rolling out to Pro |
@@ -24,7 +25,7 @@ CrawlStat is free to download and use. You don't need an account, and the free t
 
 Pro costs $99 a year. See [pricing](/pricing) for current details.
 
-"Rolling out to Pro" means these features are on the way and are included in a Pro licence when they arrive. The thing Pro unlocks in the app today is unlimited URLs per crawl.
+"Rolling out to Pro" means these features are on the way and are included in a Pro licence when they arrive. What Pro unlocks in the app today is unlimited URLs per crawl and UX Testing.
 
 ### How the free limit works
 

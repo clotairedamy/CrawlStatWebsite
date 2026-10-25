@@ -15,16 +15,41 @@ export default defineAppConfig({
   },
 
   downloads: {
-    // Flip to true at launch: download buttons stop saying "Coming soon"
-    // and the download page links to the installers.
-    available: false,
-    // GitHub Releases is where signed installers are published (Phase 7).
+    // GitHub Releases is where installers are published: pushing the tag
+    // `v<version>` in the app repo runs the release workflow, which uploads
+    // the files named below.
     releases: 'https://github.com/clotairedamy/CrawlStat/releases/latest',
-    version: '1.0',
+    download: 'https://github.com/clotairedamy/CrawlStat/releases/download',
+    // Must match the released tag, without the leading v.
+    version: '1.0.0',
+    // Each platform goes live on its own: flip `available` once its installer
+    // is on the release. `{v}` in a file name becomes the version; the names
+    // must match what packaging/ in the app repo produces.
     platforms: [
-      { id: 'macos', name: 'macOS', detail: 'Apple Silicon & Intel · macOS 11+', file: '.dmg' },
-      { id: 'windows', name: 'Windows', detail: 'Windows 10 & 11 · 64-bit', file: '.exe' },
-      { id: 'linux', name: 'Linux', detail: 'x86-64 · AppImage & .deb', file: '.AppImage' },
+      {
+        id: 'macos',
+        name: 'macOS',
+        detail: 'Apple Silicon & Intel · macOS 11+',
+        available: false,
+        files: [{ label: '.dmg', name: 'CrawlStat-{v}-macos.dmg' }],
+      },
+      {
+        id: 'windows',
+        name: 'Windows',
+        detail: 'Windows 10 & 11 · 64-bit',
+        available: false,
+        files: [{ label: '.exe', name: 'CrawlStat-{v}-windows-setup.exe' }],
+      },
+      {
+        id: 'linux',
+        name: 'Linux',
+        detail: 'x86-64 · .deb for Debian & Ubuntu, AppImage for any distro',
+        available: true,
+        files: [
+          { label: '.deb', name: 'CrawlStat-{v}-amd64.deb' },
+          { label: '.AppImage', name: 'CrawlStat-{v}-x86_64.AppImage' },
+        ],
+      },
     ],
   },
 })

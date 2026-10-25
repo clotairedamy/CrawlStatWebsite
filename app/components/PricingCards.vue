@@ -16,6 +16,7 @@ const free = [
 const pro = [
   'Unlimited URLs per crawl',
   'Everything in Free',
+  'UX Testing — page audits, findings workflow, retests',
   'Crawl comparison',
   'Custom extraction — CSS, XPath, regex',
   'Scheduled crawls',

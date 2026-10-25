@@ -9,6 +9,48 @@ useJsonLd(sd.organization, sd.website, sd.software)
 
 const dl = useDownloadCta()
 
+// What a UX tester gets, in the first screen. Each one is a thing the app
+// actually does, not a promise.
+const heroPoints = [
+  { icon: 'compass', text: 'UX audits built around each page’s goal' },
+  { icon: 'search', text: 'Evidence on every finding — nothing guessed' },
+  { icon: 'compare', text: 'Retest with before / after proof' },
+  { icon: 'file', text: 'Client report and developer CSV' },
+] as const
+
+const uxTools = [
+  {
+    icon: 'compass',
+    title: 'Judged by its goal',
+    body: 'Nine page types, each with the one thing it exists for: book, buy, sign up, get in touch. Around 60 checks are picked for that type and the depth you choose.',
+  },
+  {
+    icon: 'search',
+    title: 'Evidence, not opinion',
+    body: 'Every finding shows what was observed, where in the markup to look, how to reproduce it, and what the test could not see. Heuristics are labelled as heuristics.',
+  },
+  {
+    icon: 'check',
+    title: 'Five honest statuses',
+    body: 'Pass, Fail, Needs review, Not tested, Blocked — never folded into one score. A check that needs a real browser says so instead of passing.',
+  },
+  {
+    icon: 'list',
+    title: 'A findings workflow',
+    body: 'Owner, due date and status from open to resolved. Override a severity with a reason, or flag a finding as wrong and keep it out of the client report.',
+  },
+  {
+    icon: 'compare',
+    title: 'Retest and prove it',
+    body: 'Run the same setup again. Fixed findings resolve themselves, regressions reopen, and you get a retest pass rate to show the client.',
+  },
+  {
+    icon: 'file',
+    title: 'Reports people use',
+    body: 'A plain-language client report with before / after and limitations, and a developer CSV with acceptance criteria for every finding.',
+  },
+] as const
+
 const stats = [
   { to: 11700, suffix: '', unit: 'URLs / sec', note: 'engine throughput, 50k-URL benchmark' },
   { to: 128, suffix: ' MiB', unit: 'peak memory', note: 'for a 50,000-URL crawl' },
@@ -41,13 +83,17 @@ const pillars = [
     <section class="hero">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <span class="pill intro"><span class="dot dot-pulse" /> {{ dl.available ? 'Now available for' : 'Coming soon to' }} macOS, Windows & Linux</span>
-          <h1 class="display copper-text">Crawl it all.<br>Fix what matters.</h1>
+          <span class="pill intro"><span class="dot dot-pulse" /> {{ !dl.available ? 'Coming soon to macOS, Windows & Linux' : dl.all ? 'Now available for macOS, Windows & Linux' : `Now available for ${dl.platforms}` }}</span>
+          <h1 class="display copper-text">Find what’s broken.<br>Prove it’s fixed.</h1>
           <p class="lead">
-            A desktop SEO crawler that does the triage for you. It finds the problems, ranks them by
-            how much of your site each one actually touches, and tells you which are one template
-            edit and which are three hundred. Nothing leaves your machine.
+            An SEO crawler and a UX testing lab on your desktop. Crawl the whole site, or point it at one
+            page: CrawlStat works out what the page is for, tests it against that goal, and ranks every
+            finding with the evidence and the fix. Then retest, and show what changed. Nothing leaves
+            your machine.
           </p>
+          <ul class="hero-points">
+            <li v-for="p in heroPoints" :key="p.text"><Icon :name="p.icon" :size="16" /> {{ p.text }}</li>
+          </ul>
           <div class="hero-cta">
             <NuxtLink to="/download" class="btn btn-copper">
               <Icon :name="dl.icon" /> {{ dl.label('Download free') }}
@@ -65,7 +111,7 @@ const pillars = [
     <!-- Product shot -->
     <section class="showcase">
       <div class="container">
-        <AppWindow src="/screenshots/results-dark.png" alt="The CrawlStat results table" tilt eager />
+        <AppWindow src="/screenshots/ux-testing-dark.png" alt="CrawlStat's UX Testing screen: summary tiles for critical and high findings, coverage and confidence, what the page is, and the findings to fix first" tilt eager />
       </div>
     </section>
 
@@ -78,6 +124,72 @@ const pillars = [
             <div class="stat-unit">{{ s.unit }}</div>
             <div class="stat-note muted">{{ s.note }}</div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UX testing: one page, judged by what it is for -->
+    <section class="section">
+      <div class="container">
+        <div v-reveal class="section-head">
+          <span class="eyebrow">UX testing · Pro</span>
+          <h2 class="h2">Does this page do its job?</h2>
+          <p class="lead">
+            Give CrawlStat one URL. It works out what kind of page it is and what it is asking visitors to do,
+            tests it against that goal, and ranks what to fix first — with the evidence. For the marketer asking
+            why a landing page does not convert, and the designer who needs evidence rather than opinion.
+          </p>
+        </div>
+
+        <div v-reveal class="plan-demo neu">
+          <dl class="ux-read">
+            <div><dt>Reads as</dt><dd>Local business or service · 85% sure</dd></div>
+            <div><dt>Goal</dt><dd>Booking (inferred)</dd></div>
+            <div><dt>Main action</dt><dd>Schedule an Appointment</dd></div>
+            <div><dt>Why</dt><dd>LocalBusiness structured data · click-to-call link · a street address</dd></div>
+          </dl>
+          <div class="plan-row">
+            <span class="plan-score">125</span>
+            <div class="plan-body">
+              <strong>Links with no accessible name</strong>
+              <span class="plan-note">Critical findings go <b>straight to the top</b></span>
+            </div>
+            <span class="plan-tag">Critical</span>
+          </div>
+          <div class="plan-row">
+            <span class="plan-score">60</span>
+            <div class="plan-body">
+              <strong>Broken links</strong>
+              <span class="plan-note">impact × reach × confidence <b>÷ effort</b></span>
+            </div>
+            <span class="plan-tag">High</span>
+          </div>
+          <div class="plan-row dim">
+            <span class="plan-score">40</span>
+            <div class="plan-body">
+              <strong>Page title is too long</strong>
+              <span class="plan-note">Real, cheap, and not what is costing you bookings</span>
+            </div>
+            <span class="plan-tag quiet">Low</span>
+          </div>
+          <p class="plan-caption">
+            A real law firm's home page. 18 of 41 checks passed. Four were not tested — three need a real browser
+            and one would have meant submitting a form — and the report says so instead of guessing.
+          </p>
+        </div>
+
+        <div v-reveal class="center">
+          <NuxtLink to="/docs/ux-testing" class="btn btn-ghost audits-link">
+            How UX testing works <Icon name="arrow" :size="18" />
+          </NuxtLink>
+        </div>
+
+        <div class="pillars ux-tools">
+          <article v-for="(t, i) in uxTools" :key="t.title" v-reveal="(i % 3) * 120" class="card pillar">
+            <span class="pillar-icon"><Icon :name="t.icon" :size="24" /></span>
+            <h3 class="h3">{{ t.title }}</h3>
+            <p class="muted">{{ t.body }}</p>
+          </article>
         </div>
       </div>
     </section>
@@ -179,64 +291,6 @@ const pillars = [
         <div v-reveal class="center">
           <NuxtLink to="/features" class="btn btn-ghost audits-link">
             How the ranking works <Icon name="arrow" :size="18" />
-          </NuxtLink>
-        </div>
-      </div>
-    </section>
-
-    <!-- UX testing: one page, judged by what it is for -->
-    <section class="section">
-      <div class="container">
-        <div v-reveal class="section-head">
-          <span class="eyebrow">UX testing</span>
-          <h2 class="h2">Does this page do its job?</h2>
-          <p class="lead">
-            Give CrawlStat one URL. It works out what kind of page it is and what it is asking visitors to do,
-            tests it against that goal, and ranks what to fix first — with the evidence. For the marketer asking
-            why a landing page does not convert, and the designer who needs evidence rather than opinion.
-          </p>
-        </div>
-
-        <div v-reveal class="plan-demo neu">
-          <dl class="ux-read">
-            <div><dt>Reads as</dt><dd>Local business or service · 85% sure</dd></div>
-            <div><dt>Goal</dt><dd>Booking (inferred)</dd></div>
-            <div><dt>Main action</dt><dd>Schedule an Appointment</dd></div>
-            <div><dt>Why</dt><dd>LocalBusiness structured data · click-to-call link · a street address</dd></div>
-          </dl>
-          <div class="plan-row">
-            <span class="plan-score">125</span>
-            <div class="plan-body">
-              <strong>Links with no accessible name</strong>
-              <span class="plan-note">Critical findings go <b>straight to the top</b></span>
-            </div>
-            <span class="plan-tag">Critical</span>
-          </div>
-          <div class="plan-row">
-            <span class="plan-score">60</span>
-            <div class="plan-body">
-              <strong>Broken links</strong>
-              <span class="plan-note">impact × reach × confidence <b>÷ effort</b></span>
-            </div>
-            <span class="plan-tag">High</span>
-          </div>
-          <div class="plan-row dim">
-            <span class="plan-score">40</span>
-            <div class="plan-body">
-              <strong>Page title is too long</strong>
-              <span class="plan-note">Real, cheap, and not what is costing you bookings</span>
-            </div>
-            <span class="plan-tag quiet">Low</span>
-          </div>
-          <p class="plan-caption">
-            A real law firm's home page. 18 of 41 checks passed. Four were not tested — three need a real browser
-            and one would have meant submitting a form — and the report says so instead of guessing.
-          </p>
-        </div>
-
-        <div v-reveal class="center">
-          <NuxtLink to="/docs/ux-testing" class="btn btn-ghost audits-link">
-            How UX testing works <Icon name="arrow" :size="18" />
           </NuxtLink>
         </div>
       </div>
@@ -374,6 +428,10 @@ const pillars = [
   animation-delay: 0.2s;
 }
 
+.hero-copy > :nth-child(6) {
+  animation-delay: 0.25s;
+}
+
 /* Nothing here is information, so it all goes when motion is unwelcome. */
 @media (prefers-reduced-motion: reduce) {
   .hero-copy > * {
@@ -390,6 +448,39 @@ const pillars = [
 
 .hero-copy .lead {
   max-width: 500px;
+}
+
+.hero-points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 22px;
+  max-width: 540px;
+}
+
+.hero-points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+.hero-points :deep(svg) {
+  flex: none;
+  color: var(--copper);
+}
+
+@media (max-width: 560px) {
+  .hero-points {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ux-tools {
+  margin-top: 56px;
 }
 
 .hero-cta {

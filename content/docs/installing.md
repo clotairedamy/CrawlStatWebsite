@@ -53,7 +53,7 @@ chmod +x CrawlStat-*.AppImage
 For the **`.deb` package** (Debian, Ubuntu and derivatives):
 
 ```bash
-sudo apt install ./crawlstat_*_amd64.deb
+sudo apt install ./CrawlStat-*-amd64.deb
 ```
 
 ## Where CrawlStat keeps its files

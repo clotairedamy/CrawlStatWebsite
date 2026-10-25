@@ -5,6 +5,10 @@ section: Using CrawlStat
 order: 8.5
 ---
 
+::callout{type="note"}
+UX Testing is part of **CrawlStat Pro**. On the free plan the tab is visible with a preview of what it does; activate a Pro licence in **Settings › Licence** to run audits. See [Licensing](/docs/licensing).
+::
+
 ## The question this answers
 
 *Does this page do its job?*

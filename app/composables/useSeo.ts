@@ -56,7 +56,7 @@ export const useStructuredData = () => {
     publisher: { '@id': organization['@id'] },
   }
 
-  const availability = downloads.available ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder'
+  const availability = downloads.platforms.some((p) => p.available) ? 'https://schema.org/InStock' : 'https://schema.org/PreOrder'
   const software = {
     '@type': 'SoftwareApplication',
     '@id': url('/') + '#software',
