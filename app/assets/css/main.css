@@ -19,7 +19,7 @@
 
   --text: #ece8e2;
   --text-soft: #c2bfba;
-  --muted: #8d8b88;
+  --muted: #9a9895; /* 5.1:1 on --bg, 4.9:1 on --surface: WCAG AA for body text */
 
   --copper: #e3ad7b;
   --copper-hi: #f3c99c;

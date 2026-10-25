@@ -494,6 +494,12 @@ const pillars = [
   letter-spacing: 0.02em;
 }
 
+.hero-note a {
+  color: var(--copper);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .hero-art {
   max-width: 560px;
   justify-self: end;
