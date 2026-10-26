@@ -192,7 +192,7 @@ const pro = [
           <p class="lead">Pro lifts the 500-URL limit and unlocks UX testing, crawl comparison and progress in client reports. More tools roll out to subscribers through updates.</p>
         </div>
         <div class="pro">
-          <article v-for="(p, i) in pro" :key="p.title" v-reveal="i * 70" class="pro-item neu-sm">
+          <article v-for="(p, i) in pro" :key="p.title" v-reveal="i * 70" class="pro-item neu-sm spot">
             <span class="g-icon"><Icon :name="p.icon as any" :size="20" /></span>
             <div>
               <h3>{{ p.title }}</h3>

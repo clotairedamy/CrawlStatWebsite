@@ -1,36 +1,40 @@
 /*
   CrawlStat — site design system.
 
-  Charcoal, soft-extruded surfaces and a single copper accent. Depth comes from
-  paired light/dark shadows on a surface the same colour as the page, so
-  elements look pressed out of (or into) the background rather than placed on
-  top of it. Copper is reserved for the one thing on screen we want clicked.
+  Monochrome: pale grey, soft-extruded surfaces and black as the only accent.
+  Depth comes from paired light/dark shadows on a surface the same colour as
+  the page, so elements look pressed out of (or into) the background rather
+  than placed on top of it. Black is reserved for the one thing on screen we
+  want clicked. (The --copper-* names are historical; they hold black now.)
 */
 
 :root {
-  --bg: #26282d;
-  --bg-deep: #202226;
-  --surface: #2a2c31;
-  --line: rgba(255, 255, 255, 0.06);
-  --line-strong: rgba(255, 255, 255, 0.11);
+  color-scheme: light;
 
-  --shade-dark: #1a1b1f;
-  --shade-light: #33363c;
+  --bg: #ebebed;
+  --bg-deep: #e2e2e5;
+  --surface: #efeff1;
+  --line: rgba(0, 0, 0, 0.07);
+  --line-strong: rgba(0, 0, 0, 0.12);
 
-  --text: #ece8e2;
-  --text-soft: #c2bfba;
-  --muted: #9a9895; /* 5.1:1 on --bg, 4.9:1 on --surface: WCAG AA for body text */
+  --shade-dark: #c8c8cd;
+  --shade-light: #ffffff;
 
-  --copper: #e3ad7b;
-  --copper-hi: #f3c99c;
-  --copper-lo: #b9804f;
-  --copper-grad: linear-gradient(135deg, #f5cfa3 0%, #e2a873 48%, #bd8353 100%);
-  --copper-glow: 0 0 24px rgba(227, 173, 123, 0.35);
+  --text: #111111;
+  --text-soft: #3b3b3e;
+  --muted: #5e5e62; /* 5.4:1 on --bg, 5.6:1 on --surface: WCAG AA for body text */
 
-  --error: #ef7d73;
-  --warning: #f0c35f;
-  --notice: #8fa3c2;
-  --ok: #7fcf9a;
+  --copper: #111111;
+  --copper-hi: #000000;
+  --copper-lo: #3a3a3d;
+  --copper-grad: linear-gradient(135deg, #48484c 0%, #1a1a1a 48%, #000000 100%);
+  --copper-glow: 0 0 22px rgba(0, 0, 0, 0.18);
+
+  /* Severity as a grey ramp, darkest first: no hue anywhere on the site. */
+  --error: #111111;
+  --warning: #4a4a4e;
+  --notice: #7c7c81;
+  --ok: #9a9a9f;
 
   --raised: 9px 9px 22px var(--shade-dark), -9px -9px 22px var(--shade-light);
   --raised-sm: 5px 5px 12px var(--shade-dark), -5px -5px 12px var(--shade-light);
@@ -81,7 +85,7 @@ a {
 }
 
 ::selection {
-  background: rgba(227, 173, 123, 0.35);
+  background: #111;
   color: #fff;
 }
 
@@ -156,11 +160,11 @@ pre {
  * on desktop too.
  *
  * `color` is set as well as `-webkit-text-fill-color` so that a browser
- * without `background-clip: text` shows readable copper rather than nothing.
+ * without `background-clip: text` shows readable black rather than nothing.
  * Elements that need to animate in use `fade-in` below, which never touches
  * `transform`. */
 .copper-text {
-  color: #e8bd8e;
+  color: #111;
   background: var(--copper-grad);
   -webkit-background-clip: text;
   background-clip: text;
@@ -246,10 +250,58 @@ pre {
 }
 
 .card {
-  background: linear-gradient(145deg, #2b2d33, #24262a);
+  background: linear-gradient(145deg, #f3f3f5, #e4e4e7);
   border-radius: var(--radius);
   box-shadow: var(--raised);
   padding: 34px;
+}
+
+/* Links that are cards rise towards the cursor. `translate`, not
+   `transform`, so it never fights the reveal animation below. */
+a.card,
+a.neu,
+a.neu-sm {
+  transition:
+    translate 0.4s var(--ease),
+    box-shadow 0.4s var(--ease);
+}
+
+a.card:hover,
+a.neu:hover {
+  translate: 0 -4px;
+  box-shadow: var(--raised-lg);
+}
+
+/* ─── Cursor light (see plugins/spotlight.client.ts) ─────────────────────
+   Cards catch a soft white light where the pointer is. It is painted under
+   the card's content (z-index -1 inside an isolated card), so text stays
+   crisp. */
+.card,
+.spot {
+  position: relative;
+  isolation: isolate;
+}
+
+.card::after,
+.spot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    380px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(255, 255, 255, 0.85),
+    rgba(255, 255, 255, 0) 60%
+  );
+  opacity: 0;
+  transition: opacity 0.45s var(--ease);
+}
+
+.card:hover::after,
+.spot:hover::after {
+  opacity: 1;
 }
 
 /* ─── Buttons ─────────────────────────────────────────────────────────── */
@@ -270,8 +322,13 @@ pre {
   white-space: nowrap;
   transition:
     transform 0.25s var(--ease),
+    translate 0.25s var(--ease),
     box-shadow 0.25s var(--ease),
     filter 0.25s var(--ease);
+}
+
+.btn:hover {
+  translate: 0 -2px;
 }
 
 .btn:active {
@@ -279,21 +336,40 @@ pre {
 }
 
 .btn-copper {
-  color: #2a1c10;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
   background: var(--copper-grad);
   box-shadow:
     6px 6px 16px var(--shade-dark),
     -4px -4px 12px var(--shade-light),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 
 .btn-copper:hover {
-  filter: brightness(1.06);
+  filter: brightness(1.35);
   box-shadow:
     6px 6px 16px var(--shade-dark),
     -4px -4px 12px var(--shade-light),
     var(--copper-glow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+}
+
+/* A streak of light crosses the button on hover. */
+.btn-copper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.28) 50%, transparent 70%);
+  translate: -110% 0;
+  pointer-events: none;
+}
+
+.btn-copper:hover::after {
+  translate: 110% 0;
+  transition: translate 0.75s var(--ease);
 }
 
 .btn-ghost {
@@ -342,7 +418,7 @@ pre {
   height: 8px;
   border-radius: 50%;
   background: var(--copper-grad);
-  box-shadow: 0 0 10px rgba(227, 173, 123, 0.7);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
   flex: none;
 }
 
@@ -353,10 +429,10 @@ pre {
 @keyframes pulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(227, 173, 123, 0.55);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.3);
   }
   50% {
-    box-shadow: 0 0 0 7px rgba(227, 173, 123, 0);
+    box-shadow: 0 0 0 7px rgba(0, 0, 0, 0);
   }
 }
 
@@ -395,7 +471,6 @@ kbd,
   height: 7px;
   border-radius: 50%;
   background: currentColor;
-  box-shadow: 0 0 8px currentColor;
 }
 
 .sev-error {
@@ -440,7 +515,7 @@ kbd,
   margin-top: 4px;
   border-radius: 50%;
   background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232a1c10' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E")
       center / 11px no-repeat,
     var(--copper-grad);
 }
@@ -458,11 +533,15 @@ kbd,
 
 .js .reveal {
   opacity: 0;
-  transform: translateY(26px);
+  transform: translateY(28px) scale(0.985);
+  /* The hover lifts (translate, box-shadow, background) keep their own quick
+     timing; only the entrance waits for the stagger delay. */
   transition:
-    opacity 0.9s var(--ease),
-    transform 0.9s var(--ease);
-  transition-delay: var(--reveal-delay, 0ms);
+    opacity 0.9s var(--ease) var(--reveal-delay, 0ms),
+    transform 0.9s var(--ease) var(--reveal-delay, 0ms),
+    translate 0.35s var(--ease),
+    box-shadow 0.35s var(--ease),
+    background 0.35s var(--ease);
 }
 
 .js .reveal.is-visible {
@@ -479,6 +558,12 @@ kbd,
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .btn:hover,
+  a.card:hover,
+  a.neu:hover {
+    translate: none;
   }
 
   *,
@@ -518,6 +603,7 @@ kbd,
 .prose h2 a,
 .prose h3 a {
   color: inherit;
+  text-decoration: none;
 }
 
 .prose h2 + *,
@@ -533,7 +619,7 @@ kbd,
 .prose a {
   color: var(--copper-hi);
   text-decoration: underline;
-  text-decoration-color: rgba(227, 173, 123, 0.35);
+  text-decoration-color: rgba(0, 0, 0, 0.3);
   text-underline-offset: 3px;
   transition: text-decoration-color 0.2s;
 }

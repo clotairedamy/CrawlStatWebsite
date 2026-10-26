@@ -56,6 +56,8 @@ onMounted(() => {
         <NuxtLink to="/download" class="btn btn-copper">{{ dl.label('Download free') }}</NuxtLink>
       </nav>
     </Transition>
+
+    <span class="progress" aria-hidden="true" />
   </header>
 </template>
 
@@ -69,9 +71,47 @@ onMounted(() => {
     box-shadow 0.4s var(--ease);
 }
 
+/* How far down the page you are: a hairline under the bar, driven by the
+   scroll position itself, so there is no script. Browsers without
+   scroll-driven animations simply don't show it. */
+.progress {
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  .progress {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: var(--copper-grad);
+    transform-origin: 0 50%;
+    opacity: 0;
+    transition: opacity 0.3s;
+    animation: progress linear both;
+    animation-timeline: scroll(root);
+  }
+
+  .header.scrolled .progress {
+    opacity: 1;
+  }
+}
+
+@keyframes progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
 .header.scrolled,
 .header.open {
-  background: rgba(38, 40, 45, 0.82);
+  background: rgba(235, 235, 237, 0.82);
   backdrop-filter: blur(18px) saturate(1.2);
   -webkit-backdrop-filter: blur(18px) saturate(1.2);
   box-shadow: 0 1px 0 var(--line);

@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     build: {
       markdown: {
         highlight: {
-          theme: 'github-dark',
+          theme: 'github-light',
           langs: ['bash', 'json', 'yaml', 'html', 'sql'],
         },
       },
@@ -32,7 +32,7 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'en' },
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'theme-color', content: '#25272c' },
+        { name: 'theme-color', content: '#ebebed' },
         { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1' },
         { name: 'description', content: 'CrawlStat is a fast, local-first desktop SEO crawler for macOS, Windows and Linux. 45 audits, flat memory, no server — your crawl data never leaves your machine.' },
         { property: 'og:site_name', content: 'CrawlStat' },

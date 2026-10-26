@@ -75,7 +75,7 @@ const rest = computed(() => posts.value?.slice(1) ?? [])
   height: 28%;
   border-radius: 50%;
   background: var(--copper-grad);
-  box-shadow: 0 0 24px rgba(227, 173, 123, 0.5);
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.25);
 }
 
 .f-copy {

@@ -197,7 +197,7 @@ async function onSubmit(e: Event) {
 .field textarea:focus {
   box-shadow:
     var(--inset),
-    0 0 0 1px rgba(227, 173, 123, 0.4);
+    0 0 0 1px rgba(0, 0, 0, 0.2);
 }
 
 .trap {

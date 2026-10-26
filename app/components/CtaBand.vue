@@ -37,7 +37,7 @@ withDefaults(defineProps<{ title?: string; body?: string }>(), {
   align-items: center;
   padding: 72px;
   border-radius: 36px;
-  background: linear-gradient(145deg, #2b2d33, #24262a);
+  background: linear-gradient(145deg, #f4f4f6, #e3e3e6);
   box-shadow: var(--raised-lg);
 }
 
@@ -59,7 +59,7 @@ withDefaults(defineProps<{ title?: string; body?: string }>(), {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: linear-gradient(145deg, #2d2f35, #24262b);
+  background: linear-gradient(145deg, #f4f4f6, #e3e3e6);
   box-shadow: var(--raised);
 }
 
@@ -78,7 +78,7 @@ withDefaults(defineProps<{ title?: string; body?: string }>(), {
   border-radius: 50%;
   background: var(--copper-grad);
   box-shadow:
-    0 0 26px rgba(227, 173, 123, 0.5),
+    0 0 26px rgba(0, 0, 0, 0.25),
     inset 0 2px 0 rgba(255, 255, 255, 0.4);
   animation: breathe 3.6s ease-in-out infinite;
 }
@@ -87,7 +87,7 @@ withDefaults(defineProps<{ title?: string; body?: string }>(), {
   50% {
     transform: scale(1.12);
     box-shadow:
-      0 0 40px rgba(227, 173, 123, 0.7),
+      0 0 40px rgba(0, 0, 0, 0.35),
       inset 0 2px 0 rgba(255, 255, 255, 0.4);
   }
 }

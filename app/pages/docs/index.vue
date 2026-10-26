@@ -58,6 +58,27 @@ const groups = computed(() => {
   }
   return out
 })
+
+// One-tap searches for the questions people arrive with.
+const popular = ['Client reports', 'Render JavaScript', 'Redirect chain', 'Hreflang', 'Licence']
+
+// `/` jumps to the search from anywhere on the page, as on most docs sites.
+const field = ref<HTMLInputElement>()
+onMounted(() => {
+  const onKey = (e: KeyboardEvent) => {
+    if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey) return
+    const t = e.target as HTMLElement
+    if (t.closest('input, textarea, select, [contenteditable]')) return
+    e.preventDefault()
+    field.value?.focus()
+  }
+  window.addEventListener('keydown', onKey)
+  onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
+})
+function ask(term: string) {
+  q.value = term
+  field.value?.focus()
+}
 </script>
 
 <template>
@@ -73,14 +94,17 @@ const groups = computed(() => {
       >
         <Icon name="search" :size="20" />
         <input
+          ref="field"
           v-model="q"
           name="q"
           type="search"
           required
           placeholder="Search guides and audits…"
           aria-label="Search the help centre"
+          aria-keyshortcuts="/"
           toolparamdescription="Words to find in guide and audit titles and descriptions, such as 'redirect chain', 'hreflang' or 'UX testing'."
         >
+        <kbd v-if="!q" class="kbd" aria-hidden="true">/</kbd>
         <Transition name="drop">
           <ul v-if="matches.length" class="results">
             <li v-for="m in matches" :key="m.to">
@@ -89,28 +113,41 @@ const groups = computed(() => {
           </ul>
         </Transition>
       </form>
+      <div class="popular">
+        <span class="muted">Popular:</span>
+        <button v-for="t in popular" :key="t" type="button" class="chip" @click="ask(t)">{{ t }}</button>
+      </div>
     </PageHero>
 
     <section class="section-tight">
       <div class="container">
-        <div class="groups">
-          <article v-for="(g, i) in groups" :key="g.section" v-reveal="i * 90" class="card group">
-            <span class="g-icon"><Icon :name="(icons[g.section] ?? 'book') as any" :size="22" /></span>
-            <h2 class="h3">{{ g.section }}</h2>
-            <NuxtLink v-for="p in g.pages" :key="p.path" :to="p.path" class="g-link">
-              {{ p.title }} <Icon name="arrow" :size="15" />
+        <section v-for="g in groups" :key="g.section" class="group" :aria-labelledby="`g-${g.section}`">
+          <header v-reveal class="g-head">
+            <span class="g-icon"><Icon :name="(icons[g.section] ?? 'book') as any" :size="20" /></span>
+            <div>
+              <h2 :id="`g-${g.section}`" class="h3">{{ g.section }}</h2>
+              <span class="g-count">{{ g.pages.length }} {{ g.pages.length === 1 ? 'guide' : 'guides' }}</span>
+            </div>
+          </header>
+          <div class="g-links">
+            <NuxtLink v-for="(p, j) in g.pages" :key="p.path" v-reveal="(j % 3) * 70" :to="p.path" class="g-link spot">
+              <span class="g-title">{{ p.title }} <Icon name="arrow" :size="15" /></span>
+              <span class="g-desc">{{ p.description }}</span>
             </NuxtLink>
-          </article>
-        </div>
-
-        <NuxtLink v-reveal to="/docs/audits" class="audits neu">
-          <div>
-            <span class="eyebrow">Reference</span>
-            <h2 class="h3">The audit reference</h2>
-            <p class="muted">All {{ audits.length }} checks CrawlStat runs: what each one means and exactly how to fix it.</p>
           </div>
-          <span class="btn btn-copper btn-sm">Browse audits <Icon name="arrow" :size="16" /></span>
-        </NuxtLink>
+        </section>
+
+        <div v-reveal class="audits neu spot">
+          <div class="audits-head">
+            <div>
+              <span class="eyebrow">Reference</span>
+              <h2 class="h3">The audit reference</h2>
+              <p class="muted">All {{ audits.length }} checks CrawlStat runs: what each one means and exactly how to fix it.</p>
+            </div>
+            <NuxtLink to="/docs/audits" class="btn btn-copper btn-sm">Browse audits <Icon name="arrow" :size="16" /></NuxtLink>
+          </div>
+          <AuditMarquee />
+        </div>
       </div>
     </section>
 
@@ -153,7 +190,7 @@ const groups = computed(() => {
 .search:focus-within {
   box-shadow:
     var(--inset),
-    0 0 0 1px rgba(227, 173, 123, 0.4);
+    0 0 0 1px rgba(0, 0, 0, 0.2);
 }
 
 .results {
@@ -167,7 +204,7 @@ const groups = computed(() => {
   padding: 10px;
   border-radius: 22px;
   background: var(--surface);
-  box-shadow: 20px 24px 60px rgba(0, 0, 0, 0.45);
+  box-shadow: 20px 24px 60px rgba(0, 0, 0, 0.14);
   text-align: left;
 }
 
@@ -200,25 +237,97 @@ const groups = computed(() => {
   opacity: 0;
 }
 
-.groups {
+.kbd {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 28px;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  font: 500 0.8rem var(--mono, ui-monospace, monospace);
+  color: var(--muted);
+  box-shadow: var(--raised-sm);
 }
 
+.popular {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.86rem;
+  animation: up 0.5s var(--ease) 0.2s both;
+}
+
+.chip {
+  padding: 7px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--bg);
+  box-shadow: var(--raised-sm);
+  font: inherit;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition:
+    box-shadow 0.25s var(--ease),
+    color 0.2s,
+    translate 0.25s var(--ease);
+}
+
+.chip:hover {
+  color: var(--text);
+  translate: 0 -2px;
+}
+
+.chip:active {
+  box-shadow: var(--inset-sm);
+  translate: none;
+}
+
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* Each section is a row: its name on the left, held in view while its
+   guides scroll past, and the guides as tiles that size to their content. */
 .group {
   display: grid;
-  gap: 6px;
-  align-content: start;
+  grid-template-columns: 240px 1fr;
+  gap: 40px;
+  padding: 44px 0;
+  border-top: 1px solid var(--line-strong);
 }
 
-.group h2 {
-  margin: 10px 0 10px;
+.group:first-child {
+  border-top: 0;
+  padding-top: 12px;
+}
+
+.g-head {
+  position: sticky;
+  top: 112px;
+  align-self: start;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.g-head h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.g-count {
+  font-size: 0.8rem;
+  color: var(--muted);
 }
 
 .g-icon {
-  width: 52px;
-  height: 52px;
+  width: 46px;
+  height: 46px;
+  flex: none;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -226,44 +335,100 @@ const groups = computed(() => {
   box-shadow: var(--inset-sm);
 }
 
+.g-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
 .g-link {
+  display: grid;
+  gap: 6px;
+  align-content: start;
+  padding: 18px 20px 20px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 0 1px var(--line);
+  transition:
+    background 0.35s var(--ease),
+    box-shadow 0.35s var(--ease),
+    translate 0.35s var(--ease);
+}
+
+.g-link:hover,
+.g-link:focus-visible {
+  background: var(--bg);
+  box-shadow: var(--raised-sm);
+  translate: 0 -3px;
+}
+
+.g-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 7px 0;
-  font-weight: 300;
-  color: var(--text-soft);
-  transition: color 0.2s;
-}
-
-.g-link .icon {
-  opacity: 0;
-  transform: translateX(-6px);
-  transition: all 0.25s var(--ease);
-  color: var(--copper);
-}
-
-.g-link:hover {
+  gap: 12px;
+  font-weight: 500;
   color: var(--text);
 }
 
-.g-link:hover .icon {
+.g-title .icon {
+  flex: none;
+  opacity: 0.25;
+  transition:
+    opacity 0.25s,
+    translate 0.3s var(--ease);
+}
+
+.g-link:hover .g-title .icon {
   opacity: 1;
-  transform: none;
+  translate: 3px 0;
+}
+
+.g-desc {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  font-size: 0.86rem;
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--muted);
 }
 
 .audits {
-  margin-top: 40px;
+  margin-top: 36px;
+  padding: 40px 0 16px;
+  overflow: hidden;
+}
+
+.audits-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 32px;
   flex-wrap: wrap;
-  padding: 40px 44px;
+  padding: 0 44px;
 }
 
 .audits h2 {
   margin: 10px 0 8px;
+}
+
+@media (max-width: 860px) {
+  .group {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 32px 0;
+  }
+
+  .g-head {
+    position: static;
+  }
+
+  .audits-head {
+    padding: 0 26px;
+  }
 }
 
 .contact {

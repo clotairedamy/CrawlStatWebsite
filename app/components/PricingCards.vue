@@ -29,7 +29,7 @@ const pro = [
 <template>
   <div class="pricing">
     <div class="cards">
-      <article v-reveal class="plan">
+      <article v-reveal class="plan spot">
         <header>
           <span class="eyebrow">Free</span>
           <div class="price"><span class="amount">$0</span><span class="per">forever</span></div>
@@ -41,7 +41,7 @@ const pro = [
         <NuxtLink to="/download" class="btn btn-ghost">{{ dl.label('Download free') }}</NuxtLink>
       </article>
 
-      <article v-reveal="120" class="plan pro">
+      <article v-reveal="120" class="plan pro spot">
         <span class="badge"><span class="dot" /> Most popular</span>
         <header>
           <span class="eyebrow copper-text">Pro</span>
@@ -85,7 +85,7 @@ const pro = [
   gap: 32px;
   padding: 44px 40px 40px;
   border-radius: 28px;
-  background: linear-gradient(145deg, #2b2d33, #24262a);
+  background: linear-gradient(145deg, #f4f4f6, #e3e3e6);
   box-shadow: var(--raised-lg);
 }
 
@@ -128,7 +128,7 @@ const pro = [
 .pro {
   box-shadow:
     var(--raised-lg),
-    inset 0 0 0 1px rgba(227, 173, 123, 0.22);
+    inset 0 0 0 1px rgba(0, 0, 0, 0.11);
 }
 
 .badge {

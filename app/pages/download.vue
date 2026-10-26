@@ -201,7 +201,7 @@ onMounted(() => {
   display: grid;
   place-items: center;
   font-weight: 500;
-  color: #2a1c10;
+  color: #fff;
   background: var(--copper-grad);
 }
 

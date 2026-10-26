@@ -56,7 +56,7 @@ useSeoMeta({ title: notFound.value ? 'Page not found' : 'Something went wrong', 
   height: 26%;
   border-radius: 50%;
   background: var(--copper-grad);
-  box-shadow: 0 0 20px rgba(227, 173, 123, 0.5);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 }
 
 .buttons {

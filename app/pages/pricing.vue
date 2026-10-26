@@ -179,7 +179,7 @@ td:first-child {
   height: 26px;
   border-radius: 50%;
   background: var(--copper-grad);
-  color: #2a1c10;
+  color: #fff;
 }
 
 .no {

@@ -309,7 +309,7 @@ const pillars = [
         </div>
 
         <div v-reveal class="loop">
-          <div class="loop-step neu">
+          <div class="loop-step neu spot">
             <span class="loop-n">1</span>
             <h3>Rank</h3>
             <p>
@@ -318,7 +318,7 @@ const pillars = [
             </p>
             <NuxtLink to="/docs/the-plan" class="loop-link">The plan <Icon name="arrow" :size="16" /></NuxtLink>
           </div>
-          <div class="loop-step neu">
+          <div class="loop-step neu spot">
             <span class="loop-n">2</span>
             <h3>Check the path</h3>
             <p>
@@ -327,7 +327,7 @@ const pillars = [
             </p>
             <NuxtLink to="/docs/journeys" class="loop-link">Journeys <Icon name="arrow" :size="16" /></NuxtLink>
           </div>
-          <div class="loop-step neu">
+          <div class="loop-step neu spot">
             <span class="loop-n">3</span>
             <h3>Prove it</h3>
             <p>
@@ -569,7 +569,7 @@ const pillars = [
 }
 
 .tour-section {
-  background: radial-gradient(ellipse at 50% 30%, rgba(227, 173, 123, 0.05), transparent 60%);
+  background: radial-gradient(ellipse at 50% 30%, rgba(0, 0, 0, 0.025), transparent 60%);
 }
 
 .audits-link {

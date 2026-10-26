@@ -132,7 +132,7 @@ const current = computed(() => screens[active.value]!)
 
 .tabs button.on {
   color: var(--copper-hi);
-  background: linear-gradient(145deg, #2d2f35, #25272c);
+  background: linear-gradient(145deg, #f4f4f6, #e3e3e6);
   box-shadow: var(--raised-sm);
 }
 

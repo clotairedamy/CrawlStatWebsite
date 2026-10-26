@@ -107,7 +107,7 @@ const row = computed(() => ticker[tick.value]!)
 }
 
 .shape {
-  background: linear-gradient(145deg, #2d2f35 0%, #24262b 100%);
+  background: linear-gradient(145deg, #f4f4f6 0%, #e3e3e6 100%);
   box-shadow:
     1.6cqw 1.6cqw 4cqw var(--shade-dark),
     -1.4cqw -1.4cqw 3.6cqw var(--shade-light);
@@ -189,7 +189,7 @@ const row = computed(() => ticker[tick.value]!)
   width: 45%;
   height: 45%;
   border-radius: 50%;
-  background: linear-gradient(145deg, #2e3036, #24262a);
+  background: linear-gradient(145deg, #f4f4f6, #e3e3e6);
   box-shadow:
     0.3cqw 0.3cqw 0.7cqw var(--shade-dark),
     -0.3cqw -0.3cqw 0.7cqw var(--shade-light);
@@ -223,7 +223,7 @@ const row = computed(() => ticker[tick.value]!)
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  background: conic-gradient(from 0deg, rgba(227, 173, 123, 0.22), rgba(227, 173, 123, 0) 22%, transparent);
+  background: conic-gradient(from 0deg, rgba(0, 0, 0, 0.11), rgba(0, 0, 0, 0) 22%, transparent);
   animation: sweep 5s linear infinite;
   mask: radial-gradient(circle, transparent 18%, #000 19%);
 }
@@ -239,7 +239,7 @@ const row = computed(() => ticker[tick.value]!)
   width: 26%;
   height: 26%;
   border-radius: 50%;
-  border: 1px solid rgba(227, 173, 123, 0.55);
+  border: 1px solid rgba(0, 0, 0, 0.275);
   animation: ping 2.8s var(--ease) infinite;
 }
 
@@ -261,9 +261,9 @@ const row = computed(() => ticker[tick.value]!)
   border-radius: 50%;
   background: var(--copper-grad);
   box-shadow:
-    0.5cqw 0.5cqw 1.2cqw rgba(0, 0, 0, 0.5),
-    0 0 3cqw rgba(227, 173, 123, 0.45),
-    inset 0 0.25cqw 0 rgba(255, 255, 255, 0.45);
+    0.5cqw 0.5cqw 1.2cqw rgba(0, 0, 0, 0.25),
+    0 0 3cqw rgba(0, 0, 0, 0.225),
+    inset 0 0.25cqw 0 rgba(255, 255, 255, 0.18);
 }
 
 .chip {
@@ -275,12 +275,12 @@ const row = computed(() => ticker[tick.value]!)
   gap: 12px;
   padding: 12px 18px;
   border-radius: 16px;
-  background: rgba(42, 44, 49, 0.78);
+  background: rgba(245, 245, 247, 0.82);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow:
-    10px 14px 30px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    10px 14px 30px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
   font-size: 0.78rem;
   white-space: nowrap;
   animation: rise 1.4s var(--ease) 0.8s both;

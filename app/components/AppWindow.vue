@@ -76,11 +76,11 @@ const style = computed(() => {
   padding: 12px;
   padding-top: 0;
   border-radius: 24px;
-  background: linear-gradient(145deg, #2c2e34, #232529);
+  background: linear-gradient(145deg, #f4f4f6, #e3e3e6);
   box-shadow:
-    24px 30px 70px rgba(10, 11, 13, 0.6),
+    24px 30px 70px rgba(0, 0, 0, 0.16),
     -14px -14px 40px var(--shade-light),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
   transform-origin: 50% 0%;
   will-change: transform;
   transition: transform 0.08s linear;
@@ -102,7 +102,7 @@ const style = computed(() => {
 
 .chrome span:first-child {
   background: var(--copper-grad);
-  box-shadow: 0 0 8px rgba(227, 173, 123, 0.4);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 
 picture {
@@ -113,6 +113,6 @@ img {
   width: 100%;
   height: auto;
   border-radius: 12px;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 </style>

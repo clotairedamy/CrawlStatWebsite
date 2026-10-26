@@ -34,8 +34,8 @@
   place-items: center;
   font-size: 0.86rem;
   font-weight: 500;
-  color: #2a1c10;
+  color: #fff;
   background: var(--copper-grad);
-  box-shadow: 0 0 14px rgba(227, 173, 123, 0.3);
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.15);
 }
 </style>
