@@ -237,9 +237,9 @@ onMounted(() => {
     display: none;
   }
 
-  /* Two tracks now: the owl takes the first and centres itself in it, the
-     burger takes the second. Centring the mark against a 44px button on one
-     side only would sit it visibly off-axis. */
+  /* Two tracks now: the owl flush at the left padding, the burger flush at
+     the right — the same 28px container inset on both sides, so the pair
+     reads as symmetrical bookends. */
   .bar {
     grid-template-columns: 1fr 44px;
     height: 72px;
@@ -247,7 +247,6 @@ onMounted(() => {
 
   .brand {
     justify-content: start;
-    margin-left: 44px;
   }
 
   .burger {
@@ -258,10 +257,6 @@ onMounted(() => {
 @media (max-width: 420px) {
   /* The wingspan is 2:1, so on a small phone it would crowd the burger.
      Shrink it rather than swapping artwork: the whole owl is the mark. */
-  .brand {
-    margin-left: 0;
-  }
-
   .brand :deep(.owl) {
     height: 30px !important;
   }

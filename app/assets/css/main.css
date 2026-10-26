@@ -66,6 +66,14 @@ html {
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
+  /* The header's scroll-driven progress hairline is the position indicator;
+     the native page scrollbar would say the same thing twice. */
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+  width: 0;
 }
 
 body {
