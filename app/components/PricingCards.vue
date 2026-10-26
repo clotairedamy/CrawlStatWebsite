@@ -7,9 +7,11 @@ const free = [
   `Up to ${pricing.freeUrlLimit} URLs per crawl`,
   'All 45 SEO & accessibility audits',
   'Fix-it guidance for every issue',
-  'Live crawl view, results table & URL detail',
-  'CSV export',
-  'Resume interrupted crawls',
+  'Live crawl view, Pages table & URL detail',
+  'JavaScript rendering in your own browser',
+  'Branded client reports — PDF or web page',
+  'CSV & Markdown export',
+  'Recrawl & resume interrupted crawls',
   'macOS, Windows & Linux',
 ]
 
@@ -18,10 +20,8 @@ const pro = [
   'Everything in Free',
   'UX Testing — page audits, findings workflow, retests',
   'Crawl comparison',
-  'Custom extraction — CSS, XPath, regex',
-  'Scheduled crawls',
-  'XLSX export & HTML audit reports',
-  'Bring-your-own-key integrations',
+  'Progress since the last crawl in client reports',
+  'Coming: custom extraction, scheduled crawls & BYOK integrations',
   'Priority email support',
 ]
 </script>

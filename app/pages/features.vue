@@ -1,7 +1,7 @@
 <script setup lang="ts">
 usePageSeo({
   title: 'Features',
-  description: 'A live crawl view, a results table that keeps up at 500,000 rows, 45 audits with fixes, UX testing for any page, and an engine that keeps memory flat at any crawl size.',
+  description: 'A live crawl view, optional JavaScript rendering, a Pages table that keeps up at 500,000 rows, 45 audits ranked by impact, branded client reports, UX testing for any page, and an engine that keeps memory flat at any crawl size.',
 })
 
 const sd = useStructuredData()
@@ -12,15 +12,15 @@ const rows = [
     shot: 'crawl',
     eyebrow: 'Crawl',
     title: 'Watch every response land.',
-    body: 'Live counters for crawled, queued and discovered URLs, client and server errors, speed and elapsed time. robots.txt notices show up as they happen. Pause, resume or stop at any time — Ctrl-C safe, and resumable after a crash.',
-    points: ['Pause, resume, stop', 'Live URLs/sec and in-flight count', 'Crawl from a URL, a sitemap or a list'],
+    body: 'Live counters for crawled, queued and discovered URLs, client and server errors, speed and elapsed time. robots.txt notices show up as they happen. Pause, resume or stop at any time — Ctrl-C safe, and resumable after a crash. Built with React or Vue? Turn on Render JavaScript and each page runs in the Chrome, Edge or Brave you already have before it is read.',
+    points: ['Pause, resume, stop', 'Optional JavaScript rendering in your own browser', 'Crawl from a URL, a sitemap or a list'],
   },
   {
     shot: 'results',
-    eyebrow: 'Results',
+    eyebrow: 'Pages',
     title: 'A table built for the long haul.',
-    body: 'Eleven tabs — Internal, External, Response codes, Titles, Meta description, H1, Canonicals, Hreflang, Structured data, Images, Documents — over one fast table. Filter, sort, choose columns and export, all from the keyboard.',
-    points: ['Loads 200 rows at a time as you scroll', 'Status filters: 2xx, 3xx, 4xx, 5xx', 'URL detail: issues, inlinks, outlinks, images, headers'],
+    body: 'Eleven tabs — Internal, External, Response codes, Titles, Meta description, H1, Canonicals, Hreflang, Structured data, Images, Documents — over one fast table. Lenses ask the common questions for you: broken, redirected, slow, thin, not indexable, titles and descriptions too long or too short — each already counted before you click. Filter, sort, choose columns and export, all from the keyboard.',
+    points: ['Lenses with live counts: Broken, Slow, Thin content and more', 'An Issues column with each page’s worst severity', 'URL detail: issues, inlinks, outlinks, images, headers'],
   },
   {
     shot: 'plan',
@@ -47,22 +47,30 @@ const rows = [
     shot: 'compare',
     eyebrow: 'Compare',
     title: 'Did the fix actually work?',
-    body: 'Crawl, fix, crawl again. CrawlStat matches pages across the two files and tells you what was fixed, what regressed and which pages started failing. A page that simply stopped being crawled is reported as gone, never as fixed — otherwise the way to a perfect score would be to delete your site.',
-    points: ['Pages matched across crawls, not by row id', 'Regressions and newly broken pages first', 'crawlstat-cli compare --fail-on-regression for CI'],
+    body: 'Crawl, fix, recrawl in one click. CrawlStat matches pages across the two files and tells you what was fixed, what regressed and which pages started failing. A page that simply stopped being crawled is reported as gone, never as fixed — otherwise the way to a perfect score would be to delete your site.',
+    points: ['Pages matched across crawls, not by row id', 'Regressions and newly broken pages first', 'A Pro feature — crawlstat-cli compare --fail-on-regression for CI'],
   },
   {
     shot: 'issues',
     eyebrow: 'Issues',
     title: 'A to-do list, not a wall of red.',
-    body: 'Findings grouped by severity with a plain-English explanation and how to fix it. Show the affected URLs in one click, export them for whoever owns the fix, or copy a link to the audit’s reference page.',
-    points: ['45 SEO & accessibility audits', 'Re-run audits without re-crawling', 'Thresholds tuned to real-world advice'],
+    body: 'Findings grouped by severity, then ranked by what they cost you: each one shows its impact, how much of the site it reaches and how much work it is — one template change, or page by page. Every issue comes with a plain-English explanation, how to fix it and the best-linked pages it affects. Open them all in the Pages tab, export them for whoever owns the fix, or copy a link to the audit’s reference page.',
+    points: ['45 SEO & accessibility audits', 'Impact, reach and effort for every issue', 'Template fixes flagged, so one change clears hundreds of pages'],
   },
   {
     shot: 'projects',
     eyebrow: 'Projects',
     title: 'Every crawl, a file you own.',
-    body: 'Each crawl is a single file on your disk. See status mix, errors, warnings and size at a glance — then open, resume or delete. Upgrading CrawlStat improves what an old crawl reports, because the audits live in the app.',
-    points: ['One file per crawl, ~2 KB per URL', 'Resume exactly where you stopped', 'Nothing uploaded, ever'],
+    body: 'Each crawl is a single file on your disk. See recent crawls as cards, or one row per site with its health and a history of every crawl — then open, recrawl, resume or delete. Each crawl opens on its own page, with Overview, Issues, Pages, Plan, Visualise, UX Testing and Accessibility a tab apart. Upgrading CrawlStat improves what an old crawl reports, because the audits live in the app.',
+    points: ['One file per crawl, ~2 KB per URL', 'Recrawl, or recrawl with changed settings', 'Nothing uploaded, ever'],
+  },
+  {
+    shot: 'report',
+    src: '/screenshots/report-cover.png',
+    eyebrow: 'Client reports',
+    title: 'A report your client will actually read.',
+    body: 'Turn any crawl into a branded PDF or a self-contained web page: a health score, the headline figures, a ranked action plan with the effort each fix takes, accessibility barriers and every issue found. Add your name and colour, include the write-up from the Plan tab, and with Pro show what improved since the last crawl.',
+    points: ['PDF or web page, made on your machine', 'Your name and brand colour on the cover', 'Progress since the last crawl, with Pro'],
   },
 ]
 
@@ -75,6 +83,9 @@ const grid = [
   { icon: 'layers', title: 'Near-duplicate detection', body: 'Finds pages that say the same thing in slightly different words, even across a very large site.' },
   { icon: 'globe', title: 'Hreflang validation', body: 'Missing return links, missing self-references and invalid language codes across every alternate.' },
   { icon: 'accessibility', title: 'Accessibility checks', body: 'Links and buttons without names, unlabeled fields, broken ARIA, missing lang, skipped headings and more.' },
+  { icon: 'code', title: 'JavaScript rendering', body: 'Sites built with React, Vue and friends are run in your own Chrome, Edge or Brave first, so the crawl sees what visitors see. Off by default, one switch to turn on.' },
+  { icon: 'sparkle', title: 'Four colour themes', body: 'Ember, Gold on graphite, Graphite and Monochrome, each in light and dark — Monochrome keeps the whole app black and white.' },
+  { icon: 'clock', title: 'Recrawl in one click', body: 'Run a crawl again with the same settings, or open them pre-filled and change one thing. Each run joins the site’s history.' },
   { icon: 'keyboard', title: 'Keyboard first', body: 'Arrows, Page Up/Down, Home/End, ⌘F to filter, ⌘E to export, ⌘N to crawl, ⌘Space to pause.' },
   { icon: 'feather', title: 'Polite by default', body: 'Honours robots.txt and Crawl-delay, paces requests per host and identifies itself as CrawlStatBot.' },
   { icon: 'file', title: 'Structured data & social tags', body: 'JSON-LD, Open Graph and Twitter tags extracted per page, ready to filter and export.' },
@@ -90,10 +101,10 @@ const perf = [
 
 const pro = [
   { icon: 'code', title: 'Unlimited URLs', body: 'The free tier crawls 500 URLs per crawl. Pro removes the cap entirely.' },
-  { icon: 'code', title: 'Custom extraction', body: 'Pull any value out of every page with CSS, XPath or regex.' },
-  { icon: 'clock', title: 'Scheduled crawls', body: 'Crawl on a schedule and come back to fresh results.' },
-  { icon: 'file', title: 'XLSX & HTML reports', body: 'Client-ready audit reports and spreadsheets in one click.' },
-  { icon: 'plug', title: 'BYOK integrations', body: 'Bring your own API keys; data moves only when you trigger it.' },
+  { icon: 'compass', title: 'UX testing', body: 'Test any page against what it is for — 62 checks tailored to nine page types, each finding ranked and given a fix.' },
+  { icon: 'compare', title: 'Crawl comparison', body: 'Match two crawls of a site and see what was fixed, what regressed and what started failing.' },
+  { icon: 'file', title: 'Progress in client reports', body: 'Client reports gain a section on what improved since the last crawl.' },
+  { icon: 'code', title: 'Coming next', body: 'Custom extraction with CSS, XPath or regex, scheduled crawls and bring-your-own-key integrations, rolling out to subscribers through updates.' },
 ]
 </script>
 
@@ -122,7 +133,7 @@ const pro = [
             </ul>
           </div>
           <div v-reveal="120" class="row-shot">
-            <AppWindow :src="`/screenshots/${r.shot}-dark.png`" :alt="`CrawlStat ${r.eyebrow} screen`" />
+            <AppWindow :src="r.src ?? `/screenshots/${r.shot}-dark.png`" :alt="`CrawlStat ${r.eyebrow} screen`" />
           </div>
         </div>
       </div>
@@ -178,7 +189,7 @@ const pro = [
         <div v-reveal class="section-head">
           <span class="eyebrow copper-text">Pro</span>
           <h2 class="h2">More power when you need it.</h2>
-          <p class="lead">Pro lifts the 500-URL limit today, and these tools roll out to subscribers through updates.</p>
+          <p class="lead">Pro lifts the 500-URL limit and unlocks UX testing, crawl comparison and progress in client reports. More tools roll out to subscribers through updates.</p>
         </div>
         <div class="pro">
           <article v-for="(p, i) in pro" :key="p.title" v-reveal="i * 70" class="pro-item neu-sm">

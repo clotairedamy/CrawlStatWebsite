@@ -1,22 +1,25 @@
 <script setup lang="ts">
 usePageSeo({
   title: 'Pricing',
-  description: 'CrawlStat is free up to 500 URLs per crawl with every audit included. Pro is $99/year for unlimited URLs and team tools.',
+  description: 'CrawlStat is free up to 500 URLs per crawl with every audit, JavaScript rendering and client reports included. Pro is $99/year for unlimited URLs, UX testing and crawl comparison.',
 })
 
 const rows: [string, string | boolean, string | boolean][] = [
   ['URLs per crawl', '500', 'Unlimited'],
   ['SEO & accessibility audits', 'All 45', 'All 45'],
   ['Fix-it guidance & audit reference', true, true],
-  ['Live crawl view & results table', true, true],
+  ['Live crawl view & Pages table', true, true],
   ['URL detail: inlinks, outlinks, headers', true, true],
-  ['Resume interrupted crawls', true, true],
-  ['CSV export', true, true],
-  ['XLSX export & HTML audit report', false, true],
+  ['JavaScript rendering', true, true],
+  ['Recrawl & resume interrupted crawls', true, true],
+  ['CSV & Markdown export', true, true],
+  ['Client reports (PDF or web page)', true, true],
+  ['UX Testing', false, true],
   ['Crawl comparison', false, true],
-  ['Custom extraction (CSS, XPath, regex)', false, true],
-  ['Scheduled crawls', false, true],
-  ['Bring-your-own-key integrations', false, true],
+  ['Progress since the last crawl in client reports', false, true],
+  ['Custom extraction (CSS, XPath, regex)', false, 'Coming'],
+  ['Scheduled crawls', false, 'Coming'],
+  ['Bring-your-own-key integrations', false, 'Coming'],
   ['Support', 'Help centre', 'Priority email'],
 ]
 
@@ -39,7 +42,7 @@ const faq = [
   },
   {
     q: 'Are the Pro tools all available today?',
-    a: 'Unlimited URLs works today. Crawl comparison, custom extraction, scheduled crawls, XLSX/HTML reports and BYOK integrations are rolling out to Pro through updates, at no extra cost to subscribers.',
+    a: 'Unlimited URLs, UX Testing, crawl comparison and progress in client reports work today. Custom extraction, scheduled crawls and BYOK integrations are rolling out to Pro through updates, at no extra cost to subscribers.',
   },
   {
     q: 'Is my crawl data sent anywhere?',

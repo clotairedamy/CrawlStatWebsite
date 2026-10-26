@@ -6,13 +6,13 @@ const screens = [
     id: 'crawl',
     label: 'Crawl',
     title: 'Watch it work',
-    body: 'Live counters, URLs per second and every response as it lands. Pause, resume or stop — and keep reading the last crawl while this one runs.',
+    body: 'Live counters, URLs per second and every response as it lands. Pause, resume or stop, and render JavaScript in your own browser when a site needs it.',
   },
   {
     id: 'results',
-    label: 'Results',
+    label: 'Pages',
     title: 'A table that keeps up',
-    body: 'Eleven tabs over one table, a filter bar, sortable columns and a detail panel. Half a million rows scroll in the same memory as fifty.',
+    body: 'Eleven tabs over one table, lenses that count the broken, slow and thin pages before you click, and a detail panel. Half a million rows scroll in the same memory as fifty.',
   },
   {
     id: 'ux-testing',
@@ -36,19 +36,19 @@ const screens = [
     id: 'compare',
     label: 'Compare',
     title: 'Did the fix work?',
-    body: 'Two crawls side by side: what was fixed, what broke, and which pages started failing. Deleting a page never counts as fixing it.',
+    body: 'Two crawls side by side, with Pro: what was fixed, what broke, and which pages started failing. Deleting a page never counts as fixing it.',
   },
   {
     id: 'issues',
     label: 'Issues',
     title: 'Fixes, not just flags',
-    body: 'Findings grouped by severity, each with a plain-English explanation and how to fix it. One click filters the table to the affected URLs.',
+    body: 'Findings grouped by severity and ranked by impact, reach and effort, each with a plain-English explanation and how to fix it. One click opens the affected pages.',
   },
   {
     id: 'projects',
     label: 'Projects',
     title: 'Every crawl, on this machine',
-    body: 'Status mix, errors, warnings and size at a glance. Resume an interrupted crawl exactly where it stopped.',
+    body: 'Recent crawls as cards, or one row per site with its health and history. Recrawl in one click, or resume an interrupted crawl exactly where it stopped.',
   },
 ] as const
 

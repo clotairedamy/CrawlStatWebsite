@@ -1,6 +1,6 @@
 ---
 title: FAQ
-description: Short answers to the questions people ask most about CrawlStat, including what it costs, what it crawls, where data goes, and what it doesn't do yet.
+description: Short answers to the questions people ask most about CrawlStat, including what it costs, what it crawls, JavaScript, client reports, where data goes, and what it doesn't do yet.
 section: Help
 order: 19
 ---
@@ -23,7 +23,7 @@ No. You download it and use it. If you buy Pro, you get a licence key to paste i
 
 ### Does CrawlStat render JavaScript?
 
-No. CrawlStat reads the HTML your server sends and doesn't run scripts. That's also what a search engine sees first, so it's a useful view. But on sites that build their content or navigation in the browser, CrawlStat will find less than a visitor does. If a crawl finds only a page or two, see [Troubleshooting](/docs/troubleshooting#the-crawl-finds-only-one-page-or-very-few).
+Yes, when you ask it to. By default CrawlStat reads the HTML your server sends, which is also what a search engine sees first, and that's fast. For sites built with React, Vue and the like, turn on **Render JavaScript** in the New crawl dialog: each page is run in the Chrome, Chromium, Edge or Brave you already have before CrawlStat reads it. It's several times slower, and it's included on the free tier. See [Your first crawl](/docs/your-first-crawl#render-javascript).
 
 ### How big a site can it crawl?
 
@@ -47,11 +47,11 @@ By default it doesn't follow `rel="nofollow"` links, which matches what search e
 
 ### Does it measure page speed or Core Web Vitals?
 
-No. CrawlStat measures how long the server takes to respond, which is shown in the **Time** column and checked by the [slow server response](/docs/audits/slow-server-response) audit. It doesn't load pages in a browser, so it doesn't measure rendering metrics like Core Web Vitals.
+No. CrawlStat measures how long the server takes to respond, which is shown in the **Time** column and checked by the [slow server response](/docs/audits/slow-server-response) audit. Even with **Render JavaScript** on, the browser is only used to read the finished page, so rendering metrics like Core Web Vitals aren't measured.
 
 ### Can I pause a crawl and come back to it later?
 
-Yes. Pause it from the Crawl screen, or stop it and later click **Resume** on the Projects screen. Even if CrawlStat quits unexpectedly, the crawl can be resumed where it left off. See [Watching a crawl](/docs/watching-a-crawl).
+Yes. Pause it from its live view, or stop it and later click **Resume** on the Projects screen. Even if CrawlStat quits unexpectedly, the crawl can be resumed where it left off. See [Watching a crawl](/docs/watching-a-crawl).
 
 ## Results and audits
 
@@ -61,7 +61,7 @@ Yes. Pause it from the Crawl screen, or stop it and later click **Resume** on th
 
 ### If I update CrawlStat, do my old crawls benefit?
 
-Yes. The audits are part of the app, not saved in your crawl files. Open an old crawl and click **Re-run audits** on the Issues screen to check it with the latest version of every audit.
+Yes. The audits are part of the app, not saved in your crawl files. Open an old crawl and click **Re-run audits** on its Issues tab to check it with the latest version of every audit.
 
 ### Why isn't a page's title flagged when it's obviously wrong?
 
@@ -69,19 +69,23 @@ Title, description and similar checks only apply to pages that can be indexed. I
 
 ### Can I export my results?
 
-Yes. Every results tab can be exported to CSV, respecting your current filter, as can the issue list and each issue's affected URLs. XLSX export and an HTML audit report are rolling out to Pro.
+Yes. Every tab of the Pages table can be exported to CSV, respecting your current filter, as can the issue list and each issue's affected URLs. The plan's written report can be saved as Markdown. XLSX export is planned for Pro.
+
+### Can I send the results to a client?
+
+Yes. **Export a client report** in a crawl's header makes a branded A4 PDF, or a single self-contained web page, with your name on the cover and your colour throughout: the site's health, a ranked action plan, accessibility and every issue. It's included on the free tier; adding progress since the last crawl needs Pro. See [Client reports](/docs/client-reports).
 
 ### Can I compare two crawls?
 
-Not yet. Crawl comparison is rolling out to Pro. In the meantime, each crawl is kept as its own file, so your history is there to compare when it arrives.
+Yes, with Pro. Recrawl the site, then click **Compare** on the crawl, or **Compare with previous crawl** when the recrawl finishes. You'll see what was fixed, what's new, and which pages started failing. See [Comparing crawls](/docs/comparing-crawls).
 
 ### Can I extract custom data from pages?
 
-Custom extraction with CSS selectors, XPath and regular expressions is rolling out to Pro.
+Not yet. Custom extraction with CSS selectors, XPath and regular expressions is planned for Pro.
 
 ### Can I schedule crawls?
 
-Scheduled crawls are rolling out to Pro.
+Not yet. Scheduled crawls are planned for Pro. In the meantime, **Recrawl** on the Projects screen repeats a crawl with the same settings in one click.
 
 ## Files and data
 

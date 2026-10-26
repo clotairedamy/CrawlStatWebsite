@@ -24,7 +24,7 @@ The rest of this page explains each of these in detail.
 | **Crawls** | One `.db` file per crawl in the `projects` folder | Every URL crawled, status codes, response headers, titles, descriptions, headings, links, images, structured data, the crawl's settings and log, and audit results. Page source too, if you turned on **Keep raw HTML**. |
 | **Settings** | `settings.json` | Your crawl defaults, theme and window preferences. |
 | **Recent crawls** | `recent.json` | The paths of your 20 most recent crawls. |
-| **Exports** | Your Downloads folder, by default | The CSV files you've exported. |
+| **Exports** | Your Downloads folder, by default | The CSV and Markdown files and [client reports](/docs/client-reports) you've exported. |
 | **Licence** | Your OS's secure credential store | Your licence key, the signed licence token, and a random install ID. |
 
 The `projects` folder, `settings.json` and `recent.json` live in CrawlStat's application data folder. See [Installing](/docs/installing#where-crawlstat-keeps-its-files) for the path on each platform.
@@ -35,7 +35,9 @@ By default, CrawlStat stores a fixed set of response headers rather than all of 
 
 ### To the sites you crawl
 
-CrawlStat sends ordinary HTTP requests to the sites you point it at, identifying itself as `CrawlStatBot/1.0 (+https://crawlstat.com/bot)` unless you change the user agent. If **Check external links** is on, it also requests each external URL your site links to, once, to see whether it works. See [The crawler and robots.txt](/docs/crawler-and-robots).
+CrawlStat sends ordinary HTTP requests to the sites you point it at, identifying itself as `CrawlStatBot/1.0 (+https://crawlstat.com/bot)` unless you change the user agent. If **Check external links** is on, it also requests each external URL your site links to, once, to see whether it works. If you turn on **Render JavaScript**, pages are also loaded in a browser on your machine, with a fresh, empty profile each time, so none of your own cookies or logins are used. See [The crawler and robots.txt](/docs/crawler-and-robots).
+
+Client reports are made on your machine too. Printing one to PDF uses your own browser, offline, and the report is just a file in your export folder until you choose to send it.
 
 ### To crawlstat.com, for licensing
 
@@ -59,7 +61,7 @@ Information about the latest release (its version number, release notes and down
 The app has no telemetry, usage analytics or crash reporting. The Settings screen puts it plainly: crawls run entirely on this machine.
 
 ::callout{type="note"}
-Bring-your-own-key integrations are rolling out to Pro. They'll let you connect services you choose, using your own API keys. Data will only go to those services when you trigger an integration yourself, never automatically.
+Bring-your-own-key integrations are planned for Pro. They'll let you connect services you choose, using your own API keys. Data will only go to those services when you trigger an integration yourself, never automatically.
 ::
 
 ## Payments

@@ -63,7 +63,7 @@ A few other behaviours keep the load down:
 - **External links are fetched once and never followed.** CrawlStat checks that a link to another site works, then stops.
 - **Large responses are cut off.** CrawlStat reads up to 10 MB of any response and stops there. The URL is marked as truncated, and links in the part that was read are still used.
 - **Each URL is fetched once.** CrawlStat normalises URLs and remembers what it's seen, so a link that appears on every page is fetched a single time.
-- **No JavaScript.** CrawlStat reads the HTML the server sends and never runs scripts, so it doesn't trigger the extra requests a browser would.
+- **No JavaScript, unless you ask for it.** By default CrawlStat reads the HTML the server sends and never runs scripts, so it doesn't trigger the extra requests a browser would. With [Render JavaScript](/docs/your-first-crawl#render-javascript) on, each page is also loaded in a browser, which fetches the page again with its scripts, styles and any data they request, under the same `CrawlStatBot` user agent. Images aren't loaded, and at most four pages render at once.
 
 If you're crawling a site you don't run, consider lowering **Simultaneous requests** and adding a delay in [Settings](/docs/settings). Your crawl will be slower, but it will be kinder to the site.
 

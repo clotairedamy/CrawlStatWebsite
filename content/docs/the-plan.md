@@ -7,9 +7,9 @@ order: 7
 
 ## Why a plan and not just a list
 
-The Issues screen tells you what is wrong. It cannot tell you what to do on Monday morning, because severity alone does not say that: a missing title on your home page and a missing title on a page nobody links to are the same finding and emphatically not the same problem.
+The Issues tab tells you what is wrong. It cannot tell you what to do on Monday morning, because severity alone does not say that: a missing title on your home page and a missing title on a page nobody links to are the same finding and emphatically not the same problem.
 
-The Plan screen ranks every finding against the others in the same crawl, so the list reads top to bottom as the order to work in.
+The **Plan** tab ranks every finding against the others in the same crawl, so the list reads top to bottom as the order to work in. Each job shows how many pages it touches, how many changes it takes and how much link value is at stake, with **How to fix**, the worst-affected pages, and **See every page**, which opens the issue on the Issues tab.
 
 ## What the ranking is made of
 
@@ -43,9 +43,16 @@ It is **not a traffic forecast**. CrawlStat has never seen your analytics, and a
 
 ## Writing it up
 
-If you have [Ollama](https://ollama.com) running on your machine, the Plan screen can turn the ranking into a short client-ready write-up. The model runs locally, so no crawl data is uploaded anywhere, and **What was sent** shows you the exact brief before it goes. Nothing here is required: the ranking is computed without it.
+If you have [Ollama](https://ollama.com) running on your machine, the Plan tab can turn the ranking into a short client-ready write-up. Click **Write the report**. The model runs locally, so no crawl data is uploaded anywhere, and **What is sent** shows you the exact brief before it goes. Nothing here is required: the ranking is computed without it.
 
-See [Settings](/docs/settings) to point CrawlStat at your Ollama endpoint and pick a model.
+Once it's written, the report stays with the crawl until you quit CrawlStat, and you can:
+
+- **Copy** it, as Markdown, to paste into an email or a ticket.
+- Save it as a **Markdown** file.
+- **Export PDF**, which opens the [client report](/docs/client-reports) dialog with the written report already included as a summary page after the cover.
+- **Rewrite** it, if you'd like another take.
+
+See [Local AI](/docs/local-ai) to set up Ollama and pick a model.
 
 ## From the command line
 

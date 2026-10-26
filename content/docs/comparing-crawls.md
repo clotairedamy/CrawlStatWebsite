@@ -9,7 +9,17 @@ order: 10
 
 A crawl on its own tells you what is wrong today. It cannot tell you whether yesterday's work helped, which is the question that justifies running the tool a second time.
 
-Compare takes two crawls of the same site and reports what actually changed.
+Compare takes two crawls of the same site and reports what actually changed. It's part of [Pro](/docs/licensing).
+
+## Starting a comparison
+
+There are three ways in:
+
+- **Compare** on a crawl's card in [Projects](/docs/projects), or in a crawl's header. It lists crawls of the same site first, with the one just before it marked **Previous crawl**, then crawls of other sites.
+- **Compare with previous crawl** at the end of a [live crawl](/docs/watching-a-crawl), when you've crawled the same site before. This is the quickest way to check a fix: recrawl, then compare.
+- **Include progress since the last crawl** in a [client report](/docs/client-reports), which puts the comparison in front of your client.
+
+The comparison runs straight away, with the older crawl on the left. **Projects** takes you back.
 
 ## What it reports
 

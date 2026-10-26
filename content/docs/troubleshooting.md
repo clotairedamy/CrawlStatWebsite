@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting
-description: Fixes for the most common problems, from crawls that find too few pages or hit lots of errors to empty issue lists, failed exports and licence trouble.
+description: Fixes for the most common problems, from crawls that find too few pages or hit lots of errors to empty issue lists, report exports, failed exports and licence trouble.
 section: Help
 order: 18
 ---
@@ -9,7 +9,7 @@ order: 18
 
 CrawlStat follows the links in the HTML the server sends. If it stops early, one of these is usually the cause:
 
-- **The site builds its links with JavaScript.** CrawlStat doesn't run JavaScript. If the menu and links only appear after scripts run, there's nothing in the HTML to follow. Open the start URL's detail panel and check its **Outlinks** tab. If it's nearly empty, this is the likely reason. A [Sitemap crawl](/docs/your-first-crawl#sitemap) or a [List crawl](/docs/your-first-crawl#list) can still check the pages.
+- **The site builds its links with JavaScript.** Unless you turn on rendering, CrawlStat reads the page as the server sent it. If the menu and links only appear after scripts run, there's nothing in that HTML to follow. Open the start URL's detail panel and check its **Outlinks** tab. If it's nearly empty, this is the likely reason: use **Recrawl with changes…** on the Projects screen and turn on [Render JavaScript](/docs/your-first-crawl#render-javascript).
 - **robots.txt blocks CrawlStat.** Check the Internal tab for URLs marked as blocked, and the [Pages blocked by robots.txt](/docs/audits/pages-blocked-by-robots-txt) issue. If it's your own site, you can turn off **Respect robots.txt** in [Settings](/docs/settings).
 - **The start URL redirects to another host.** If `example.com` redirects to `shop.example.com` or a different domain, the destination counts as a different site. Start the crawl from the address the site actually ends up on, or turn on **Crawl subdomains**.
 - **The links point at a subdomain.** With **Crawl subdomains** off, `blog.example.com` is treated as external and only checked, not crawled.
@@ -40,7 +40,8 @@ Crawl speed is mostly decided by the server. Things that slow it down:
 
 - **A Crawl-delay in robots.txt.** CrawlStat honours it, and a delay of even a few seconds makes a big difference.
 - **Your own delay setting,** or a low number of simultaneous requests.
-- **Slow pages.** Check the **Time** column for responses over a second.
+- **Slow pages.** Check the **Time** column for responses over a second, or the **Slow** lens in the Pages table.
+- **Render JavaScript is on.** Running every page in a browser makes a crawl several times slower. If the site's links and content are in the HTML the server sends, crawl without it.
 
 On your own site, you can raise **Simultaneous requests** in Settings. Watch for server errors, because they mean it's too high.
 
@@ -48,11 +49,23 @@ On your own site, you can raise **Simultaneous requests** in Settings. Watch for
 
 That's the free-tier limit. The crawl keeps everything it found up to that point, and a warning shows how many URLs weren't crawled. [Pro](/docs/licensing) removes the limit. On the free tier, you can make the 500 go further by turning off **Images** and **Check external links**, or by narrowing the crawl with patterns.
 
-## The Issues screen is empty
+## The Issues tab is empty
 
-If the Issues screen says **No issues found**, either the site is in good shape or the audits haven't run for this crawl. That happens when **Run audits when a crawl finishes** is off in Settings. Click **Run the audits** or **Re-run audits** to make sure.
+If a crawl's Issues tab says **No issues found**, either the site is in good shape or the audits haven't run for this crawl. That happens when **Run audits when a crawl finishes** is off in Settings. Click **Run the audits** or **Re-run audits** to make sure.
 
 Some issues are deliberately not reported for certain pages. For example, title and description checks skip pages that can't be indexed, such as noindex pages, redirects and error pages.
+
+## Render JavaScript is greyed out
+
+CrawlStat renders pages with a browser you already have: Chrome, Chromium, Edge or Brave. If it can't find one, the switch is greyed out and says so. Install one of them and reopen the New crawl dialog. If yours is installed somewhere unusual, set the `CRAWLSTAT_CHROME` environment variable to the browser's full path before starting CrawlStat.
+
+## The PDF option is greyed out when exporting a report
+
+[Client reports](/docs/client-reports) are printed to PDF by Chrome, Edge or Brave, and the PDF option needs one of them installed. Without one, choose **Web page**: it's the same report as a single file, and any browser's **Print** dialog turns it into an A4 PDF.
+
+## The client report has no progress section
+
+The progress section compares the crawl with an earlier crawl of the same site, so it's only offered when there is one, and it needs [Pro](/docs/licensing). Recrawl the site from [Projects](/docs/projects#recrawling), then export the report from the new crawl.
 
 ## "CrawlStat is not allowed to write to…" when exporting
 
@@ -64,7 +77,7 @@ The Projects screen lists your 20 most recent crawls. Crawls also drop off the l
 
 ## A crawl was interrupted
 
-If CrawlStat quit or your computer restarted during a crawl, go to **Projects** and click **Resume** on that crawl's card. It picks up where it left off. See [Projects](/docs/projects#resuming-a-crawl).
+If CrawlStat quit or your computer restarted during a crawl, go to **Projects** and click **Resume** on that crawl's card, or open the crawl and click **Resume** in its header. It picks up where it left off. See [Projects](/docs/projects#resuming-a-crawl).
 
 ## Licence problems
 

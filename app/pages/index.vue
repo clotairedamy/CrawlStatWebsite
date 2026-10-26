@@ -1,7 +1,7 @@
 <script setup lang="ts">
 usePageSeo({
   title: '',
-  description: 'CrawlStat is a desktop SEO crawler for macOS, Windows and Linux. It crawls at 11,700 URLs a second in 128 MiB, runs 45 audits, ranks what to fix first by how much of your site each problem actually touches, and UX-tests any page against what it is for. Nothing leaves your machine.',
+  description: 'CrawlStat is a desktop SEO crawler for macOS, Windows and Linux. It crawls at 11,700 URLs a second in 128 MiB, runs 45 audits, ranks what to fix first by how much of your site each problem actually touches, turns a crawl into a branded client report, and UX-tests any page against what it is for. Nothing leaves your machine.',
 })
 
 const sd = useStructuredData()

@@ -1,6 +1,6 @@
 ---
 title: Local AI
-description: Have a language model on your own machine write up a crawl — with nothing uploaded, and the exact brief shown before it is sent.
+description: Have a language model on your own machine write up a crawl, with nothing uploaded and the exact brief shown before it is sent, then put it in a client report.
 section: Account & data
 order: 17
 ---
@@ -17,7 +17,11 @@ So the model runs on your machine, through [Ollama](https://ollama.com). The def
 2. Pull a model: `ollama pull qwen3:8b`
 3. In CrawlStat, open **Settings → Local AI** and press **Test**. CrawlStat lists the models you have installed; pick one.
 
-Then use **Write the report** on the Plan screen.
+Then open a crawl's **Plan** tab and click **Write the report**.
+
+## Using what it writes
+
+The written report stays with the crawl until you quit CrawlStat. From the Plan tab you can copy it, save it as **Markdown**, or click **Export PDF** to put it in a [client report](/docs/client-reports), where it becomes the summary page straight after the cover. The **Export report** dialog also offers **Include the written report** whenever one exists for the crawl.
 
 ## Nothing here is required
 
@@ -27,7 +31,7 @@ The ranked plan is computed in full without any model involved. The only thing t
 
 A compact brief: the ranked jobs, their counts and scores, and one example URL each. Not page bodies, not the crawl database.
 
-The **What was sent** button shows you that brief, in full, before you send it. A privacy claim nobody can check is worth very little.
+The **What is sent** button shows you that brief, in full, before you send it. A privacy claim nobody can check is worth very little.
 
 ## If you point it somewhere else
 

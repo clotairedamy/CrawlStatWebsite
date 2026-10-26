@@ -1,6 +1,6 @@
 ---
 title: Your first crawl
-description: Start a crawl from the New crawl dialog, choose between Spider, Sitemap and List modes, and use limits and URL patterns to crawl exactly what you need.
+description: Start a crawl from the New crawl dialog, choose between Spider, Sitemap and List modes, render JavaScript for script-built sites, and use limits and URL patterns to crawl exactly what you need.
 section: Start here
 order: 3
 ---
@@ -9,11 +9,15 @@ order: 3
 
 There are three ways to open it:
 
-- Click **New crawl** at the top of the sidebar.
+- Click **New crawl**: the **+** at the top of the sidebar, or the button in the Projects header.
 - Press :kbd[⌘N] on macOS. See [Keyboard shortcuts](/docs/keyboard-shortcuts) for Windows and Linux.
 - On the Projects screen, when you have no crawls yet, click **Start your first crawl**.
 
-The dialog has a mode selector at the top, an address field, two limits and, under **More options**, URL patterns.
+The dialog has a mode selector at the top, an address field, two limits, a **Render JavaScript** switch and, under **More options**, URL patterns.
+
+::callout{type="tip"}
+To crawl a site again with the same settings, you don't need this dialog: use **Recrawl** on its card in [Projects](/docs/projects). **Recrawl with changes…** opens this dialog filled in with the earlier crawl's settings.
+::
 
 ## Choose a mode
 
@@ -54,6 +58,23 @@ A depth limit is a quick way to sample a large site: a depth of 3 shows you the 
 On the free tier, a crawl can fetch up to 500 URLs. If you leave **URL limit** blank or enter a higher number, the crawl stops at 500 and keeps everything found up to that point. A lower limit still works as you'd expect. [Pro](/docs/licensing) removes the cap.
 ::
 
+## Render JavaScript
+
+Some sites send an almost empty page and build everything in the browser with JavaScript: React, Vue, Angular and similar. Crawled as served, they look like one blank page with no links. Turn on **Render JavaScript** and CrawlStat runs each page in a real browser first, then reads the page as a visitor would see it: the title, headings, text and links that the scripts put there.
+
+- **It uses a browser you already have.** Chrome, Chromium, Edge or Brave. Nothing is downloaded. The switch names the browser it found. If there isn't one, the switch is greyed out and says so.
+- **The server's answer still counts.** The status code, headers, redirects and response time come from the normal request, exactly as without rendering. Only the page's content comes from the browser.
+- **It's several times slower.** Each page opens in its own short-lived browser, four at a time, with up to four seconds for its scripts to run. Images aren't loaded during rendering.
+- **It never loses a page.** If the browser fails on a page, CrawlStat keeps the HTML the server sent instead, so the crawl carries on.
+
+It's off by default, because most sites don't need it and crawls are much faster without it. If you're not sure, crawl once without it: if pages show almost no words and almost no links, turn it on and recrawl. A [client report](/docs/client-reports) notes on its cover when JavaScript was rendered.
+
+::callout{type="note"}
+If your browser is installed somewhere unusual, set the `CRAWLSTAT_CHROME` environment variable to its full path before starting CrawlStat.
+::
+
+Rendering JavaScript is included on the free tier.
+
 ## Narrow the crawl with patterns
 
 Click **More options** to restrict which URLs are crawled. Both fields take regular expressions, one per line:
@@ -83,7 +104,7 @@ Below the patterns, a summary line shows the defaults this crawl will use. For e
 
 ## Start the crawl
 
-Click **Start crawl**, or press :kbd[Enter] in the address field. CrawlStat creates a new crawl file and takes you to the [Crawl screen](/docs/watching-a-crawl), where you can watch it run.
+Click **Start crawl**, or press :kbd[Enter] in the address field. CrawlStat creates a new crawl file and takes you to that crawl's page, where the **Overview** tab shows it running live. See [Watching a crawl](/docs/watching-a-crawl).
 
 The bottom of the dialog shows where the file is saved. Each crawl gets its own file, named after the site and the time it started, for example `example-com-20260224-1432.db`. Crawling the same site again creates a new file rather than overwriting the old one, so you keep a history.
 
@@ -95,4 +116,5 @@ CrawlStat is polite by default. It reads robots.txt and obeys it, honours any Cr
 
 1. The crawl runs. You can pause, resume or stop it at any time. See [Watching a crawl](/docs/watching-a-crawl).
 2. When it finishes, CrawlStat runs its audits automatically.
-3. Open **Results** to explore every URL ([the results table](/docs/results-table)), or **Issues** to see what needs fixing ([Issues](/docs/issues)).
+3. The crawl's page fills in: **Overview** for the headline figures, **Issues** for what needs fixing ([Issues](/docs/issues)), **Pages** to explore every URL ([the Pages table](/docs/results-table)), and **Plan** for what to fix first ([The plan](/docs/the-plan)).
+4. When you're ready to share it, [export a client report](/docs/client-reports).

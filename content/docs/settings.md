@@ -20,6 +20,17 @@ Your licence is managed at the top of the screen. See [Licensing](/docs/licensin
 
 **Theme:** System, Light or Dark. **System** follows your operating system's setting.
 
+**Colour:** the palette used across the app, in light and dark alike.
+
+| Palette | What it looks like |
+| --- | --- |
+| **Ember** | A vivid orange accent with the usual red, amber and green severities. The default. |
+| **Gold on graphite** | The website's gold, with severity shown by lightness rather than colour. Quieter, and legible if you can't tell red from green. |
+| **Graphite** | Gold on the main buttons and nowhere else. Selection, focus and severity are all steps on one grey scale. |
+| **Monochrome** | Black and white throughout. No colour anywhere: severity, status and the main button are all shades of grey. |
+
+The palette only changes how CrawlStat looks. A [client report](/docs/client-reports) has its own brand colour, chosen when you export it.
+
 ## Politeness
 
 These settings control how hard CrawlStat works the site's server. The defaults are deliberately gentle.
@@ -34,7 +45,7 @@ These settings control how hard CrawlStat works the site's server. The defaults 
 ### When to change them
 
 - **The site is slow or returns 503s or 429s.** Lower **Simultaneous requests** to 1 or 2, and add a **Delay between requests** of a few hundred milliseconds.
-- **It's your own site, on capable hosting.** You can raise **Simultaneous requests** to speed things up. Watch the Crawl screen for server errors, which mean you've gone too far.
+- **It's your own site, on capable hosting.** You can raise **Simultaneous requests** to speed things up. Watch the live view for server errors, which mean you've gone too far.
 - **Pages take a long time to generate.** Raise the **Request timeout** so slow pages aren't recorded as failures.
 
 If the site's robots.txt sets a Crawl-delay, CrawlStat honours it while **Respect robots.txt** is on, even if your own delay is shorter.
@@ -85,7 +96,7 @@ Every URL CrawlStat fetches counts towards a crawl's URL limit, including resour
 | Setting | Default | What it does |
 | --- | --- | --- |
 | **Run audits when a crawl finishes** | On | Runs all 45 audits automatically. On a large crawl this takes a moment. If it's off, you can run them at any time from the [Issues screen](/docs/issues). |
-| **Keep raw HTML** | Off | Stores every page's source in the crawl file. This takes a lot of disk space. Custom extraction, which is rolling out to Pro, works from stored HTML. |
+| **Keep raw HTML** | Off | Stores every page's source in the crawl file. This takes a lot of disk space. Custom extraction, which is planned for Pro, will work from stored HTML. |
 
 Below these, Settings shows where crawls are saved and where exports are written. These locations are shown for reference. See [Installing](/docs/installing#where-crawlstat-keeps-its-files) for the paths on each platform.
 

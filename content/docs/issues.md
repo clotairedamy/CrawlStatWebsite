@@ -1,6 +1,6 @@
 ---
 title: Issues
-description: How CrawlStat's 45 audits work, how to read the Issues screen, and how to go from a finding to the URLs that need fixing.
+description: How CrawlStat's 45 audits work, how the Issues tab ranks them, and how to go from a finding to the pages that need fixing.
 section: Using CrawlStat
 order: 6
 ---
@@ -19,24 +19,29 @@ Findings come in three severities:
 
 Audits are smart about context. For example, CrawlStat works out once whether each page can be indexed, and checks like title length are only applied to pages that can. You won't be told off for the title of a page that says `noindex`.
 
-## The Issues screen
+## The Issues tab
 
-Open **Issues** from the sidebar. The header sums up the crawl, for example "3 errors, 12 warnings, 9 notices".
+Open a crawl and click its **Issues** tab, or **All N issues** under the top issues on its Overview. The header sums up the crawl, for example "3 errors, 12 warnings, 9 notices".
 
-::screenshot{src="/screenshots/issues-dark.png" alt="The Issues screen with a list of issues grouped by severity on the left and the details of the selected issue on the right" caption="Issues grouped by severity, with an explanation and fix for the selected one."}
+::screenshot{src="/screenshots/issues-dark.png" alt="The Issues tab with a list of issues grouped by severity on the left and the details of the selected issue on the right" caption="Issues ranked within each severity, with why the selected one ranks where it does and how to fix it."}
 ::
 
-**On the left** is every issue the crawl has, grouped under **Errors**, **Warnings** and **Notices**. Each group shows a count, and each issue shows how many URLs it affects.
+**On the left** is every issue the crawl has, grouped under **Errors**, **Warnings** and **Notices**. Within each group, issues are ranked by what fixing them is worth (the same impact score as [the plan](/docs/the-plan)), then by how many pages they touch, so the top of each group is where to start. Each issue shows a bar with the share of pages it affects, for example "12% of pages", and a **Template** badge when the same fix repeats across its pages: probably one template change.
 
 **On the right** is the selected issue:
 
-- Its severity and the number of URLs affected.
+- Its severity, the number of URLs affected, and **Template fix** when it applies.
 - A description of the problem and why it matters.
+- Three figures that say why it ranks where it does:
+  - **Impact**, out of 100: what fixing it is worth, against everything else in this crawl.
+  - **Reach**: the share of pages it affects, and the share of internal link value sitting on them.
+  - **Effort**: how many separate changes it takes, in words, such as "One change fixes all 34" or "Each page needs its own fix".
 - A **How to fix** box with practical advice. It's the same text as the issue's page in these docs.
 - Three actions:
-  - **Show N URLs** opens the [results table](/docs/results-table) on the Internal tab, filtered to just the affected URLs.
+  - **Show all N in Pages** opens the [Pages table](/docs/results-table) on the Internal tab, filtered to just the affected URLs.
   - **Export affected** saves the affected URLs to a CSV file.
   - **Copy docs link** copies a link to the issue's page on crawlstat.com, which is handy for sending to a developer.
+- **Affected pages**: the first 50 pages, best-linked first, so the ones that matter most are at the top. Each shows why it was flagged, for example the duplicate it shares a title with or the broken URL it links to. Click one to open it in Pages.
 
 ## From issue to fix
 
@@ -44,7 +49,7 @@ A typical workflow:
 
 ::steps
 1. Start with **Errors**. Select an issue and read the description and **How to fix**.
-2. Click **Show N URLs** to see the affected pages in the results table.
+2. Look down **Affected pages**, or click **Show all N in Pages** to see every one in the Pages table.
 3. Click a URL to open the detail panel. Its **Issues** tab lists everything wrong with that page. For link problems, its **Inlinks** tab shows which pages link to it.
 4. Fix the problem on your site, or export the list and hand it to whoever can.
 5. Crawl again to confirm the fix.
@@ -60,17 +65,17 @@ Click **Re-run audits** in the header to run every audit again over the open cra
 
 This is useful in two situations:
 
-- **You turned off "Run audits when a crawl finishes"** in [Settings](/docs/settings). The Issues screen will be empty until you run them.
+- **You turned off "Run audits when a crawl finishes"** in [Settings](/docs/settings). The Issues tab will be empty until you run them.
 - **You've updated CrawlStat.** The checks are built into the app rather than stored in the crawl file, so re-running the audits on an old crawl gives you the newest version of every check.
 
-If a crawl has no issues listed, the screen says **No issues found**: either the site is in good shape, or the audits haven't run yet. Click **Run the audits** to make sure.
+If a crawl has no issues listed, the tab says **No issues found**: either the site is in good shape, or the audits haven't run yet. Click **Run the audits** to make sure.
 
 ## Exporting issues
 
 - **Export CSV** in the header exports a summary with one row per issue: its name, severity, number of URLs affected, description, how to fix it, and a link to its docs page. It makes a ready-made to-do list.
 - **Export affected** on a single issue exports that issue's URLs, along with a detail column (for example, how many hops a redirect chain has).
 
-Files go to your export folder (Downloads by default), just like [results exports](/docs/results-table#exporting-to-csv).
+Files go to your export folder (Downloads by default), just like [Pages exports](/docs/results-table#exporting-to-csv). To send the findings to a client instead, [export a client report](/docs/client-reports).
 
 ## Thresholds
 

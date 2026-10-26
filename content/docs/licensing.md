@@ -13,23 +13,26 @@ CrawlStat is free to download and use. You don't need an account, and the free t
 | --- | --- | --- |
 | URLs per crawl | Up to 500 | Unlimited |
 | All 45 audits | Yes | Yes |
-| Results table, issues, URL details | Yes | Yes |
-| CSV export | Yes | Yes |
+| Pages table, issues, plan, URL details | Yes | Yes |
+| [JavaScript rendering](/docs/your-first-crawl#render-javascript) | Yes | Yes |
+| Recrawl, and recrawl with changes | Yes | Yes |
+| [Client reports](/docs/client-reports), PDF or web page | Yes | Yes |
+| CSV and Markdown export | Yes | Yes |
 | [UX Testing](/docs/ux-testing) | Preview only | Yes |
-| Crawl comparison | — | Rolling out to Pro |
-| Custom extraction (CSS, XPath, regex) | — | Rolling out to Pro |
-| Scheduled crawls | — | Rolling out to Pro |
-| XLSX export | — | Rolling out to Pro |
-| HTML audit report | — | Rolling out to Pro |
-| Bring-your-own-key integrations | — | Rolling out to Pro |
+| [Crawl comparison](/docs/comparing-crawls) | — | Yes |
+| Progress since the last crawl, in client reports | — | Yes |
+| Custom extraction (CSS, XPath, regex) | — | Planned |
+| Scheduled crawls | — | Planned |
+| XLSX export | — | Planned |
+| Bring-your-own-key integrations | — | Planned |
 
 Pro costs $99 a year. See [pricing](/pricing) for current details.
 
-"Rolling out to Pro" means these features are on the way and are included in a Pro licence when they arrive. What Pro unlocks in the app today is unlimited URLs per crawl and UX Testing.
+"Planned" means these features are on the way and are included in a Pro licence when they arrive. What Pro unlocks in the app today is unlimited URLs per crawl, UX Testing, crawl comparison and the progress section of client reports.
 
 ### How the free limit works
 
-On the free tier, a crawl fetches up to 500 URLs. If a site is bigger, the crawl stops at 500 and keeps everything it found up to that point, then runs the audits as normal. A warning on the Crawl screen tells you how many discovered URLs weren't crawled. You can still set a lower limit of your own in the New crawl dialog.
+On the free tier, a crawl fetches up to 500 URLs. If a site is bigger, the crawl stops at 500 and keeps everything it found up to that point, then runs the audits as normal. A warning in the crawl's live view tells you how many discovered URLs weren't crawled. You can still set a lower limit of your own in the New crawl dialog.
 
 Everything CrawlStat fetches counts towards the 500, including images, documents and external link checks. See [Settings](/docs/settings#resources-to-crawl) if you want to spend the allowance on pages only.
 

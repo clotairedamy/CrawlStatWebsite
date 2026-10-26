@@ -1,18 +1,18 @@
 ---
 title: Watching a crawl
-description: What the Crawl screen shows while a crawl runs, what each counter means, and how to pause, resume, stop and pick up an interrupted crawl.
+description: What a crawl's Overview shows while it runs, what each counter means, and how to pause, resume, stop and pick up an interrupted crawl.
 section: Using CrawlStat
 order: 4
 ---
 
-## The Crawl screen
+## The live view
 
-When you start a crawl, CrawlStat opens the **Crawl** screen. This is the live view: counters update as URLs are fetched, and a table shows the newest URLs as they come in.
+When you start a crawl, CrawlStat opens that crawl's page on its **Overview** tab. While the crawl runs, the Overview is the live view, titled **Progress**: counters update as URLs are fetched, and a table shows the newest URLs as they come in. When the crawl is over, the Overview turns into the crawl's summary. See [Projects](/docs/projects#a-crawls-page) for the rest of the page.
 
-::screenshot{src="/screenshots/crawl-dark.png" alt="The Crawl screen showing live counters, a speed gauge, a progress bar and a table of recently fetched URLs" caption="A crawl in progress, with live counters, speed and the latest URLs."}
+::screenshot{src="/screenshots/crawl-dark.png" alt="The live view of a crawl showing counters, a speed gauge, a progress bar and a table of recently fetched URLs" caption="A crawl in progress, with live counters, speed and the latest URLs."}
 ::
 
-The header shows the site's host, a status pill and the start URL. If the crawl was resumed, it says so. It also shows how many URLs were seeded at the start, which includes any URLs from a sitemap.
+Under **Progress** you'll see a status pill and the start URL. If the crawl was resumed, it says so. It also shows how many URLs were seeded at the start, which includes any URLs from a sitemap.
 
 The status pill is one of:
 
@@ -37,7 +37,7 @@ The tiles along the top count every URL the crawl knows about:
 - **Server errors:** URLs that returned a 5xx status, such as 500 or 503.
 - **Failed:** URLs that couldn't be fetched at all, for example because of a timeout, a DNS failure or a refused connection.
 
-When the audits have run, the **Failed** tile becomes **Issues**, showing the number of errors and warnings found. Click it to go straight to the [Issues screen](/docs/issues).
+When the audits have run, the **Failed** tile becomes **Issues**, showing the number of errors and warnings found. Click it to go straight to the [Issues](/docs/issues) tab.
 
 ## Speed and progress
 
@@ -57,7 +57,7 @@ The panel shows the most recent 100 warnings. Every warning is also written to t
 
 ## The live table
 
-**Live URLs** lists the most recently fetched URLs, newest first, with their status code, title, depth, response time and any error. To keep the screen fast, it holds only the latest 300. Nothing is lost: every URL is in the crawl file, and the [Results](/docs/results-table) screen shows them all.
+**Live URLs** lists the most recently fetched URLs, newest first, with their status code, title, depth, response time and any error. To keep the screen fast, it holds only the latest 300. Nothing is lost: every URL is in the crawl file, and the [Pages](/docs/results-table) tab shows them all.
 
 ## Pause, resume and stop
 
@@ -69,19 +69,23 @@ The panel shows the most recent 100 warnings. Every warning is also written to t
 
 A stopped crawl is still audited (if audits are on), so you get findings for everything fetched so far. The URLs that were still queued stay in the file, and you can carry on later with **Resume** on the [Projects screen](/docs/projects).
 
-When the crawl is over, the header shows **See results**, which takes you to the results table, and **Clear**, which clears the Crawl screen. Clearing doesn't delete anything.
+When the crawl is over, the live view offers:
+
+- **See pages**, which opens the complete [Pages table](/docs/results-table).
+- **Compare with previous crawl**, if you've crawled the same site before. It opens the comparison straight away. See [Comparing crawls](/docs/comparing-crawls).
+- **Clear**, which clears the live view. Clearing doesn't delete anything.
 
 ## You can leave the screen
 
-A crawl keeps running when you switch to another screen. While it runs, the **Crawl** item in the sidebar shows a progress ring and a Live or Paused badge, so you can keep an eye on it while you look at other things.
+A crawl keeps running when you switch to another tab, another crawl or another screen. While it runs, the sidebar gains a tile for it, under **Projects**, with the site's name, a progress ring and a **Live** or **Paused** badge. Click it to come back to the crawl from wherever you are.
 
 ::callout{type="tip"}
-You can open **Results** while a crawl is still running to look at what's been fetched so far. When the crawl finishes, click **See results** to load the complete set.
+You can open the **Pages** tab while a crawl is still running to look at what's been fetched so far. When the crawl finishes, click **See pages** to load the complete set.
 ::
 
 ## When a crawl is interrupted
 
-CrawlStat keeps its queue in the crawl file and saves results in small batches as it goes. If the app quits or your computer restarts mid-crawl, you lose at most the last few URLs, and those are simply fetched again. Go to **Projects**, find the crawl, and click **Resume**. CrawlStat picks up with the URLs that were still queued, using the same settings and limits the crawl started with.
+CrawlStat keeps its queue in the crawl file and saves results in small batches as it goes. If the app quits or your computer restarts mid-crawl, you lose at most the last few URLs, and those are simply fetched again. Go to **Projects**, find the crawl, and click **Resume** (or open the crawl and use **Resume** in its header). CrawlStat picks up with the URLs that were still queued, using the same settings and limits the crawl started with.
 
 ## Reaching the URL limit
 
