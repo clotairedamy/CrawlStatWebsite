@@ -7,6 +7,9 @@ order: 7
 
 ## Why a plan and not just a list
 
+::screenshot{src="/screenshots/plan.png" alt="The Plan tab with headline figures and a ranked list of jobs, each with a priority score, a page count and an effort label" caption="Jobs, not rows: each one scored, sized and labelled with how many changes it takes."}
+::
+
 The Issues tab tells you what is wrong. It cannot tell you what to do on Monday morning, because severity alone does not say that: a missing title on your home page and a missing title on a page nobody links to are the same finding and emphatically not the same problem.
 
 The **Plan** tab ranks every finding against the others in the same crawl, so the list reads top to bottom as the order to work in. Each job shows how many pages it touches, how many changes it takes and how much link value is at stake, with **How to fix**, the worst-affected pages, and **See every page**, which opens the issue on the Issues tab.
@@ -42,6 +45,9 @@ Impact is **relative to one crawl**. The best job scores 100 and everything else
 It is **not a traffic forecast**. CrawlStat has never seen your analytics, and a number dressed up as "+1,200 visits a month" would be a guess wearing a lab coat.
 
 ## Writing it up
+
+::screenshot{src="/screenshots/plan-written-report.png" alt="A written report in the Plan tab, titled “Titles need trimming to stop search results from cutting off”, with a fix-this-first box, a four-step plan, quick wins and what can wait" caption="Written in 48 seconds by a model on this Mac. The figures come from the crawl; the wording is the model’s."}
+::
 
 If you have [Ollama](https://ollama.com) running on your machine, the Plan tab can turn the ranking into a short client-ready write-up. Click **Write the report**. The model runs locally, so no crawl data is uploaded anywhere, and **What is sent** shows you the exact brief before it goes. Nothing here is required: the ranking is computed without it.
 

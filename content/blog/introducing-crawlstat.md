@@ -43,7 +43,7 @@ We wrote up how the flat-memory design works in [The database is the frontier](/
 
 ## Designed to be lived in
 
-::screenshot{src="/screenshots/results-dark.png" alt="The CrawlStat results table showing crawled URLs with status codes, titles and response times" caption="The results table: eleven tabs over one table, with sortable columns, a filter bar and a column chooser."}
+::screenshot{src="/screenshots/pages.png" alt="The CrawlStat Pages table with lenses counting problem pages above a sortable list of URLs with status, words, inlinks and score" caption="Eleven tabs over one table. Lenses count the problems before you click."}
 ::
 
 The app runs natively on all three desktop platforms. A few deliberate choices:

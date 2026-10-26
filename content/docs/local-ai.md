@@ -21,6 +21,9 @@ Then open a crawl's **Plan** tab and click **Write the report**.
 
 ## Using what it writes
 
+::screenshot{src="/screenshots/plan-written-report.png" alt="A written report produced by a local model: a headline, a fix-this-first recommendation, a numbered plan, quick wins and what can wait" caption="What a local model writes from your crawl: a headline, the one thing to fix first, a plan, quick wins and what can wait. Copy it, save it or send it to a client."}
+::
+
 The written report stays with the crawl until you quit CrawlStat. From the Plan tab you can copy it, save it as **Markdown**, or click **Export PDF** to put it in a [client report](/docs/client-reports), where it becomes the summary page straight after the cover. The **Export report** dialog also offers **Include the written report** whenever one exists for the crawl.
 
 ## Nothing here is required

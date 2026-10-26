@@ -68,7 +68,7 @@ export const useStructuredData = () => {
     operatingSystem: 'macOS, Windows, Linux',
     softwareVersion: downloads.version,
     image: url('/brand/app-icon.png'),
-    screenshot: ['results', 'crawl', 'issues', 'projects'].map((s) => url(`/screenshots/${s}-dark.png`)),
+    screenshot: ['pages', 'crawl-progress', 'issues-dark-ember', 'projects-list'].map((s) => url(`/screenshots/${s}.png`)),
     publisher: { '@id': organization['@id'] },
     offers: [
       {

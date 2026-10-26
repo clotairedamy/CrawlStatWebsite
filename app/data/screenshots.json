@@ -1,0 +1,90 @@
+{
+  "/screenshots/projects-list.png": [
+    2400,
+    1508
+  ],
+  "/screenshots/projects-grid.png": [
+    2400,
+    1599
+  ],
+  "/screenshots/crawl-progress.png": [
+    2400,
+    1503
+  ],
+  "/screenshots/crawl-overview.png": [
+    2400,
+    1502
+  ],
+  "/screenshots/pages.png": [
+    2400,
+    1680
+  ],
+  "/screenshots/plan.png": [
+    2400,
+    1721
+  ],
+  "/screenshots/plan-written-report.png": [
+    2400,
+    1251
+  ],
+  "/screenshots/export-report-dialog.png": [
+    1408,
+    822
+  ],
+  "/screenshots/site-structure.png": [
+    2400,
+    1608
+  ],
+  "/screenshots/link-graph.png": [
+    2400,
+    1470
+  ],
+  "/screenshots/ux-testing.png": [
+    2400,
+    1591
+  ],
+  "/screenshots/ux-testing-findings.png": [
+    2400,
+    1609
+  ],
+  "/screenshots/ux-testing-checks.png": [
+    2400,
+    1400
+  ],
+  "/screenshots/ux-testing-journeys.png": [
+    2400,
+    1389
+  ],
+  "/screenshots/ux-testing-export.png": [
+    2400,
+    1250
+  ],
+  "/screenshots/accessibility-fix-first.png": [
+    2400,
+    1424
+  ],
+  "/screenshots/accessibility-checklist.png": [
+    2400,
+    1569
+  ],
+  "/screenshots/settings.png": [
+    2400,
+    1721
+  ],
+  "/screenshots/settings-dark.png": [
+    2400,
+    1505
+  ],
+  "/screenshots/projects-dark-ember.png": [
+    2400,
+    1512
+  ],
+  "/screenshots/issues-dark-ember.png": [
+    2400,
+    1485
+  ],
+  "/screenshots/new-crawl-dark-ember.png": [
+    1090,
+    974
+  ]
+}

@@ -36,6 +36,9 @@ A path that works for an explorer and fails for a rushed visitor is a real findi
 
 ## Reading a journey
 
+::screenshot{src="/screenshots/ux-testing-journeys.png" alt="The Journeys tab with four visitor types, a box for a task of your own, and a competitor comparison" caption="Choose who is visiting, type a task of your own, or run the same tasks on a competitor’s site."}
+::
+
 Expand any result to see the path. Each step shows the link text that was clicked, where it led, and **what else was on offer at that moment** — which is the evidence you need when the simulated visitor went somewhere you did not expect. If it clicked "Our Results" when you expected "Pricing", the alternatives list tells you what it was choosing between.
 
 ## What it is, and what it is not

@@ -36,7 +36,7 @@ export default defineNuxtConfig({
         { name: 'robots', content: 'index, follow, max-image-preview:large, max-snippet:-1' },
         { name: 'description', content: 'CrawlStat is a fast, local-first desktop SEO crawler for macOS, Windows and Linux. 45 audits, flat memory, no server — your crawl data never leaves your machine.' },
         { property: 'og:site_name', content: 'CrawlStat' },
-        { property: 'og:image', content: 'https://crawlstat.com/screenshots/results-dark.png' },
+        { property: 'og:image', content: 'https://crawlstat.com/screenshots/pages.png' },
         { property: 'og:image:alt', content: 'The CrawlStat results table' },
         { property: 'og:locale', content: 'en_US' },
         { name: 'twitter:card', content: 'summary_large_image' },

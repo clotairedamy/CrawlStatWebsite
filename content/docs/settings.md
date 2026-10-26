@@ -11,12 +11,15 @@ The Settings screen holds the **defaults for new crawls**, plus a few app prefer
 
 Each crawl keeps the settings it started with. Changing a setting affects the next crawl you start, not the crawls you already have, and not a crawl you resume.
 
-::screenshot{src="/screenshots/settings-dark.png" alt="The Settings screen showing the licence card, appearance, politeness and scope options" caption="Settings, with your licence at the top and crawl defaults below."}
+::screenshot{src="/screenshots/settings.png" alt="The Settings screen in light mode with the licence card, appearance, politeness and scope options" caption="Your licence at the top, and the defaults for every new crawl below."}
 ::
 
 Your licence is managed at the top of the screen. See [Licensing](/docs/licensing).
 
 ## Appearance
+
+::screenshot{src="/screenshots/settings-dark.png" alt="The Settings screen in dark mode" caption="The same screen in dark mode. Pick a theme and a palette and the whole app follows."}
+::
 
 **Theme:** System, Light or Dark. **System** follows your operating system's setting.
 

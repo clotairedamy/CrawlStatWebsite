@@ -60,7 +60,7 @@ function toTop() {
       <div class="grid">
         <div class="about">
           <NuxtLink to="/" class="brand">
-            <BrandOwl variant="mark" :height="36" />
+            <BrandOwl variant="wordmark" :height="46" />
             <span>CrawlStat</span>
           </NuxtLink>
           <p class="muted">
@@ -90,10 +90,15 @@ function toTop() {
       </div>
     </div>
 
-    <!-- The name, pressed into the page. Decorative: the brand link above
-         already says it to screen readers. -->
-    <div ref="word" class="word" :class="{ shown }" aria-hidden="true">
-      <span v-for="(c, i) in letters" :key="i" class="ch" :style="{ '--i': i }">{{ c }}</span>
+    <!-- The owl and the name, pressed into the page. Decorative: the brand
+         link above already says it to screen readers. -->
+    <div ref="word" class="sign" :class="{ shown }" aria-hidden="true">
+      <div class="crest">
+        <BrandOwl variant="wordmark" :height="220" />
+      </div>
+      <div class="word">
+        <span v-for="(c, i) in letters" :key="i" class="ch" :style="{ '--i': i }">{{ c }}</span>
+      </div>
     </div>
   </footer>
 </template>
@@ -233,6 +238,37 @@ a.round:active {
   box-shadow: var(--inset-sm);
 }
 
+/* The owl, embossed the same way as the name below it. It spreads its
+   wings as it rises, just before the letters come up. */
+.sign {
+  margin-top: 56px;
+}
+
+.crest {
+  display: flex;
+  justify-content: center;
+}
+
+.crest :deep(.owl) {
+  height: clamp(96px, 18vw, 230px) !important;
+}
+
+.js .crest :deep(.owl) {
+  opacity: 0;
+  scale: 0.55 0.9;
+  translate: 0 40px;
+  transition:
+    opacity 1s var(--ease),
+    scale 1.4s var(--ease),
+    translate 1.2s var(--ease);
+}
+
+.js .shown .crest :deep(.owl) {
+  opacity: 1;
+  scale: 1;
+  translate: 0 0;
+}
+
 /* Embossed: the letters are the page colour, lit from the top left like
    every other raised surface on the site. */
 .word {
@@ -260,12 +296,19 @@ a.round:active {
   transition-delay: calc(var(--i) * 55ms + 150ms);
 }
 
-.js .word.shown .ch {
+.js .shown .ch {
   transform: none;
   opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .js .crest :deep(.owl) {
+    opacity: 1;
+    scale: none;
+    translate: none;
+    transition: none;
+  }
+
   .js .word .ch {
     transform: none;
     opacity: 1;

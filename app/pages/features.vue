@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { shots, shotAlts } from '~/utils/shots'
 usePageSeo({
   title: 'Features',
   description: 'A live crawl view, optional JavaScript rendering, a Pages table that keeps up at 500,000 rows, 45 audits ranked by impact, branded client reports, UX testing for any page, and an engine that keeps memory flat at any crawl size.',
@@ -63,6 +64,13 @@ const rows = [
     title: 'Every crawl, a file you own.',
     body: 'Each crawl is a single file on your disk. See recent crawls as cards, or one row per site with its health and a history of every crawl — then open, recrawl, resume or delete. Each crawl opens on its own page, with Overview, Issues, Pages, Plan, Visualise, UX Testing and Accessibility a tab apart. Upgrading CrawlStat improves what an old crawl reports, because the audits live in the app.',
     points: ['One file per crawl, ~2 KB per URL', 'Recrawl, or recrawl with changed settings', 'Nothing uploaded, ever'],
+  },
+  {
+    shot: 'visualise',
+    eyebrow: 'Visualise',
+    title: 'See the shape of the site.',
+    body: 'A crawl is a map, so CrawlStat draws one. The section tree sets each folder’s share of pages against its share of internal link value, so a section that is starved, or one that hogs links, stands out at a glance. The link graph puts every page in rings by clicks from home and sizes it by link value. Click a node to see its depth, inlinks and score. And it tells you what to fix: here, 14% of the site’s link value is spent on pages that can’t rank.',
+    points: ['Section tree: pages against link value', 'Interactive link graph, ringed by click depth', 'Structural findings, most important first'],
   },
   {
     shot: 'report',
@@ -133,7 +141,7 @@ const pro = [
             </ul>
           </div>
           <div v-reveal="120" class="row-shot">
-            <AppWindow :src="r.src ?? `/screenshots/${r.shot}-dark.png`" :alt="`CrawlStat ${r.eyebrow} screen`" />
+            <AppWindow :src="r.src ?? shots[r.shot]" :alt="shotAlts[r.shot]" />
           </div>
         </div>
       </div>

@@ -23,7 +23,7 @@ Audits are smart about context. For example, CrawlStat works out once whether ea
 
 Open a crawl and click its **Issues** tab, or **All N issues** under the top issues on its Overview. The header sums up the crawl, for example "3 errors, 12 warnings, 9 notices".
 
-::screenshot{src="/screenshots/issues-dark.png" alt="The Issues tab with a list of issues grouped by severity on the left and the details of the selected issue on the right" caption="Issues ranked within each severity, with why the selected one ranks where it does and how to fix it."}
+::screenshot{src="/screenshots/issues-dark-ember.png" alt="The Issues tab with errors and warnings ranked on the left and, on the right, a form field error affecting 82 URLs with impact 100, reach 92% and effort of one change" caption="One template change fixes all 82 pages. Impact, reach and effort tell you that before you open a single URL."}
 ::
 
 **On the left** is every issue the crawl has, grouped under **Errors**, **Warnings** and **Notices**. Within each group, issues are ranked by what fixing them is worth (the same impact score as [the plan](/docs/the-plan)), then by how many pages they touch, so the top of each group is where to start. Each issue shows a bar with the share of pages it affects, for example "12% of pages", and a **Template** badge when the same fix repeats across its pages: probably one template change.

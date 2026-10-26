@@ -1,15 +1,38 @@
 <script setup lang="ts">
+import sizes from '~/data/screenshots.json'
+
 // A screenshot in a soft window frame. `tilt` lays it back in 3D and lets it
 // rise flat as it scrolls into view.
 const props = defineProps<{ src: string; alt: string; tilt?: boolean; eager?: boolean }>()
 
 const webp = computed(() => props.src.replace(/\.png$/, '.webp'))
+// Real pixel size where known, so the reserved box matches the image.
+const size = computed(() => (sizes as Record<string, number[]>)[props.src] ?? [1440, 900])
 
 const el = ref<HTMLElement>()
 const progress = ref(props.tilt ? 0 : 1)
+// Flat windows reveal each time they scroll into view, from either direction
+// (or, in the tour, each time their tab is shown). They reset only once fully
+// off screen, so the reader never sees one un-reveal.
+const shown = ref(false)
 
 onMounted(() => {
-  if (!props.tilt) return
+  if (!props.tilt) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      shown.value = true
+      return
+    }
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e!.intersectionRatio >= 0.12) shown.value = true
+        else if (!e!.isIntersecting) shown.value = false
+      },
+      { threshold: [0, 0.12] },
+    )
+    io.observe(el.value!)
+    onBeforeUnmount(() => io.disconnect())
+    return
+  }
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     progress.value = 1
     return
@@ -46,7 +69,7 @@ const style = computed(() => {
 </script>
 
 <template>
-  <figure ref="el" class="window" :style="style">
+  <figure ref="el" class="window" :class="{ rev: !tilt, in: shown }" :style="style">
     <div class="chrome">
       <span /><span /><span />
     </div>
@@ -55,18 +78,20 @@ const style = computed(() => {
          1.5 MB of this page was screenshots. `width`/`height` stay on the
          img so the box is reserved before the bytes arrive and nothing
          shifts underneath the reader. -->
-    <picture>
-      <source :srcset="webp" type="image/webp">
-      <img
-        :src="src"
-        :alt="alt"
-        width="1440"
-        height="900"
-        :loading="eager ? 'eager' : 'lazy'"
-        :fetchpriority="eager ? 'high' : 'auto'"
-        decoding="async"
-      >
-    </picture>
+    <div class="pane">
+      <picture>
+        <source :srcset="webp" type="image/webp">
+        <img
+          :src="src"
+          :alt="alt"
+          :width="size[0]"
+          :height="size[1]"
+          :loading="eager ? 'eager' : 'lazy'"
+          :fetchpriority="eager ? 'high' : 'auto'"
+          decoding="async"
+        >
+      </picture>
+    </div>
   </figure>
 </template>
 
@@ -109,10 +134,84 @@ picture {
   display: contents;
 }
 
-img {
-  width: 100%;
-  height: auto;
+.pane {
+  position: relative;
+  overflow: hidden;
   border-radius: 12px;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Scroll reveal: the window rises, the screenshot unrolls top to bottom
+   while settling from a slight zoom, then a band of light crosses it. */
+.js .rev {
+  opacity: 0;
+  translate: 0 56px;
+  scale: 0.96;
+  transition:
+    opacity 0.9s var(--ease),
+    translate 1.2s var(--ease),
+    scale 1.2s var(--ease),
+    transform 0.08s linear;
+}
+
+.js .rev .pane {
+  clip-path: inset(0 0 100% 0 round 12px);
+  transition: clip-path 1.3s var(--ease) 0.2s;
+}
+
+.js .rev img {
+  scale: 1.14;
+  transform-origin: 50% 0%;
+  transition: scale 1.8s var(--ease) 0.2s;
+}
+
+.js .rev .pane::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.55) 50%, transparent 65%);
+  translate: -110% 0;
+  pointer-events: none;
+}
+
+.js .rev.in {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+}
+
+.js .rev.in .pane {
+  clip-path: inset(0 0 0 0 round 12px);
+}
+
+.js .rev.in img {
+  scale: 1;
+}
+
+.js .rev.in .pane::after {
+  translate: 110% 0;
+  transition: translate 1.4s var(--ease) 1s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .rev,
+  .js .rev .pane,
+  .js .rev img {
+    opacity: 1;
+    translate: none;
+    scale: none;
+    clip-path: none;
+    transition: none;
+  }
+
+  .js .rev .pane::after {
+    display: none;
+  }
 }
 </style>

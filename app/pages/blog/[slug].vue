@@ -25,7 +25,7 @@ useJsonLd(
     inLanguage: 'en',
     url: sd.url(route.path),
     mainEntityOfPage: sd.url(route.path),
-    image: sd.url('/screenshots/results-dark.png'),
+    image: sd.url('/screenshots/pages.png'),
     author: { '@type': 'Organization', name: post.value.author, url: sd.url('/') },
     publisher: sd.organization,
   },
@@ -42,7 +42,7 @@ useJsonLd(
         <h1 class="display copper-text">{{ post.title }}</h1>
         <p class="lead">{{ post.description }}</p>
         <span class="author muted">
-          <BrandOwl variant="mark" :height="24" /> {{ post.author }}
+          <BrandOwl variant="wordmark" :height="24" /> {{ post.author }}
         </span>
       </header>
       <ContentRenderer :value="post" class="prose" />

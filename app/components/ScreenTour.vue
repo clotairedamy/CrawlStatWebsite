@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { shots, shotAlts } from '~/utils/shots'
 // The app, one screen at a time: a pressed-in segmented control picks the
 // screen, and the screenshot cross-fades.
 const screens = [
@@ -6,31 +7,37 @@ const screens = [
     id: 'crawl',
     label: 'Crawl',
     title: 'Watch it work',
-    body: 'Live counters, URLs per second and every response as it lands. Pause, resume or stop, and render JavaScript in your own browser when a site needs it.',
+    body: 'A speed gauge ticking past ten URLs a second, counters for every status, and each page streaming into the table the moment it answers. Pause, resume or stop whenever you like.',
   },
   {
     id: 'results',
     label: 'Pages',
-    title: 'A table that keeps up',
-    body: 'Eleven tabs over one table, lenses that count the broken, slow and thin pages before you click, and a detail panel. Half a million rows scroll in the same memory as fifty.',
+    title: 'Every URL, already sorted',
+    body: 'Lenses count the problem pages before you click: 6 title problems, 15 description problems, 2 not indexable. Eleven tabs over one table, and half a million rows scroll like fifty.',
   },
   {
     id: 'ux-testing',
     label: 'UX Testing',
     title: 'Does this page do its job?',
-    body: 'Give it one URL. It works out what the page is for, runs up to 62 UX checks against that goal and ranks what to fix first — with the evidence, and a plain note on what it could not test.',
+    body: 'It reads the page, works out it is a local business that wants bookings, then tells you what gets in the way: no tap-to-call link, a button that says “Send it” instead of “Book”. Ranked, with the evidence.',
   },
   {
     id: 'plan',
     label: 'Plan',
     title: 'What to fix on Monday',
-    body: 'Findings ranked by how much of your site each one actually touches and how many pages a single change fixes. 823 pages with one problem is often two template edits — the list says which.',
+    body: 'Every job ranked by how much of the site it touches and how many changes it takes. One template edit can clear 82 pages, and the Plan tells you which edit that is. A local AI can write the summary for you.',
+  },
+  {
+    id: 'visualise',
+    label: 'Visualise',
+    title: 'See the shape of the site',
+    body: 'A section tree, a link graph and a click-depth chart show how link value flows through the site, and which pages it never reaches.',
   },
   {
     id: 'accessibility',
     label: 'Accessibility',
-    title: 'WCAG 2.2, tracked',
-    body: 'Automated checks across every page, plus a manual checklist you work through and keep in the crawl file. Test a staging URL before it ships.',
+    title: 'WCAG 2.2, fix first',
+    body: 'Barriers ranked by how badly they block people. When the same markup is on 217 of 217 pages, it says so: fix it once in the template. Then work through the manual checklist and keep the results in the crawl.',
   },
   {
     id: 'compare',
@@ -42,13 +49,13 @@ const screens = [
     id: 'issues',
     label: 'Issues',
     title: 'Fixes, not just flags',
-    body: 'Findings grouped by severity and ranked by impact, reach and effort, each with a plain-English explanation and how to fix it. One click opens the affected pages.',
+    body: 'Impact 100, reach 92%, effort: one change. Each issue tells you what it costs, how to fix it, and which best-linked pages to check first, in the theme you prefer.',
   },
   {
     id: 'projects',
     label: 'Projects',
-    title: 'Every crawl, on this machine',
-    body: 'Recent crawls as cards, or one row per site with its health and history. Recrawl in one click, or resume an interrupted crawl exactly where it stopped.',
+    title: 'Every site, at a glance',
+    body: 'One row per site with its health, its crawl history and what is left in the queue. Recrawl in one click, or resume a stopped crawl exactly where it left off.',
   },
 ] as const
 
@@ -85,8 +92,8 @@ const current = computed(() => screens[active.value]!)
           v-for="(s, i) in screens"
           v-show="i === active"
           :key="s.id"
-          :src="`/screenshots/${s.id}-dark.png`"
-          :alt="`CrawlStat ${s.label} screen`"
+          :src="shots[s.id]"
+          :alt="shotAlts[s.id]"
         />
       </div>
     </div>

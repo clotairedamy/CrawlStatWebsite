@@ -21,7 +21,7 @@ Disk use is roughly 2 KB per URL, so a 50,000-URL crawl takes about 100 MB. Turn
 
 **Projects** is where you land when you open CrawlStat, and the first item in the sidebar. Its header shows how many crawls you have and where they're stored, with **Refresh** and **New crawl** buttons.
 
-::screenshot{src="/screenshots/projects-dark.png" alt="The Projects screen with overview tiles and a grid of recent crawl cards" caption="Overview tiles across the top, then your recent crawls."}
+::screenshot{src="/screenshots/projects-list.png" alt="The Projects screen in list view, with overview tiles across the top and one row per site below" caption="List view: one row per site, with its health trend, response breakdown and a bar for every crawl in its history."}
 ::
 
 ### Overview
@@ -57,6 +57,12 @@ Click a card or a row to open that crawl's page (see below). The list keeps your
 
 ## A crawl's page
 
+::screenshot{src="/screenshots/crawl-overview.png" alt="The Overview of a single crawl: a health score of 100%, counters for crawled, broken, errors and warnings, and the top six issues" caption="Open a crawl and you land on its Overview: health, the headline counts and the six issues worth your time first."}
+::
+
+::screenshot{src="/screenshots/link-graph.png" alt="The Visualise tab showing the link graph: pages as circles in rings by clicks from home, sized by link value, with a tooltip showing depth, inlinks and link score" caption="Visualise draws the site: rings are clicks from home, size is link value. Hover any page for its depth, inlinks and score."}
+::
+
 Opening a crawl takes you to its own page. The header says which crawl it is: the site, its state, and a line with the start URL, when it ran, how many URLs it crawled, how healthy it is and the file size. **All projects** (the back arrow) returns to Projects.
 
 The header's buttons work on this crawl:
@@ -82,6 +88,9 @@ The accessibility check starts in the background as soon as you open a finished 
 If a crawl stopped before finishing, the Overview says how many URLs are still queued and suggests resuming it.
 
 ## Recrawling
+
+::screenshot{src="/screenshots/projects-grid.png" alt="The Projects screen in grid view, with a card for each recent crawl showing health, counts and a Resume button" caption="Grid view: a card per crawl. A stopped crawl keeps its queue, so Resume picks up exactly where it left off."}
+::
 
 **Recrawl** (on a card, in a crawl's header, or in the **⋯** menu) crawls the site again with exactly the same settings: the same mode, start URL, limits, patterns and JavaScript rendering. It writes a new crawl file, so the earlier crawl is kept for comparison.
 

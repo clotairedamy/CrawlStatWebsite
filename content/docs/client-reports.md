@@ -16,6 +16,9 @@ Exporting a report is included on the free tier. The only part that needs [Pro](
 
 ## Exporting one
 
+::screenshot{src="/screenshots/export-report-dialog.png" alt="The Export report dialog with a live cover preview, a Prepared by field, brand colour swatches, PDF or Web page, and a progress option" caption="Add your name, pick a colour, choose PDF or web page. The cover updates as you go."}
+::
+
 Open the crawl, then either:
 
 - Click the report button in the crawl's header (its tooltip reads **Export a client report**), or

@@ -35,7 +35,7 @@ onMounted(() => {
       </nav>
 
       <NuxtLink to="/" class="brand" aria-label="CrawlStat home">
-        <BrandOwl variant="wordmark" :height="40" />
+        <BrandOwl variant="wordmark" :height="46" />
       </NuxtLink>
 
       <nav class="nav nav-right" aria-label="More">

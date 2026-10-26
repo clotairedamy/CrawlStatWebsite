@@ -17,7 +17,7 @@ Not "is the markup valid" or "is the title too long", although those come up. Th
 
 That is normally answered in a usability session or a design review, which is slow, or by opinion, which is fast and unconvincing. UX testing gives you a structured first pass in seconds, with the evidence attached to every finding, so the review starts from facts rather than taste.
 
-::screenshot{src="/screenshots/ux-testing-dark.png" alt="The UX Testing screen showing summary tiles for critical and high findings, passed checks, coverage and confidence, then what the page is, and a ranked list of findings to fix first" caption="UX Testing on a local law firm's home page: what the page is, how it scored, and what to fix first."}
+::screenshot{src="/screenshots/ux-testing.png" alt="The UX Testing overview: summary tiles, what the page is and what it is for, then the findings to fix first" caption="It reads the page first: a local business, 62% sure, whose goal is booking. Every finding is then judged against that goal."}
 ::
 
 ## What it reads first
@@ -56,6 +56,9 @@ The page itself comes from the open crawl if the crawl kept its HTML. If it did 
 
 ## The checks
 
+::screenshot{src="/screenshots/ux-testing-checks.png" alt="The Checks tab grouped by area, with each check marked Pass, Needs review or Blocked and how it was tested" caption="Every check, grouped by area and marked with how it was tested. Blocked means CrawlStat chose not to submit your form."}
+::
+
 There are 62 checks across ten areas: clarity and content, visual hierarchy, navigation, forms, responsive, accessibility, trust and risk, performance signals, journey completion and consistency.
 
 Thirty-eight apply to every page. The other 24 only run on the page type they belong to, because the questions differ: a product page has to show a price, stock and returns; a local business has to say where it works, when it is open and how to call; a SaaS page has to make pricing findable and the trial terms clear; a waitlist needs a launch date and a no-spam promise.
@@ -83,6 +86,9 @@ A page cannot reach a perfect score by having most of its checks skipped. Low co
 
 ## Fix these first
 
+::screenshot{src="/screenshots/ux-testing-findings.png" alt="The Findings tab: six findings with severity, evidence status and a priority score, led by “Visitors can’t tap to call”" caption="“Visitors can’t tap to call” comes top, because on a phone that is the whole job of the page."}
+::
+
 Every finding is scored from 1 to 5 on four things — **impact**, **reach**, **confidence** and **effort** — and ranked by
 
 > priority = impact × reach × confidence ÷ effort
@@ -106,6 +112,9 @@ Each finding has a status you can move along as the work happens: *Open*, *Plann
 When the change ships, **Retest** tests the page again and links the new run to the original, so you can see what now passes rather than assuming it does. Runs are saved, and the history menu at the top of the screen reopens any of them.
 
 ## Export
+
+::screenshot{src="/screenshots/ux-testing-export.png" alt="The Export tab with a client report in Markdown and a developer CSV with one row per finding" caption="One export for the client and one for the developer’s tracker. Emails and tokens are masked in both."}
+::
 
 **Export** writes the audit out as a report for whoever owns the change — the findings, their evidence and recommendations, and the limitations of the run. Email addresses and token-like query parameters are masked before anything is written.
 

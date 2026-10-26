@@ -9,7 +9,7 @@ order: 5
 
 The **Pages** tab of a crawl shows every URL it found. (Earlier versions called it **Results**, with its own place in the sidebar.) It's a table you can sort, filter and export, split into tabs that each focus on one part of the site, such as titles, canonicals or images.
 
-::screenshot{src="/screenshots/results-dark.png" alt="The Pages table with the Internal tab open, a filter bar, and a table of URLs with status codes, titles and link scores" caption="The Pages table. Click any row to see everything CrawlStat knows about that URL."}
+::screenshot{src="/screenshots/pages.png" alt="The Pages table with its eleven tabs, lenses counting title, description and indexability problems, and a sortable list of URLs with issues, words, inlinks and score" caption="Lenses count the problems before you click: here, 6 title problems, 15 description problems and 2 pages search engines can’t index."}
 ::
 
 The table reads directly from the crawl file on disk and loads rows as you scroll, so it stays fast whether the crawl has 500 URLs or 500,000. The header shows how many rows the current tab contains, followed by "matching the filter" when a filter is active.

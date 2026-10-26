@@ -57,7 +57,7 @@ Three audits cover redirects:
 
 The third one is often the most valuable. The first two tell you which redirects are bad. The third tells you which pages are sending traffic into them.
 
-::screenshot{src="/screenshots/issues-dark.png" alt="The CrawlStat Issues screen listing audit findings grouped by severity" caption="Issues are grouped by severity, each with its fix text. Click one to filter the results table to the affected URLs."}
+::screenshot{src="/screenshots/issues-dark-ember.png" alt="The CrawlStat Issues tab ranking findings by severity, with impact, reach and effort for the selected issue" caption="Each issue is scored for impact, reach and effort, with the fix and the best-linked pages it affects."}
 ::
 
 ## Finding them in the app

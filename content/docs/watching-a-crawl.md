@@ -9,7 +9,7 @@ order: 4
 
 When you start a crawl, CrawlStat opens that crawl's page on its **Overview** tab. While the crawl runs, the Overview is the live view, titled **Progress**: counters update as URLs are fetched, and a table shows the newest URLs as they come in. When the crawl is over, the Overview turns into the crawl's summary. See [Projects](/docs/projects#a-crawls-page) for the rest of the page.
 
-::screenshot{src="/screenshots/crawl-dark.png" alt="The live view of a crawl showing counters, a speed gauge, a progress bar and a table of recently fetched URLs" caption="A crawl in progress, with live counters, speed and the latest URLs."}
+::screenshot{src="/screenshots/crawl-progress.png" alt="A crawl in progress: six counters, a speed gauge at 10.7 URLs a second, a progress bar and a live table of fetched URLs with status codes and response times" caption="37 pages in, 742 discovered, 10.7 a second. Every URL lands in the live table the moment it answers."}
 ::
 
 Under **Progress** you'll see a status pill and the start URL. If the crawl was resumed, it says so. It also shows how many URLs were seeded at the start, which includes any URLs from a sitemap.

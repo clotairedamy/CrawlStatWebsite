@@ -26,7 +26,7 @@ npm run preview    # serve the static build
 Markdown components you can use in posts and docs:
 
 - `::callout{type="tip"}` … `::` (the type can be `tip`, `note` or `warning`)
-- `::screenshot{src="/screenshots/results-dark.png" alt="…" caption="…"}` … `::`
+- `::screenshot{src="/screenshots/pages.png" alt="…" caption="…"}` … `::`
 - `::steps` … `::`
 - `:kbd[⌘N]`
 

@@ -7,6 +7,9 @@ order: 3
 
 ## Open the New crawl dialog
 
+::screenshot{src="/screenshots/new-crawl-dark-ember.png" alt="The New crawl dialog in dark mode: Spider, Sitemap and List modes, a start URL, a URL limit, maximum depth and a Render JavaScript switch" caption="Pick a mode, paste a URL, press Start. Everything else has a sensible default."}
+::
+
 There are three ways to open it:
 
 - Click **New crawl**: the **+** at the top of the sidebar, or the button in the Projects header.

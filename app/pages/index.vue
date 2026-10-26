@@ -111,7 +111,7 @@ const pillars = [
     <!-- Product shot -->
     <section class="showcase">
       <div class="container">
-        <AppWindow src="/screenshots/ux-testing-dark.png" alt="CrawlStat's UX Testing screen: summary tiles for critical and high findings, coverage and confidence, what the page is, and the findings to fix first" tilt eager />
+        <AppWindow src="/screenshots/ux-testing.png" alt="CrawlStat's UX Testing screen: summary tiles for critical and high findings, coverage and confidence, what the page is, and the findings to fix first" tilt eager />
       </div>
     </section>
 

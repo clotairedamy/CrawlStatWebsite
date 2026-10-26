@@ -15,7 +15,7 @@ It runs on macOS, Windows and Linux. Everything happens on your own computer:
 - **It is polite by default.** CrawlStat respects robots.txt, identifies itself honestly, and keeps the number of simultaneous requests modest.
 - **It handles big sites.** Crawl data goes to disk rather than memory, so a large crawl doesn't slow your machine down. An interrupted crawl can pick up where it stopped.
 
-::screenshot{src="/screenshots/projects-dark.png" alt="The CrawlStat Projects screen listing recent crawls with their status and issue counts" caption="The Projects screen, where every crawl you've run is listed."}
+::screenshot{src="/screenshots/projects-list.png" alt="The Projects screen with one row per site: health, response breakdown, crawl history, pages crawled and issue counts" caption="Every site you’ve crawled, one row each. Health, history and what’s left in the queue, all at a glance."}
 ::
 
 ## Quick start

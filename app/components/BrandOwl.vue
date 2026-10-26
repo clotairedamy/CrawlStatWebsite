@@ -14,17 +14,24 @@
  *
  * `wordmark` is the full wingspan; `mark` is the head alone, for sizes below
  * about 60px where the wingspan's double strokes stop resolving.
+ *
+ * It is always embossed: lines the colour of the page, lit from the top left
+ * like every raised surface on the site. Below 100px the lines are under a
+ * pixel thick, so small owls get a deeper line and a tighter shadow to stay
+ * legible.
  */
-withDefaults(defineProps<{ variant?: 'wordmark' | 'mark'; height?: number }>(), {
+const props = withDefaults(defineProps<{ variant?: 'wordmark' | 'mark'; height?: number }>(), {
   variant: 'wordmark',
   height: 34,
 })
+const size = computed(() => (props.height >= 100 ? 'lg' : 'sm'))
 </script>
 
 <template>
   <svg
     v-if="variant === 'wordmark'"
     class="owl"
+    :class="size"
     viewBox="0 0 631 305"
     :style="{ height: `${height}px` }"
     role="img"
@@ -36,6 +43,7 @@ withDefaults(defineProps<{ variant?: 'wordmark' | 'mark'; height?: number }>(), 
   <svg
     v-else
     class="owl"
+    :class="size"
     viewBox="0 0 123 125"
     :style="{ height: `${height}px` }"
     role="img"
@@ -51,5 +59,19 @@ withDefaults(defineProps<{ variant?: 'wordmark' | 'mark'; height?: number }>(), 
   display: block;
   width: auto;
   flex: none;
+}
+
+.lg {
+  color: var(--bg-deep);
+  filter:
+    drop-shadow(-1.5px -1.5px 1px var(--shade-light))
+    drop-shadow(3px 4px 4px var(--shade-dark));
+}
+
+.sm {
+  color: #a2a2a9;
+  filter:
+    drop-shadow(-1px -1px 0 var(--shade-light))
+    drop-shadow(1px 1.5px 1.5px rgba(0, 0, 0, 0.32));
 }
 </style>

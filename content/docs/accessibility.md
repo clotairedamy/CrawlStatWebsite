@@ -13,6 +13,9 @@ CrawlStat runs the first half over every page it crawls. The second half is a ch
 
 ## What is checked automatically
 
+::screenshot{src="/screenshots/accessibility-fix-first.png" alt="The Accessibility tab ranking barriers to fix first, with before and after markup for a form field with no label and the pages it appears on" caption="The same markup on 217 of 217 pages means one fix in the template. Before and after code included."}
+::
+
 These run on every crawled page as part of the audit pass, with no extra step:
 
 - **Links and buttons with no accessible name** — nothing for a screen reader to announce, and nothing for voice control to target.
@@ -28,6 +31,9 @@ These run on every crawled page as part of the audit pass, with no extra step:
 These are the checks that static markup can support honestly. Contrast, focus order, reading order against the visual layout and anything that depends on rendering are **not** checked, because CrawlStat has no browser — and a tool that guessed at them would be worse than one that says so.
 
 ## The manual checklist
+
+::screenshot{src="/screenshots/accessibility-checklist.png" alt="The WCAG 2.1 AA manual checklist, with each success criterion marked Nothing found or Manual test" caption="50 criteria, each marked by what the crawl could and couldn’t see. Your sign-offs are saved with the crawl."}
+::
 
 The Accessibility screen lists the WCAG 2.2 AA success criteria that need a person, with space to record a pass, a fail or a note against each. The state is saved in the crawl file, so re-opening a crawl six months later brings your reasoning with it, and the exported report carries both halves.
 
