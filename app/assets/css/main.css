@@ -343,41 +343,30 @@ a.neu:hover {
   transform: translateY(1px) scale(0.985);
 }
 
+/* Primary action: the same raised surface as every other control, with a
+   black ring and a heavier label marking it as the one to click. Black stays
+   an accent — a line, not a slab — so the button sits in the soft-extruded
+   system instead of on top of it. */
 .btn-copper {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  color: #fff;
-  background: var(--copper-grad);
+  color: var(--text);
+  font-weight: 600;
+  background: var(--bg);
   box-shadow:
-    6px 6px 16px var(--shade-dark),
-    -4px -4px 12px var(--shade-light),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    var(--raised-sm),
+    inset 0 0 0 1.5px var(--copper);
 }
 
 .btn-copper:hover {
-  filter: brightness(1.35);
+  color: var(--copper-hi);
   box-shadow:
-    6px 6px 16px var(--shade-dark),
-    -4px -4px 12px var(--shade-light),
-    var(--copper-glow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    var(--raised-sm),
+    inset 0 0 0 1.5px var(--copper-hi);
 }
 
-/* A streak of light crosses the button on hover. */
-.btn-copper::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.28) 50%, transparent 70%);
-  translate: -110% 0;
-  pointer-events: none;
-}
-
-.btn-copper:hover::after {
-  translate: 110% 0;
-  transition: translate 0.75s var(--ease);
+.btn-copper:active {
+  box-shadow:
+    var(--inset-sm),
+    inset 0 0 0 1.5px var(--copper);
 }
 
 .btn-ghost {
@@ -404,6 +393,17 @@ a.neu:hover {
   width: 18px;
   height: 18px;
   flex: none;
+}
+
+/* Mobile: CTAs stretch to the container (capped so tablets don't get a
+   bar-width button) and centre themselves on their line. btn-sm — the
+   header and footer chips — keeps its inline size. */
+@media (max-width: 640px) {
+  .btn:not(.btn-sm) {
+    width: 100%;
+    max-width: 380px;
+    margin-inline: auto;
+  }
 }
 
 /* ─── Small parts ─────────────────────────────────────────────────────── */
